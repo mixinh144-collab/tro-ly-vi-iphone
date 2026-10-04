@@ -10,12 +10,19 @@
 
 ## Cách chạy thử trên iPhone
 
-Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera hoặc Zalo quét mã rồi mở liên kết bằng Safari.
+Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera quét mã rồi mở liên kết bằng Safari. QR có tham số phiên bản `?v=8` để tránh trình quét mở lại trang hoặc biểu tượng nền đen từ bộ nhớ đệm.
+Ảnh dùng thẻ trắng bo góc với viền hồng nhẹ, không có mảng bóng xám phía sau và không in địa chỉ GitHub bên dưới; đường dẫn vẫn nằm đầy đủ trong mã QR.
 
 1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
 4. Mở biểu tượng **Trợ Lý Ví** vừa thêm.
+
+Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự hiện bảng hướng dẫn ba bước: mở bằng Safari, bấm Chia sẻ và chọn **Thêm vào Màn hình chính**. Bảng không tự hiện khi ứng dụng đã chạy ở chế độ Màn hình chính. Có thể mở lại bất cứ lúc nào tại **Khác → Hướng dẫn cài đặt**.
+
+Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp từ máy chủ, yêu cầu service worker tải bản mới rồi cho phép tải lại để áp dụng. Mỗi lần phát hành bản điện thoại cần cập nhật đồng thời `version.json`, tên cache trong `service-worker.js` và tải toàn bộ tệp thay đổi lên cùng địa chỉ GitHub Pages. Bản cập nhật EXE của Windows không tự chuyển chức năng sang bản điện thoại.
+
+Phiên bản phát hành hiện tại của bản iPhone là **1.1**. Số cache `tro-ly-vi-iphone-11` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 ## Giới hạn có chủ đích
 

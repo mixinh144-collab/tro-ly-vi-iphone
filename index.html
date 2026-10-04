@@ -2373,6 +2373,25 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-more-item{min-height:94px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);padding:14px;text-align:left;font:inherit;box-shadow:var(--shadow)}
     .iphone-more-item b{display:block;font-size:22px;font-weight:400;margin-bottom:9px;color:var(--p)}
     .iphone-more-item span{font-weight:800;font-size:calc(13px * var(--font-scale,1))}
+    .iphone-more-item small{display:block;margin-top:5px;color:var(--muted);font-size:calc(10px * var(--font-scale,1));font-weight:700}
+    .iphone-install-guide{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;padding:18px 12px calc(18px + env(safe-area-inset-bottom));background:#211820a8;backdrop-filter:blur(5px)}
+    .iphone-install-guide.open{display:flex}
+    .iphone-install-card{width:min(100%,540px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
+    .iphone-install-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+    .iphone-install-head h2{margin:0;font-size:calc(22px * var(--font-scale,1))}
+    .iphone-install-head p{margin:6px 0 0;color:var(--muted);line-height:1.45}
+    .iphone-install-close{width:38px;height:38px;flex:0 0 auto;border:0;border-radius:12px;background:var(--bg);color:var(--ink);font:700 22px/1 inherit}
+    .iphone-install-steps{display:grid;gap:10px;margin:18px 0}
+    .iphone-install-step{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
+    .iphone-install-number{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--p);color:var(--on);font-weight:900;font-size:18px}
+    .iphone-install-step b{display:block;margin-bottom:3px}
+    .iphone-install-step span{display:block;color:var(--muted);font-size:calc(12px * var(--font-scale,1));line-height:1.45}
+    .iphone-install-tip{padding:12px 14px;border-radius:14px;background:var(--ps);color:var(--ink);font-size:calc(12px * var(--font-scale,1));line-height:1.5}
+    .iphone-install-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:9px;margin-top:16px}
+    .iphone-install-actions .button{width:100%;min-height:46px}
+    .iphone-update-version{display:inline-flex;margin-top:14px;padding:7px 10px;border-radius:999px;background:var(--ps);color:var(--ink);font-size:calc(11px * var(--font-scale,1));font-weight:800}
+    .iphone-update-status{min-height:100px;display:grid;place-items:center;margin:15px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--muted);text-align:center;line-height:1.55}
+    .iphone-update-status b{display:block;margin-bottom:5px;color:var(--ink);font-size:calc(15px * var(--font-scale,1))}
   }
   @media(max-width:370px){
     #home .hero-summary{gap:7px}
@@ -2385,7 +2404,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   ["gesturestart","gesturechange","gestureend"].forEach(type=>document.addEventListener(type,event=>event.preventDefault(),{passive:false}));
   ["touchstart","touchmove"].forEach(type=>document.addEventListener(type,event=>{if(event.touches.length>1)event.preventDefault()},{passive:false}));
-  if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js").catch(()=>{});
+  if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).catch(()=>{});
   const backup=document.getElementById("backup"),download=document.getElementById("downloadBackup");
   if(!backup||!download||document.getElementById("iphoneShareBackup"))return;
   const button=document.createElement("button");
@@ -2420,7 +2439,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   if(!content||!mobile)return;
   const more=document.createElement("section");
   more.className="screen";more.id="mobileMore";
-  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button></div>';
+  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button><button class="iphone-more-item" type="button" data-install-guide><b>⇧</b><span>Hướng dẫn cài đặt</span></button><button class="iphone-more-item" type="button" data-check-update><b>↻</b><span>Kiểm tra cập nhật</span><small id="iphoneUpdateBadge">Tự động</small></button></div>';
   content.append(more);
   meta.mobileMore=["Khác","Các chức năng khác của Trợ Lý Ví"];
 
@@ -2436,6 +2455,64 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     button.classList.toggle("active",view==="home");button.addEventListener("click",()=>showView(view));return button;
   }));
   more.querySelectorAll("[data-mobile-target]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.mobileTarget)));
+})();
+</script>
+<script id="iphone-install-guide-runtime">
+(()=>{
+  const standalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  const guide=document.createElement("div");
+  guide.className="iphone-install-guide";guide.setAttribute("role","dialog");guide.setAttribute("aria-modal","true");guide.setAttribute("aria-labelledby","iphoneInstallTitle");
+  guide.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneInstallTitle">Cài Trợ Lý Ví lên màn hình</h2><p>Làm một lần để mở ứng dụng nhanh như app bình thường.</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-install-steps"><div class="iphone-install-step"><div class="iphone-install-number">1</div><div><b>Mở bằng Safari</b><span>Nếu đang xem trong Zalo hoặc ứng dụng khác, chọn Mở bằng Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">2</div><div><b>Bấm nút Chia sẻ</b><span>Tìm biểu tượng hình vuông có mũi tên hướng lên trong Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">3</div><div><b>Chọn “Thêm vào Màn hình chính”</b><span>Bấm Thêm, sau đó mở biểu tượng Trợ Lý Ví vừa xuất hiện.</span></div></div></div><div class="iphone-install-tip"><b>Mẹo:</b> Nếu chưa thấy mục này, hãy kéo danh sách Chia sẻ xuống dưới. Trên iPad, nút Chia sẻ thường nằm ở góc trên bên phải.</div><div class="iphone-install-actions"><button class="button secondary" type="button" data-install-later>Để sau</button><button class="button primary" type="button" data-install-understood>Đã hiểu</button></div></div>';
+  document.body.append(guide);
+  const open=()=>{guide.classList.add("open");document.body.style.overflow="hidden";guide.querySelector(".iphone-install-close").focus()};
+  const close=()=>{guide.classList.remove("open");document.body.style.overflow=""};
+  guide.querySelector(".iphone-install-close").addEventListener("click",close);
+  guide.querySelector("[data-install-later]").addEventListener("click",close);
+  guide.querySelector("[data-install-understood]").addEventListener("click",()=>{try{localStorage.setItem("tro_ly_vi_install_guide_seen_v1","1")}catch{}close()});
+  guide.addEventListener("click",event=>{if(event.target===guide)close()});
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&guide.classList.contains("open"))close()});
+  document.querySelector("[data-install-guide]")?.addEventListener("click",open);
+  let seen=false;try{seen=localStorage.getItem("tro_ly_vi_install_guide_seen_v1")==="1"}catch{}
+  if(!standalone()&&!seen)setTimeout(open,650);
+})();
+</script>
+<script id="iphone-update-runtime">
+(()=>{
+  const APP_VERSION="1.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge");
+  if(!tile)return;
+  const dialog=document.createElement("div");
+  dialog.className="iphone-install-guide";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneUpdateTitle");
+  dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneUpdateTitle">Cập nhật Trợ Lý Ví</h2><p>Kiểm tra bản điện thoại mới trên máy chủ.</p><div class="iphone-update-version">Phiên bản đang dùng: '+APP_VERSION+'</div></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-update-status" id="iphoneUpdateStatus"><div><b>Sẵn sàng kiểm tra</b>Cần kết nối Internet để tìm bản mới.</div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-update-close>Đóng</button><button class="button primary" type="button" data-update-action>Kiểm tra ngay</button></div></div>';
+  document.body.append(dialog);
+  const status=dialog.querySelector("#iphoneUpdateStatus"),action=dialog.querySelector("[data-update-action]");
+  let checking=false,ready=false,registration=null,watched=null,expectedVersion="";
+  const setStatus=(title,text)=>{status.innerHTML="<div><b>"+title+"</b>"+text+"</div>"};
+  const close=()=>{dialog.classList.remove("open");document.body.style.overflow=""};
+  const open=()=>{dialog.classList.add("open");document.body.style.overflow="hidden";action.focus();if(!checking&&!ready)check()};
+  const markReady=version=>{ready=true;checking=false;expectedVersion=version||expectedVersion;badge.textContent="Có bản mới";badge.style.color="var(--p)";setStatus("Có bản cập nhật mới",expectedVersion?"Phiên bản "+expectedVersion+" đã sẵn sàng. Tải lại để áp dụng.":"Bản mới đã sẵn sàng. Tải lại để áp dụng.");action.disabled=false;action.textContent="Tải lại để cập nhật"};
+  const watch=reg=>{if(!reg||watched===reg)return;watched=reg;reg.addEventListener("updatefound",()=>{const worker=reg.installing;if(!worker)return;worker.addEventListener("statechange",()=>{if((worker.state==="installed"||worker.state==="activated")&&navigator.serviceWorker.controller)markReady(expectedVersion)})})};
+  async function check(){
+    if(checking)return;checking=true;action.disabled=true;action.textContent="Đang kiểm tra…";setStatus("Đang kiểm tra",navigator.onLine===false?"Thiết bị đang ngoại tuyến…":"Đang liên hệ máy chủ…");
+    try{
+      const response=await fetch("version.json?t="+Date.now(),{cache:"no-store"});
+      if(!response.ok)throw new Error("version");
+      const info=await response.json(),remote=String(info.version||"");
+      if(!remote)throw new Error("version");
+      if(remote===APP_VERSION){checking=false;badge.textContent="Mới nhất";badge.style.color="";setStatus("Đã là bản mới nhất","Bạn đang dùng phiên bản "+APP_VERSION+".");action.disabled=false;action.textContent="Kiểm tra lại";return}
+      expectedVersion=remote;
+      if(!("serviceWorker" in navigator))throw new Error("worker");
+      registration=await navigator.serviceWorker.getRegistration()||await navigator.serviceWorker.ready;watch(registration);await registration.update();
+      setStatus("Đã tìm thấy phiên bản "+remote,"Ứng dụng đang chuẩn bị bản mới…");
+      setTimeout(()=>{if(!ready){checking=false;badge.textContent="Có bản mới";badge.style.color="var(--p)";setStatus("Có bản cập nhật mới","Đóng rồi mở lại ứng dụng, hoặc bấm tải lại để hoàn tất.");action.disabled=false;action.textContent="Tải lại để cập nhật";ready=true}},3500);
+    }catch(error){checking=false;setStatus("Chưa kiểm tra được","Hãy kiểm tra kết nối Internet rồi thử lại.");action.disabled=false;action.textContent="Thử lại"}
+  }
+  tile.addEventListener("click",open);
+  dialog.querySelector(".iphone-install-close").addEventListener("click",close);
+  dialog.querySelector("[data-update-close]").addEventListener("click",close);
+  dialog.addEventListener("click",event=>{if(event.target===dialog)close()});
+  action.addEventListener("click",()=>ready?location.reload():check());
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()});
+  if("serviceWorker" in navigator){const hadController=Boolean(navigator.serviceWorker.controller);navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadController)markReady(expectedVersion)});navigator.serviceWorker.ready.then(reg=>{registration=reg;watch(reg);if(reg.waiting&&navigator.serviceWorker.controller)markReady()}).catch(()=>{})}
 })();
 </script>
 </body>

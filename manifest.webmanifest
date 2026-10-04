@@ -1,0 +1,11 @@
+{
+  "name": "Trợ Lý Ví",
+  "short_name": "Trợ Lý Ví",
+  "description": "Chi tiêu cá nhân và sao lưu qua iCloud Drive.",
+  "lang": "vi",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff8f7",
+  "theme_color": "#e7729c",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

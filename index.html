@@ -2,14 +2,14 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F498C2">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Trợ Lý Ví">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon-white.png">
   <link rel="icon" type="image/png" href="logo.png">
   <title>Trợ Lý Ví — Quản lý thu chi</title>
   <style>
@@ -2321,6 +2321,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </style>
 <style id="iphone-mobile-final-ui">
   @media screen{
+    html{-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:pan-x pan-y}
+    input,select,textarea{font-size:16px!important;max-width:100%}
     .side{display:none}
     .main{width:min(100%,680px);margin:0 auto}
     .mobile-nav{display:grid;position:fixed;left:50%;right:auto;bottom:0;z-index:20;width:min(100%,680px);transform:translateX(-50%);background:color-mix(in srgb,var(--paper),transparent 5%);border-top:1px solid var(--line);backdrop-filter:blur(12px)}
@@ -2381,6 +2383,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </style>
 <script id="iphone-pwa-runtime">
 (()=>{
+  ["gesturestart","gesturechange","gestureend"].forEach(type=>document.addEventListener(type,event=>event.preventDefault(),{passive:false}));
+  ["touchstart","touchmove"].forEach(type=>document.addEventListener(type,event=>{if(event.touches.length>1)event.preventDefault()},{passive:false}));
   if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js").catch(()=>{});
   const backup=document.getElementById("backup"),download=document.getElementById("downloadBackup");
   if(!backup||!download||document.getElementById("iphoneShareBackup"))return;

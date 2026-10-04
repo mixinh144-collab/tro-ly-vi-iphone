@@ -10,6 +10,8 @@
 
 ## Cách chạy thử trên iPhone
 
+Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera hoặc Zalo quét mã rồi mở liên kết bằng Safari.
+
 1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
@@ -26,3 +28,6 @@
 - Thanh dưới có 5 mục: **Tổng quan, Giao dịch, Lịch, Báo cáo, Khác**. Thống kê, Lịch chi tiêu, Chi hộ & Hoàn tiền, Sao lưu và Cài đặt nằm trong **Khác**.
 - Vì đây là thư mục dành riêng cho điện thoại, bố cục mobile luôn được dùng cả khi mở thử trong Browser của ChatGPT hoặc trình duyệt máy tính; chiều rộng nội dung được giới hạn 680 px.
 - `logo.png` là bản sao logo của Trợ Lý Ví trên máy tính, dùng riêng cho giao diện, biểu tượng tab và biểu tượng cài lên Màn hình chính; logo gốc của bản Windows không bị sửa.
+- `apple-touch-icon.png` là bản sao cùng nội dung đặt đúng tên Safari ưu tiên khi tạo biểu tượng Màn hình chính. Sau khi thay logo, cần xóa biểu tượng cũ trên iPhone rồi thêm lại từ Safari để tránh bộ nhớ đệm.
+- `apple-touch-icon-white.png` là biểu tượng cài lên Màn hình chính có nền trắng kín, giữ nguyên hình chiếc ví. Safari dùng tên tệp mới để tránh lấy lại biểu tượng nền đen đã lưu trước đó.
+- Tỷ lệ giao diện được cố định ở 100%. Cử chỉ thu phóng bằng hai ngón bị chặn, còn cuộn bằng một ngón vẫn hoạt động. Các ô nhập dùng cỡ chữ tối thiểu 16 px để Safari không tự phóng to khi bắt đầu nhập liệu.

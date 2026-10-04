@@ -1,6 +1,6 @@
-# Trợ Lý Ví cho iPhone — bản đầu
+# Trợ Lý Ví cho iPhone, iPad và Android
 
-Đây là web-app độc lập, không thay đổi `index.html` hay dữ liệu của bản Windows. Nó dùng cùng mã giao diện và toàn bộ chức năng của bản Windows; CSS có sẵn của Trợ Lý Ví tự chuyển sang thanh điều hướng dưới và bố cục một cột trên iPhone.
+Đây là web-app độc lập, không thay đổi `index.html` hay dữ liệu của bản Windows. Ứng dụng dùng giao diện điện thoại trên màn hình nhỏ và tự mở rộng theo chiều rộng máy tính bảng.
 
 ## Có trong bản đầu
 
@@ -8,10 +8,11 @@
 - Giữ cùng màu, font, thẻ, nút, chế độ tối và cách trình bày; trên iPhone thanh bên chuyển thành thanh điều hướng ở dưới để không chật màn hình.
 - Xuất/khôi phục định dạng JSON tương thích với tệp Sao lưu của Trợ Lý Ví 1.25. Trong mục Sao lưu có thêm nút **Lưu vào iCloud Drive**, mở bảng Chia sẻ của iPhone; chọn **Lưu vào Tệp** rồi chọn **iCloud Drive**.
 
-## Cách chạy thử trên iPhone
+## Cách cài trên điện thoại và máy tính bảng
 
 Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera quét mã rồi mở liên kết bằng Safari. QR có tham số phiên bản `?v=8` để tránh trình quét mở lại trang hoặc biểu tượng nền đen từ bộ nhớ đệm.
 Ảnh dùng thẻ trắng bo góc với viền hồng nhẹ, không có mảng bóng xám phía sau và không in địa chỉ GitHub bên dưới; đường dẫn vẫn nằm đầy đủ trong mã QR.
+Phía dưới thẻ QR có dòng ghi công **Tạo bởi Mimi Studio** để người nhận ảnh biết người tạo ứng dụng.
 
 1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
@@ -20,9 +21,13 @@ Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera quét mã r�
 
 Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự hiện bảng hướng dẫn ba bước: mở bằng Safari, bấm Chia sẻ và chọn **Thêm vào Màn hình chính**. Bảng không tự hiện khi ứng dụng đã chạy ở chế độ Màn hình chính. Có thể mở lại bất cứ lúc nào tại **Khác → Hướng dẫn cài đặt**.
 
+Trên Android, bảng hướng dẫn tự đổi thành ba bước dành cho Chrome: mở bằng Google Chrome, bấm menu `⋮`, rồi chọn **Cài đặt ứng dụng** hoặc **Thêm vào màn hình chính**. Nút sao lưu bổ sung đổi thành **Lưu hoặc chia sẻ tệp** và có thể gửi tệp tới Google Drive hoặc ứng dụng lưu trữ khác.
+
 Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp từ máy chủ, yêu cầu service worker tải bản mới rồi cho phép tải lại để áp dụng. Mỗi lần phát hành bản điện thoại cần cập nhật đồng thời `version.json`, tên cache trong `service-worker.js` và tải toàn bộ tệp thay đổi lên cùng địa chỉ GitHub Pages. Bản cập nhật EXE của Windows không tự chuyển chức năng sang bản điện thoại.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.6**. Số cache `tro-ly-vi-iphone-17` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+`version.json` còn có khối `notice` để Mimi Studio gửi thông báo khi người dùng mở ứng dụng. Đổi `id` mỗi lần có nội dung mới, sửa `title` và `message`, đặt `enabled` thành `true`, rồi tải tệp lên GitHub Pages. Mỗi thiết bị chỉ hiện một lần cho mỗi `id`; đặt `showUpdateButton` thành `true` nếu thông báo cần kèm nút **Kiểm tra cập nhật**. Đặt `enabled` về `false` để ngừng hiện thông báo. Chức năng này chỉ đọc tệp công khai trên GitHub và không gửi dữ liệu người dùng.
+
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.7**. Số cache `tro-ly-vi-iphone-18` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

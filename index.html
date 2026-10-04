@@ -86,7 +86,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
       <nav class="nav" id="sideNav">
         <button class="active" data-view="home">◫ <span>Tổng quan</span></button>
         <button data-view="transactions">⇄ <span>Giao dịch</span></button><button data-view="calendar">▦ <span>Lịch</span></button>
-        
+
         <button data-view="analytics">▥ <span>Thống kê</span></button>
         <button data-view="reports">▤ <span>Báo cáo</span></button>
         <button data-view="yearlyReports">▦ <span>Báo cáo năm</span></button>
@@ -154,7 +154,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
         </section>
 
         <section class="screen" id="reports">
-          
+
           <div class="card monthly-report" id="monthlyReport">
             <div class="section-heading"><div><h3>Thu chi theo tháng</h3><p id="monthlyReportPeriod"></p><p>Tổng thu nhập và chi tiêu từng tháng của Hồ sơ đang chọn.</p></div></div>
             <div class="monthly-report-scroll" tabindex="0" role="region" aria-label="Báo cáo thu nhập và chi tiêu từng tháng" id="monthlyReportTable"></div>
@@ -162,7 +162,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
         </section>
 
         <section class="screen" id="yearlyReports">
-          
+
           <div class="card yearly-report-card">
             <div class="yearly-navigation"><button class="button secondary" id="previousReportYear" type="button" aria-label="Năm trước">‹</button><label class="yearly-year">Năm <input class="control" id="reportYearInput" aria-label="Năm báo cáo" type="number" min="1" max="9999" step="1"><span>(01/01 – 31/12)</span></label><button class="button secondary" id="nextReportYear" type="button" aria-label="Năm sau">›</button></div>
             <div class="yearly-tabs" role="group" aria-label="Loại báo cáo năm"><button type="button" data-yearly-mode="expense" aria-pressed="true">Chi tiêu</button><button type="button" data-yearly-mode="income" aria-pressed="false">Thu nhập</button><button type="button" data-yearly-mode="net" aria-pressed="false">Tổng</button></div>
@@ -324,7 +324,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
       const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
       const current=()=>request===exchangeRequestId&&state===target&&profileStore.activeProfileId===profileId;
       try{
-        const response=await fetch("https://open.er-api.com/v6/latest/USD",{signal:controller.signal,credentials:"omit",cache:"no-store",referrerPolicy:"no-referrer"});
+        const response=await fetch("https://open.er-api.com/v6/latest/USD?t="+Date.now(),{signal:controller.signal,credentials:"omit",cache:"no-store",referrerPolicy:"no-referrer"});
         if(!response.ok)throw new Error("http");
         const data=await response.json(),rate=data.rates&&data.rates.VND,stamp=data.time_last_update_unix;
         if(data.result!=="success"||data.base_code!=="USD"||typeof rate!=="number"||!Number.isFinite(rate)||rate<1||rate>1000000000||typeof stamp!=="number"||!Number.isFinite(stamp)||stamp<=0||stamp*1000>Date.now()+86400000)throw new Error("data");
@@ -1752,6 +1752,38 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
   },true);
 }());
 </script>
+<script id="iphone-transaction-modal-fixes">
+(()=>{
+  const modal=document.getElementById("transactionModal"),dateInput=document.getElementById("dateInput"),amountInput=document.getElementById("amountInput");
+  if(!modal||!dateInput||!amountInput)return;
+  const style=document.createElement("style");
+  style.textContent='html.iphone-transaction-modal-open{overflow:hidden!important;overscroll-behavior:none}html.iphone-transaction-modal-open body{overscroll-behavior:none}#transactionModal{overscroll-behavior:contain;touch-action:none}#transactionModal>.modal{overscroll-behavior:contain;touch-action:pan-y}';
+  document.head.appendChild(style);
+  let locked=null;
+  const lock=()=>{
+    if(locked)return;
+    const body=document.body,root=document.documentElement;
+    locked={scrollY:window.scrollY,position:body.style.position,top:body.style.top,left:body.style.left,right:body.style.right,width:body.style.width,overflow:body.style.overflow,rootOverflow:root.style.overflow};
+    root.classList.add("iphone-transaction-modal-open");root.style.overflow="hidden";
+    body.style.position="fixed";body.style.top=-locked.scrollY+"px";body.style.left="0";body.style.right="0";body.style.width="100%";body.style.overflow="hidden";
+  };
+  const unlock=()=>{
+    if(!locked)return;
+    const state=locked;locked=null;const body=document.body,root=document.documentElement;
+    root.classList.remove("iphone-transaction-modal-open");root.style.overflow=state.rootOverflow;
+    body.style.position=state.position;body.style.top=state.top;body.style.left=state.left;body.style.right=state.right;body.style.width=state.width;body.style.overflow=state.overflow;
+    window.scrollTo(0,state.scrollY);requestAnimationFrame(()=>window.scrollTo(0,state.scrollY));
+  };
+  new MutationObserver(()=>modal.classList.contains("open")?lock():unlock()).observe(modal,{attributes:true,attributeFilter:["class"]});
+  const dismissPreviousKeyboard=()=>{const active=document.activeElement;if(active&&active!==dateInput&&typeof active.blur==="function")active.blur()};
+  dateInput.addEventListener("pointerdown",dismissPreviousKeyboard,true);
+  dateInput.addEventListener("touchstart",dismissPreviousKeyboard,{capture:true,passive:true});
+  dateInput.addEventListener("change",()=>{
+    dateInput.blur();amountInput.blur();
+    setTimeout(()=>{dateInput.blur();amountInput.blur()},100);
+  });
+})();
+</script>
 <style>
 #receiptModal .modal{width:min(1000px,96vw)}#receiptModal .modal-body{padding:14px}#receiptZoomToolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}#receiptZoomToolbar button{padding:8px 12px}#receiptViewport{height:min(62vh,650px);overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;touch-action:none;cursor:grab;overscroll-behavior:contain}#receiptViewport.dragging{cursor:grabbing}#receiptViewport #receiptImage{display:block;max-width:none;max-height:none;width:auto;height:auto;margin:0 auto;border-radius:0;user-select:none;pointer-events:none}#receiptZoomValue{min-width:48px;text-align:center;color:var(--ink);font-size:calc(12px * var(--font-scale,1))}#receiptZoomHint{font-size:calc(12px * var(--font-scale,1));color:var(--muted);margin:8px 0 0}
 </style>
@@ -2551,15 +2583,16 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   if("serviceWorker" in navigator)navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"}).catch(()=>{});
   const backup=document.getElementById("backup"),download=document.getElementById("downloadBackup");
   if(!backup||!download||document.getElementById("iphoneShareBackup"))return;
+  const android=/Android/i.test(navigator.userAgent);
   const button=document.createElement("button");
-  button.id="iphoneShareBackup";button.type="button";button.className="button secondary";button.style.marginLeft="8px";button.textContent="Lưu vào iCloud Drive";
+  button.id="iphoneShareBackup";button.type="button";button.className="button secondary";button.style.marginLeft="8px";button.textContent=android?"Lưu hoặc chia sẻ tệp":"Lưu vào iCloud Drive";
   download.insertAdjacentElement("afterend",button);
   button.addEventListener("click",async()=>{
     try{
       const payload=JSON.stringify(createBackupPayload(profileStore),null,2);
       const file=new File([payload],`tro-ly-vi-sao-luu-${localDate()}.json`,{type:"application/json"});
       if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
-        await navigator.share({title:"Sao lưu Trợ Lý Ví",text:"Chọn Lưu vào Tệp rồi chọn iCloud Drive.",files:[file]});return;
+        await navigator.share({title:"Sao lưu Trợ Lý Ví",text:android?"Chọn ứng dụng lưu tệp hoặc Google Drive.":"Chọn Lưu vào Tệp rồi chọn iCloud Drive.",files:[file]});return;
       }
       const link=document.createElement("a");link.href=URL.createObjectURL(file);link.download=file.name;link.click();URL.revokeObjectURL(link.href);
     }catch(error){showToast("Chưa thể tạo tệp sao lưu")}
@@ -2583,7 +2616,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   if(!content||!mobile)return;
   const more=document.createElement("section");
   more.className="screen";more.id="mobileMore";
-  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button><button class="iphone-more-item" type="button" data-install-guide><b>⇧</b><span>Hướng dẫn cài đặt</span></button><button class="iphone-more-item" type="button" data-check-update><b>↻</b><span>Kiểm tra cập nhật</span><small id="iphoneUpdateBadge">Tự động</small></button></div><div class="iphone-version-card"><div><b>Phiên bản ứng dụng</b><span id="iphoneVersionLabel">Trợ Lý Ví</span></div><strong>Mimi Studio</strong></div>';
+  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button><button class="iphone-more-item" type="button" data-install-guide><b>⇧</b><span>Hướng dẫn cài đặt</span></button><button class="iphone-more-item" type="button" data-report-issue><b>✎</b><span>Báo lỗi</span><small>Gửi góp ý cho Mimi Studio</small></button><button class="iphone-more-item" type="button" data-check-update><b>↻</b><span>Kiểm tra cập nhật</span><small id="iphoneUpdateBadge">Tự động</small></button></div><div class="iphone-version-card"><div><b>Phiên bản ứng dụng</b><span id="iphoneVersionLabel">Trợ Lý Ví</span></div><strong>Mimi Studio</strong></div>';
   content.append(more);
   meta.mobileMore=["Khác","Các chức năng khác của Trợ Lý Ví"];
 
@@ -2604,9 +2637,11 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 <script id="iphone-install-guide-runtime">
 (()=>{
   const standalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  const android=/Android/i.test(navigator.userAgent);
   const guide=document.createElement("div");
   guide.className="iphone-install-guide";guide.setAttribute("role","dialog");guide.setAttribute("aria-modal","true");guide.setAttribute("aria-labelledby","iphoneInstallTitle");
-  guide.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneInstallTitle">Cài Trợ Lý Ví lên màn hình</h2><p>Làm một lần để mở ứng dụng nhanh như app bình thường.</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-install-steps"><div class="iphone-install-step"><div class="iphone-install-number">1</div><div><b>Mở bằng Safari</b><span>Nếu đang xem trong Zalo hoặc ứng dụng khác, chọn Mở bằng Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">2</div><div><b>Bấm nút Chia sẻ</b><span>Tìm biểu tượng hình vuông có mũi tên hướng lên trong Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">3</div><div><b>Chọn “Thêm vào Màn hình chính”</b><span>Bấm Thêm, sau đó mở biểu tượng Trợ Lý Ví vừa xuất hiện.</span></div></div></div><div class="iphone-install-tip"><b>Mẹo:</b> Nếu chưa thấy mục này, hãy kéo danh sách Chia sẻ xuống dưới. Trên iPad, nút Chia sẻ thường nằm ở góc trên bên phải.</div><div class="iphone-install-actions"><button class="button secondary" type="button" data-install-later>Để sau</button><button class="button primary" type="button" data-install-understood>Đã hiểu</button></div></div>';
+  const steps=android?'<div class="iphone-install-steps"><div class="iphone-install-step"><div class="iphone-install-number">1</div><div><b>Mở bằng Google Chrome</b><span>Nếu đang xem trong Zalo hoặc ứng dụng khác, chọn Mở bằng Chrome.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">2</div><div><b>Bấm menu ⋮</b><span>Mở menu ba chấm ở góc trên bên phải của Chrome.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">3</div><div><b>Chọn “Cài đặt ứng dụng”</b><span>Nếu không thấy, chọn “Thêm vào màn hình chính”, rồi xác nhận Cài đặt hoặc Thêm.</span></div></div></div><div class="iphone-install-tip"><b>Mẹo:</b> Sau khi cài, mở Trợ Lý Ví từ biểu tượng trên màn hình chính để dùng như ứng dụng.</div>':'<div class="iphone-install-steps"><div class="iphone-install-step"><div class="iphone-install-number">1</div><div><b>Mở bằng Safari</b><span>Nếu đang xem trong Zalo hoặc ứng dụng khác, chọn Mở bằng Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">2</div><div><b>Bấm nút Chia sẻ</b><span>Tìm biểu tượng hình vuông có mũi tên hướng lên trong Safari.</span></div></div><div class="iphone-install-step"><div class="iphone-install-number">3</div><div><b>Chọn “Thêm vào Màn hình chính”</b><span>Bấm Thêm, sau đó mở biểu tượng Trợ Lý Ví vừa xuất hiện.</span></div></div></div><div class="iphone-install-tip"><b>Mẹo:</b> Nếu chưa thấy mục này, hãy kéo danh sách Chia sẻ xuống dưới. Trên iPad, nút Chia sẻ thường nằm ở góc trên bên phải.</div>';
+  guide.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneInstallTitle">'+(android?'Cài Trợ Lý Ví trên Android':'Cài Trợ Lý Ví trên iPhone/iPad')+'</h2><p>Làm một lần để mở ứng dụng nhanh như app bình thường.</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div>'+steps+'<div class="iphone-install-actions"><button class="button secondary" type="button" data-install-later>Để sau</button><button class="button primary" type="button" data-install-understood>Đã hiểu</button></div></div>';
   document.body.append(guide);
   const open=()=>{guide.classList.add("open");document.body.style.overflow="hidden";guide.querySelector(".iphone-install-close").focus()};
   const close=()=>{guide.classList.remove("open");document.body.style.overflow=""};
@@ -2620,9 +2655,83 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   if(!standalone()&&!seen)setTimeout(open,650);
 })();
 </script>
+<script id="iphone-remote-notice-runtime">
+(()=>{
+  const SEEN_KEY="tro_ly_vi_remote_notice_seen_v1";
+  const cleanText=(value,max)=>typeof value==="string"?value.trim().slice(0,max):"";
+  const alreadySeen=id=>{try{return localStorage.getItem(SEEN_KEY)===id}catch{return false}};
+  const remember=id=>{try{localStorage.setItem(SEEN_KEY,id)}catch{}};
+  const showNotice=notice=>{
+    const id=cleanText(notice.id,80),title=cleanText(notice.title,100),message=cleanText(notice.message,1000);
+    if(notice.enabled!==true||!id||!title||!message||alreadySeen(id))return;
+    const dialog=document.createElement("div");
+    dialog.className="iphone-install-guide iphone-remote-notice";
+    dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneRemoteNoticeTitle");
+    dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneRemoteNoticeTitle"></h2><p>Thông báo từ Mimi Studio</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-update-status"><div id="iphoneRemoteNoticeMessage"></div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-notice-update>Kiểm tra cập nhật</button><button class="button primary" type="button" data-notice-understood>Đã hiểu</button></div></div>';
+    dialog.querySelector("#iphoneRemoteNoticeTitle").textContent=title;
+    dialog.querySelector("#iphoneRemoteNoticeMessage").textContent=message;
+    const updateButton=dialog.querySelector("[data-notice-update]");
+    updateButton.hidden=notice.showUpdateButton!==true;
+    document.body.append(dialog);
+    const close=()=>{remember(id);dialog.classList.remove("open");document.body.style.overflow="";setTimeout(()=>dialog.remove(),180)};
+    const openWhenReady=()=>{
+      if(document.querySelector(".iphone-install-guide.open")){setTimeout(openWhenReady,500);return}
+      dialog.classList.add("open");document.body.style.overflow="hidden";dialog.querySelector("[data-notice-understood]").focus();
+    };
+    dialog.querySelector(".iphone-install-close").addEventListener("click",close);
+    dialog.querySelector("[data-notice-understood]").addEventListener("click",close);
+    updateButton.addEventListener("click",()=>{close();setTimeout(()=>document.querySelector("[data-check-update]")?.click(),220)});
+    dialog.addEventListener("click",event=>{if(event.target===dialog)close()});
+    document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()},{once:true});
+    setTimeout(openWhenReady,900);
+  };
+  fetch("version.json?notice="+Date.now(),{cache:"no-store"}).then(response=>{
+    if(!response.ok)throw new Error("notice");
+    return response.json();
+  }).then(info=>{if(info&&info.notice)showNotice(info.notice)}).catch(()=>{});
+})();
+</script>
+<script id="iphone-report-issue-runtime">
+(()=>{
+  const tile=document.querySelector("[data-report-issue]");
+  if(!tile)return;
+  const APP_VERSION="1.1.7";
+  const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
+  const TECHNICAL_FIELD="entry.971615095";
+  const deviceName=()=>{
+    const ua=navigator.userAgent||"";
+    if(/iPad/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1))return "iPad";
+    if(/iPhone/i.test(ua))return "iPhone";
+    if(/Android/i.test(ua))return "Android";
+    return "Thiết bị khác";
+  };
+  const activeArea=()=>{
+    const screen=document.querySelector(".screen.active");
+    const heading=screen?.querySelector("h1,h2")?.textContent?.trim();
+    return heading||screen?.id||"Không xác định";
+  };
+  tile.addEventListener("click",()=>{
+    const standalone=window.matchMedia?.("(display-mode: standalone)")?.matches||navigator.standalone===true;
+    const details=[
+      "Phiên bản ứng dụng: "+APP_VERSION,
+      "Thiết bị: "+deviceName(),
+      "Kích thước giao diện: "+window.innerWidth+" × "+window.innerHeight+" px",
+      "Khu vực đang mở: "+activeArea(),
+      "Cách mở: "+(standalone?"Ứng dụng trên Màn hình chính":"Trình duyệt"),
+      "Thời gian: "+new Date().toLocaleString("vi-VN"),
+      "Trình duyệt: "+(navigator.userAgent||"Không xác định")
+    ].join("\n");
+    const url=new URL(FORM_URL);
+    url.searchParams.set("usp","pp_url");
+    url.searchParams.set(TECHNICAL_FIELD,details);
+    const opened=window.open(url.toString(),"_blank","noopener,noreferrer");
+    if(!opened)location.href=url.toString();
+  });
+})();
+</script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.6",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.1.7",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");

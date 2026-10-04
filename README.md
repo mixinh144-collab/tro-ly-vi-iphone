@@ -1,15 +1,12 @@
 # Trợ Lý Ví cho iPhone — bản đầu
 
-Đây là web-app độc lập, không thay đổi `index.html` hay dữ liệu của bản Windows.
+Đây là web-app độc lập, không thay đổi `index.html` hay dữ liệu của bản Windows. Nó dùng cùng mã giao diện và toàn bộ chức năng của bản Windows; CSS có sẵn của Trợ Lý Ví tự chuyển sang thanh điều hướng dưới và bố cục một cột trên iPhone.
 
 ## Có trong bản đầu
 
-- Tổng quan tự tính giao dịch trong tháng hiện tại.
-- Thêm và xem giao dịch trên iPhone.
-- Thêm Lịch hẹn, Việc cần làm, Sinh nhật, Kỷ niệm và lựa chọn lặp lại hằng năm.
-- Đổi Hồ sơ hiện có sau khi khôi phục tệp sao lưu.
-- Xuất/khôi phục định dạng JSON tương thích với tệp Sao lưu của Trợ Lý Ví 1.25.
-- Nút **Tải sao lưu** mở bảng chia sẻ của iPhone khi Safari hỗ trợ; chọn **Lưu vào Tệp** rồi chọn **iCloud Drive**. Khi cần chuyển dữ liệu từ máy tính, chọn **Khôi phục** và lấy tệp trong iCloud Drive.
+- Giữ đầy đủ các mục của bản Windows: Tổng quan, Giao dịch, Lịch, Thống kê, Báo cáo, Lịch & nhắc việc, Chi hộ & Hoàn tiền, Sao lưu và Cài đặt.
+- Giữ cùng màu, font, thẻ, nút, chế độ tối và cách trình bày; trên iPhone thanh bên chuyển thành thanh điều hướng ở dưới để không chật màn hình.
+- Xuất/khôi phục định dạng JSON tương thích với tệp Sao lưu của Trợ Lý Ví 1.25. Trong mục Sao lưu có thêm nút **Lưu vào iCloud Drive**, mở bảng Chia sẻ của iPhone; chọn **Lưu vào Tệp** rồi chọn **iCloud Drive**.
 
 ## Cách chạy thử trên iPhone
 

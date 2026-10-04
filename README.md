@@ -22,9 +22,14 @@ Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự 
 
 Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp từ máy chủ, yêu cầu service worker tải bản mới rồi cho phép tải lại để áp dụng. Mỗi lần phát hành bản điện thoại cần cập nhật đồng thời `version.json`, tên cache trong `service-worker.js` và tải toàn bộ tệp thay đổi lên cùng địa chỉ GitHub Pages. Bản cập nhật EXE của Windows không tự chuyển chức năng sang bản điện thoại.
 
-Phiên bản phát hành hiện tại của bản iPhone là **1.1.1**. Số cache `tro-ly-vi-iphone-12` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone là **1.1.4**. Số cache `tro-ly-vi-iphone-15` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+
+Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 
 Trên iPad, khung ứng dụng, thanh điều hướng dưới và các bảng hướng dẫn được giới hạn ở 430 px và căn giữa để giữ đúng bố cục điện thoại, không giãn thành giao diện máy tính bảng.
+Các bố cục bên trong như biểu mẫu Lịch & nhắc việc, bộ lọc giao dịch, Thùng rác và Tiết kiệm cũng luôn dùng quy tắc một cột của điện thoại trên iPad.
+
+Khi người dùng chọn **Tải lại để cập nhật**, ứng dụng chỉ xóa các cache chương trình có tiền tố `tro-ly-vi-iphone-`, giữ nguyên dữ liệu giao dịch trong `localStorage`, rồi mở lại bằng URL chống cache. Điều hướng trang dùng mạng trước khi có kết nối và chỉ dùng bản ngoại tuyến khi mạng lỗi, tránh iOS mở lại HTML phiên bản cũ.
 
 ## Giới hạn có chủ đích
 

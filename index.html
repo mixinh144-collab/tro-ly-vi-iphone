@@ -2346,6 +2346,35 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .modal-backdrop{align-items:flex-end;padding:0}
     .modal{width:100%;border-radius:22px 22px 0 0}
     #reminders .reminder-layout{grid-template-columns:1fr}
+    #reminders .reminder-form{grid-template-columns:1fr}
+    #reminders .reminder-form>*{grid-column:1/-1}
+    #reminders .reminder-calendar-head{flex-direction:column;align-items:stretch}
+    #reminders .reminder-month-controls{width:100%;margin:0}
+    #reminders .reminder-upcoming-item{grid-template-columns:44px 30px minmax(0,1fr) auto;gap:7px}
+    #reminders .reminder-upcoming-symbol{width:30px;height:32px}
+    #reminders .reminder-profile-badge{grid-column:3;grid-row:2;justify-self:start}
+    #reminders .reminder-countdown{grid-column:3;grid-row:3;justify-self:start}
+    #reminders .reminder-upcoming-item>button{grid-column:4;grid-row:1}
+    .search-card{flex-wrap:wrap}
+    .search-card input{flex-basis:calc(100% - 32px)}
+    .filter-toggle{flex:1}
+    .filter-panel{padding:14px}
+    .filter-grid{grid-template-columns:1fr!important}
+    .filter-actions{grid-column:auto!important}
+    .filter-actions .button{white-space:normal}
+    .transaction-title-actions{width:100%;justify-content:stretch}
+    .transaction-title-actions .button{flex:1}
+    .trash-toolbar{align-items:flex-start;flex-direction:column}
+    .trash-toolbar .button{width:100%}
+    #savings .savings-layout{grid-template-columns:1fr!important}
+    #savings .savings-total{align-items:flex-start;flex-direction:column}
+    #savings .savings-total .savings-total-note{width:100%}
+    #savings .savings-form .form-grid{grid-template-columns:1fr!important}
+    #savings .savings-form .form-grid>label.full,#savings .savings-form .form-grid>.form-actions.full{grid-column:auto!important}
+    #savings .savings-form .form-actions{justify-content:stretch}
+    #savings .savings-form .form-actions .button{width:100%}
+    #savings .savings-goal-form{grid-template-columns:1fr!important}
+    #savings .savings-goal-form .button{grid-column:auto!important}
     #home .hero{padding:20px;border-radius:22px;background:linear-gradient(145deg,var(--p),color-mix(in srgb,var(--p) 72%,#6b4660));color:#fff}
     #home .hero small,#home .hero p{color:#ffffffd6}
     #home .balance{font-size:calc(29px * var(--font-scale,1));margin:7px 0 16px}
@@ -2373,6 +2402,10 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-more-item{min-height:94px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);padding:14px;text-align:left;font:inherit;box-shadow:var(--shadow)}
     .iphone-more-item b{display:block;font-size:22px;font-weight:400;margin-bottom:9px;color:var(--p)}
     .iphone-more-item span{font-weight:800;font-size:calc(13px * var(--font-scale,1))}
+    .iphone-version-card{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:116px;margin-top:14px;padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
+    .iphone-version-card b{display:block;margin-bottom:9px;font-size:calc(15px * var(--font-scale,1));color:var(--ink)}
+    .iphone-version-card span{display:block;color:var(--muted);font-size:calc(12px * var(--font-scale,1))}
+    .iphone-version-card strong{color:var(--ink);font-size:calc(13px * var(--font-scale,1));white-space:nowrap}
     .iphone-more-item small{display:block;margin-top:5px;color:var(--muted);font-size:calc(10px * var(--font-scale,1));font-weight:700}
     .iphone-install-guide{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;padding:18px 12px calc(18px + env(safe-area-inset-bottom));background:#211820a8;backdrop-filter:blur(5px)}
     .iphone-install-guide.open{display:flex}
@@ -2439,7 +2472,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   if(!content||!mobile)return;
   const more=document.createElement("section");
   more.className="screen";more.id="mobileMore";
-  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button><button class="iphone-more-item" type="button" data-install-guide><b>⇧</b><span>Hướng dẫn cài đặt</span></button><button class="iphone-more-item" type="button" data-check-update><b>↻</b><span>Kiểm tra cập nhật</span><small id="iphoneUpdateBadge">Tự động</small></button></div>';
+  more.innerHTML='<div class="iphone-more-grid"><button class="iphone-more-item" data-mobile-target="analytics"><b>▥</b><span>Thống kê</span></button><button class="iphone-more-item" data-mobile-target="calendar"><b>▦</b><span>Lịch chi tiêu</span></button><button class="iphone-more-item" data-mobile-target="reimbursements"><b>↔</b><span>Chi hộ &amp; Hoàn tiền</span></button><button class="iphone-more-item" data-mobile-target="backup"><b>☁</b><span>Sao lưu</span></button><button class="iphone-more-item" data-mobile-target="settings"><b>⚙</b><span>Cài đặt</span></button><button class="iphone-more-item" type="button" data-install-guide><b>⇧</b><span>Hướng dẫn cài đặt</span></button><button class="iphone-more-item" type="button" data-check-update><b>↻</b><span>Kiểm tra cập nhật</span><small id="iphoneUpdateBadge">Tự động</small></button></div><div class="iphone-version-card"><div><b>Phiên bản ứng dụng</b><span id="iphoneVersionLabel">Trợ Lý Ví</span></div><strong>Mimi Studio</strong></div>';
   content.append(more);
   meta.mobileMore=["Khác","Các chức năng khác của Trợ Lý Ví"];
 
@@ -2478,7 +2511,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge");
+  const APP_VERSION="1.1.4",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
   dialog.className="iphone-install-guide";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneUpdateTitle");
@@ -2506,11 +2540,16 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
       setTimeout(()=>{if(!ready){checking=false;badge.textContent="Có bản mới";badge.style.color="var(--p)";setStatus("Có bản cập nhật mới","Đóng rồi mở lại ứng dụng, hoặc bấm tải lại để hoàn tất.");action.disabled=false;action.textContent="Tải lại để cập nhật";ready=true}},3500);
     }catch(error){checking=false;setStatus("Chưa kiểm tra được","Hãy kiểm tra kết nối Internet rồi thử lại.");action.disabled=false;action.textContent="Thử lại"}
   }
+  async function applyUpdate(){
+    action.disabled=true;action.textContent="Đang áp dụng…";setStatus("Đang cập nhật","Đang làm mới tệp chương trình. Dữ liệu của bạn vẫn được giữ nguyên.");
+    try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.filter(key=>key.startsWith("tro-ly-vi-iphone-")).map(key=>caches.delete(key)))}}catch(error){}
+    const url=new URL(location.href);url.searchParams.set("app-update",expectedVersion||APP_VERSION);url.searchParams.set("refresh",Date.now().toString());location.replace(url.href);
+  }
   tile.addEventListener("click",open);
   dialog.querySelector(".iphone-install-close").addEventListener("click",close);
   dialog.querySelector("[data-update-close]").addEventListener("click",close);
   dialog.addEventListener("click",event=>{if(event.target===dialog)close()});
-  action.addEventListener("click",()=>ready?location.reload():check());
+  action.addEventListener("click",()=>ready?applyUpdate():check());
   document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()});
   if("serviceWorker" in navigator){const hadController=Boolean(navigator.serviceWorker.controller);navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadController)markReady(expectedVersion)});navigator.serviceWorker.ready.then(reg=>{registration=reg;watch(reg);if(reg.waiting&&navigator.serviceWorker.controller)markReady()}).catch(()=>{})}
 })();

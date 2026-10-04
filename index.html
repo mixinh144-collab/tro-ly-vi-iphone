@@ -2324,8 +2324,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     html{-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:pan-x pan-y}
     input,select,textarea{font-size:16px!important;max-width:100%}
     .side{display:none}
-    .main{width:min(100%,680px);margin:0 auto}
-    .mobile-nav{display:grid;position:fixed;left:50%;right:auto;bottom:0;z-index:20;width:min(100%,680px);transform:translateX(-50%);background:color-mix(in srgb,var(--paper),transparent 5%);border-top:1px solid var(--line);backdrop-filter:blur(12px)}
+    .main{width:min(100%,430px);margin:0 auto}
+    .mobile-nav{display:grid;position:fixed;left:50%;right:auto;bottom:0;z-index:20;width:min(100%,430px);transform:translateX(-50%);background:color-mix(in srgb,var(--paper),transparent 5%);border-top:1px solid var(--line);backdrop-filter:blur(12px)}
     .top{min-height:72px;padding:10px 15px;background:color-mix(in srgb,var(--bg),transparent 4%)}
     .top h1{font-size:calc(20px * var(--font-scale,1))}
     .top p{display:block;font-size:calc(11px * var(--font-scale,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62vw}
@@ -2376,7 +2376,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-more-item small{display:block;margin-top:5px;color:var(--muted);font-size:calc(10px * var(--font-scale,1));font-weight:700}
     .iphone-install-guide{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;padding:18px 12px calc(18px + env(safe-area-inset-bottom));background:#211820a8;backdrop-filter:blur(5px)}
     .iphone-install-guide.open{display:flex}
-    .iphone-install-card{width:min(100%,540px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
+    .iphone-install-card{width:min(100%,430px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
     .iphone-install-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
     .iphone-install-head h2{margin:0;font-size:calc(22px * var(--font-scale,1))}
     .iphone-install-head p{margin:6px 0 0;color:var(--muted);line-height:1.45}
@@ -2478,7 +2478,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge");
+  const APP_VERSION="1.1.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge");
   if(!tile)return;
   const dialog=document.createElement("div");
   dialog.className="iphone-install-guide";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneUpdateTitle");

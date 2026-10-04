@@ -22,7 +22,9 @@ Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự 
 
 Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp từ máy chủ, yêu cầu service worker tải bản mới rồi cho phép tải lại để áp dụng. Mỗi lần phát hành bản điện thoại cần cập nhật đồng thời `version.json`, tên cache trong `service-worker.js` và tải toàn bộ tệp thay đổi lên cùng địa chỉ GitHub Pages. Bản cập nhật EXE của Windows không tự chuyển chức năng sang bản điện thoại.
 
-Phiên bản phát hành hiện tại của bản iPhone là **1.1**. Số cache `tro-ly-vi-iphone-11` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone là **1.1.1**. Số cache `tro-ly-vi-iphone-12` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+
+Trên iPad, khung ứng dụng, thanh điều hướng dưới và các bảng hướng dẫn được giới hạn ở 430 px và căn giữa để giữ đúng bố cục điện thoại, không giãn thành giao diện máy tính bảng.
 
 ## Giới hạn có chủ đích
 

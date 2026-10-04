@@ -1668,6 +1668,45 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
 }());
 </script>
 
+<script id="iphone-quick-profile-photo">
+(()=>{
+  const avatar=document.getElementById("avatar");
+  if(!avatar)return;
+  const style=document.createElement("style");
+  style.textContent='#quickProfilePhotoModal .modal{width:min(440px,100%)}.quick-profile-photo-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}.quick-profile-photo-buttons .button{padding:12px 8px}.quick-profile-photo-preview{display:grid;justify-items:center;gap:12px}.quick-profile-photo-preview [hidden]{display:none!important}.quick-profile-photo-fallback,.quick-profile-photo-canvas{width:190px;height:190px;border:2px solid var(--line);border-radius:50%;background:var(--bg)}.quick-profile-photo-fallback{display:grid;place-items:center;color:var(--p);font-size:68px}.quick-profile-photo-fallback img,.quick-profile-photo-fallback svg{width:100px!important;height:100px!important}.quick-profile-photo-canvas{touch-action:none;cursor:grab}.quick-profile-photo-zoom{display:grid;width:100%;gap:6px;font-weight:750}.quick-profile-photo-zoom input{width:100%}.quick-profile-photo-status{min-height:20px;margin:0;color:var(--muted);font-size:12px;text-align:center}.quick-profile-photo-actions{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;margin-top:16px}.quick-profile-photo-actions .button{padding-left:10px;padding-right:10px}@media(max-width:370px){.quick-profile-photo-buttons,.quick-profile-photo-actions{grid-template-columns:1fr}.quick-profile-photo-fallback,.quick-profile-photo-canvas{width:170px;height:170px}}';
+  document.head.appendChild(style);
+
+  const modal=document.createElement("div");
+  modal.id="quickProfilePhotoModal";modal.className="modal-backdrop";modal.setAttribute("role","dialog");modal.setAttribute("aria-modal","true");modal.setAttribute("aria-labelledby","quickProfilePhotoTitle");
+  modal.innerHTML='<div class="modal"><div class="modal-head"><div><h2 id="quickProfilePhotoTitle">Ảnh hồ sơ</h2><p>Thay ảnh cho hồ sơ đang dùng.</p></div><button class="close" type="button" data-quick-photo-close aria-label="Đóng">×</button></div><div class="modal-body"><div class="quick-profile-photo-buttons"><button class="button primary" type="button" data-quick-photo-camera>📷 Chụp ảnh</button><button class="button secondary" type="button" data-quick-photo-library>🖼 Chọn từ thư viện</button></div><input type="file" accept="image/*" capture="user" data-quick-camera-input hidden><input type="file" accept="image/*" data-quick-library-input hidden><div class="quick-profile-photo-preview"><div class="quick-profile-photo-fallback" aria-label="Icon hồ sơ"></div><canvas class="quick-profile-photo-canvas" width="256" height="256" hidden aria-label="Kéo ảnh để căn trong khung tròn" tabindex="0"></canvas><label class="quick-profile-photo-zoom" hidden>Phóng to<input type="range" min="1" max="3" step="0.01" value="1" aria-label="Phóng to ảnh hồ sơ"></label><p class="quick-profile-photo-status" role="status">Chụp ảnh hoặc chọn ảnh từ thư viện.</p></div><div class="quick-profile-photo-actions"><button class="button danger" type="button" data-quick-photo-remove>Xóa ảnh</button><button class="button secondary" type="button" data-quick-photo-close>Hủy</button><button class="button primary" type="button" data-quick-photo-save>Lưu ảnh</button></div></div></div>';
+  document.body.appendChild(modal);
+
+  const canvas=modal.querySelector("canvas"),ctx=canvas.getContext("2d"),fallback=modal.querySelector(".quick-profile-photo-fallback"),zoom=modal.querySelector('input[type="range"]'),zoomLabel=zoom.parentElement,status=modal.querySelector('[role="status"]'),camera=modal.querySelector("[data-quick-camera-input]"),library=modal.querySelector("[data-quick-library-input]"),remove=modal.querySelector("[data-quick-photo-remove]"),save=modal.querySelector("[data-quick-photo-save]");
+  let img=null,x=0,y=0,token=0,busy=false,drag=null,profileId="";
+  function setPreview(){const hasImage=Boolean(img);canvas.hidden=!hasImage;zoomLabel.hidden=!hasImage;fallback.hidden=hasImage;remove.disabled=!hasImage;}
+  function draw(){if(!img)return;const scale=Math.max(256/img.width,256/img.height)*Number(zoom.value),w=img.width*scale,h=img.height*scale;x=Math.max((256-w)/2,Math.min((w-256)/2,x));y=Math.max((256-h)/2,Math.min((h-256)/2,y));ctx.fillStyle="#fff";ctx.fillRect(0,0,256,256);ctx.drawImage(img,(256-w)/2+x,(256-h)/2+y,w,h);}
+  function showFallback(profile){img=null;x=0;y=0;zoom.value="1";renderProfileVisual(fallback,profile.icon,"","");setPreview();}
+  function load(src){const current=++token;busy=true;status.textContent="Đang đọc ảnh…";const next=new Image();next.onload=()=>{if(current!==token)return;img=next;x=0;y=0;zoom.value="1";busy=false;status.textContent="Kéo ảnh để căn và dùng thanh Phóng to nếu cần.";setPreview();draw();};next.onerror=()=>{if(current!==token)return;busy=false;status.textContent="Không đọc được ảnh. Hãy chọn ảnh khác.";};next.src=src;}
+  function open(){const profile=getActiveProfile();profileId=profile.id;camera.value="";library.value="";status.textContent="Chụp ảnh hoặc chọn ảnh từ thư viện.";showFallback(profile);if(validProfilePhoto(profile.photo))load(profile.photo);modal.classList.add("open");document.body.style.overflow="hidden";setTimeout(()=>modal.querySelector("[data-quick-photo-camera]").focus(),30);}
+  function close(){++token;busy=false;drag=null;modal.classList.remove("open");document.body.style.overflow="";avatar.focus();}
+  function read(input){const chosen=input.files&&input.files[0];input.value="";if(!chosen)return;if(!chosen.type.startsWith("image/")||chosen.size>10*1024*1024){status.textContent="Hãy chọn ảnh không quá 10 MB.";return}const current=++token;busy=true;status.textContent="Đang đọc ảnh…";const reader=new FileReader();reader.onload=()=>{if(current===token)load(reader.result)};reader.onerror=()=>{if(current===token){busy=false;status.textContent="Không đọc được ảnh."}};reader.readAsDataURL(chosen);}
+  avatar.addEventListener("click",open);
+  modal.querySelector("[data-quick-photo-camera]").addEventListener("click",()=>camera.click());
+  modal.querySelector("[data-quick-photo-library]").addEventListener("click",()=>library.click());
+  camera.addEventListener("change",()=>read(camera));library.addEventListener("change",()=>read(library));
+  modal.querySelectorAll("[data-quick-photo-close]").forEach(button=>button.addEventListener("click",close));
+  modal.addEventListener("click",event=>{if(event.target===modal)close()});
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("open"))close()});
+  remove.addEventListener("click",()=>{const profile=profileStore.profiles.find(item=>item.id===profileId)||getActiveProfile();++token;busy=false;status.textContent="Ảnh sẽ được xóa khi bạn bấm Lưu ảnh.";showFallback(profile)});
+  zoom.addEventListener("input",draw);
+  canvas.addEventListener("pointerdown",event=>{if(!img)return;drag={x:event.clientX,y:event.clientY};canvas.setPointerCapture(event.pointerId)});
+  canvas.addEventListener("pointermove",event=>{if(!drag)return;const factor=256/canvas.getBoundingClientRect().width;x+=(event.clientX-drag.x)*factor;y+=(event.clientY-drag.y)*factor;drag={x:event.clientX,y:event.clientY};draw()});
+  ["pointerup","pointercancel","lostpointercapture"].forEach(type=>canvas.addEventListener(type,()=>drag=null));
+  canvas.addEventListener("keydown",event=>{const move={ArrowLeft:[-8,0],ArrowRight:[8,0],ArrowUp:[0,-8],ArrowDown:[0,8]}[event.key];if(move&&img){event.preventDefault();x+=move[0];y+=move[1];draw()}});
+  save.addEventListener("click",()=>{if(busy){status.textContent="Vui lòng chờ ảnh tải xong rồi lưu.";return}const profile=profileStore.profiles.find(item=>item.id===profileId);if(!profile){status.textContent="Không tìm thấy hồ sơ đang sửa.";return}const previous=profile.photo||"";profile.photo=img?canvas.toDataURL("image/jpeg",0.85):"";if(!saveState()){profile.photo=previous;return}renderAll();close();showToast(profile.photo?"Đã lưu ảnh hồ sơ":"Đã xóa ảnh hồ sơ")});
+})();
+</script>
+
 <script id="amount-numeric-script">
 (function(){
   const input=document.getElementById("amountInput"),form=document.getElementById("transactionForm");
@@ -2435,6 +2474,76 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .mobile-nav button{font-size:calc(9px * var(--font-scale,1))}
   }
 </style>
+<style id="iphone-tablet-responsive-layout">
+  @media screen and (min-width:700px){
+    .main{width:min(calc(100% - clamp(24px,4vw,48px)),1080px)}
+    .mobile-nav{width:min(calc(100% - clamp(24px,4vw,48px)),1080px)}
+    .top{min-height:78px;padding:12px clamp(20px,3vw,32px)}
+    .top h1{font-size:calc(22px * var(--font-scale,1))}
+    .top p{max-width:72vw;font-size:calc(12px * var(--font-scale,1))}
+    .top .avatar{width:44px;height:44px}
+    .content{padding:20px clamp(18px,3vw,30px) calc(92px + env(safe-area-inset-bottom))}
+    .title{align-items:center}
+    .title h2{font-size:calc(23px * var(--font-scale,1))}
+    #home .hero{padding:26px;border-radius:24px}
+    #home .balance{font-size:calc(34px * var(--font-scale,1))}
+    #home .hero-summary>.metric{padding:13px 15px}
+    #home .hero-summary>.metric b{font-size:calc(16px * var(--font-scale,1))}
+    #home>.iphone-home-actions{margin:14px 0 20px}
+    #home>.iphone-home-actions .button{min-height:48px;padding:11px 20px}
+    #home .dashboard-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    #home .dashboard-grid>.card:last-child{display:block}
+    #home .transaction-row{padding-left:18px;padding-right:18px}
+    .calendar-card{padding:18px}
+    .calendar-toolbar{align-items:center;flex-direction:row}
+    .calendar-navigation{width:auto;flex-wrap:nowrap}
+    .calendar-week,.calendar-days{min-width:0}
+    .calendar-detail{padding:19px}
+    .modal-backdrop{align-items:center;padding:24px}
+    .modal{width:min(680px,100%);border-radius:23px}
+    #reminders .reminder-calendar-head{align-items:center;flex-direction:row}
+    #reminders .reminder-month-controls{width:auto;margin:0}
+    .search-card{flex-wrap:nowrap}
+    .search-card input{flex-basis:auto}
+    .trash-toolbar{align-items:center;flex-direction:row}
+    .trash-toolbar .button{width:auto}
+    #savings .savings-total{align-items:center;flex-direction:row}
+    #savings .savings-total .savings-total-note{width:auto}
+    .mobile-nav button{border:0;background:none;color:var(--muted);display:grid;gap:2px;place-items:center}
+    .mobile-nav button.active{color:var(--p)}
+    .mobile-nav button{font-size:calc(11px * var(--font-scale,1))}
+    .mobile-nav button b{font-size:calc(19px * var(--font-scale,1))}
+    .iphone-more-item{min-height:104px;padding:17px}
+    .iphone-version-card{padding:20px 24px}
+    .iphone-install-card{width:min(100%,620px)}
+  }
+  @media screen and (min-width:960px){
+    .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .form-grid .full{grid-column:1/-1}
+    .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .analytics-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .analytics-filter{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .analytics-filter .button{width:auto}
+    .analytics-grid{grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr)}
+    .calendar-layout{grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr)}
+    .backup-grid,.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .history-grid{grid-template-columns:250px minmax(0,1fr)}
+    .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .filter-actions{grid-column:1/-1!important}
+    #home .dashboard-grid{grid-template-columns:minmax(0,1.3fr) minmax(320px,.7fr)}
+    #reminders .reminder-layout{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+    #reminders .reminder-upcoming-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #savings .savings-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important}
+    #savings .savings-form .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    #savings .savings-form .form-grid>label.full,#savings .savings-form .form-grid>.form-actions.full{grid-column:1/-1!important}
+    #savings .savings-form .form-actions{justify-content:flex-end}
+    #savings .savings-form .form-actions .button{width:auto}
+    #savings .savings-goal-form{grid-template-columns:minmax(0,1fr) auto!important}
+    #savings .savings-goal-form .button{grid-column:auto!important}
+    .rb-grid.rb-detail-open{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+</style>
 <script id="iphone-pwa-runtime">
 (()=>{
   ["gesturestart","gesturechange","gestureend"].forEach(type=>document.addEventListener(type,event=>event.preventDefault(),{passive:false}));
@@ -2513,7 +2622,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.5",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.1.6",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");

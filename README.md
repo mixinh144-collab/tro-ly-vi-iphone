@@ -24,3 +24,5 @@
 - Tổng quan dùng khung hồng lớn: tổng đã chi trong tháng, đã chi trong hôm nay và đã thu trong tháng.
 - Nút **Thêm giao dịch** gọn ngay dưới khung tổng quan.
 - Thanh dưới có 5 mục: **Tổng quan, Giao dịch, Lịch, Báo cáo, Khác**. Thống kê, Lịch chi tiêu, Chi hộ & Hoàn tiền, Sao lưu và Cài đặt nằm trong **Khác**.
+- Vì đây là thư mục dành riêng cho điện thoại, bố cục mobile luôn được dùng cả khi mở thử trong Browser của ChatGPT hoặc trình duyệt máy tính; chiều rộng nội dung được giới hạn 680 px.
+- `logo.png` là bản sao logo của Trợ Lý Ví trên máy tính, dùng riêng cho giao diện, biểu tượng tab và biểu tượng cài lên Màn hình chính; logo gốc của bản Windows không bị sửa.

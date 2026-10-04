@@ -9,8 +9,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Trợ Lý Ví">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
   <title>Trợ Lý Ví — Quản lý thu chi</title>
   <style>
     :root{--p:#F498C2;--pd:#C87D9F;--ps:#FDECF4;--rgb:244,152,194;--on:#3b2330;--bg:#FFF9FB;--paper:#FFFFFF;--ink:#3B2330;--muted:#806871;--line:#F1DFE5;--side:#503845;--danger:#c24141;--success:#13805a}
@@ -82,7 +82,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
 <body>
   <div class="app">
     <aside class="side">
-      <div class="brand"><div class="logo"><img src="icon.svg" alt="Logo Trợ Lý Ví"></div><div><b>Trợ Lý Ví</b><small id="brandSubtitle">Hồ sơ Cá nhân</small></div></div><div class="profile-panel"><label for="profileSelect">Hồ sơ đang dùng</label><div class="profile-control"><span id="profileIcon">🧑</span><select id="profileSelect" aria-label="Chọn hồ sơ"></select><button class="profile-add" id="openProfileModal" type="button" title="Tạo hồ sơ mới" aria-label="Tạo hồ sơ mới">＋</button></div></div>
+      <div class="brand"><div class="logo"><img src="logo.png" alt="Logo Trợ Lý Ví"></div><div><b>Trợ Lý Ví</b><small id="brandSubtitle">Hồ sơ Cá nhân</small></div></div><div class="profile-panel"><label for="profileSelect">Hồ sơ đang dùng</label><div class="profile-control"><span id="profileIcon">🧑</span><select id="profileSelect" aria-label="Chọn hồ sơ"></select><button class="profile-add" id="openProfileModal" type="button" title="Tạo hồ sơ mới" aria-label="Tạo hồ sơ mới">＋</button></div></div>
       <nav class="nav" id="sideNav">
         <button class="active" data-view="home">◫ <span>Tổng quan</span></button>
         <button data-view="transactions">⇄ <span>Giao dịch</span></button><button data-view="calendar">▦ <span>Lịch</span></button>
@@ -194,7 +194,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
   <div class="modal-backdrop" id="receiptModal"><div class="modal"><div class="modal-head"><div><h2 id="receiptTitle">Ảnh hóa đơn</h2><p>Ảnh đã lưu cùng giao dịch.</p></div><button class="close" data-close="receiptModal">×</button></div><div class="modal-body"><div id="receiptZoomToolbar" role="group" aria-label="Phóng to ảnh hóa đơn"><button class="button secondary" type="button" id="receiptZoomOut" aria-label="Thu nhỏ ảnh">−</button><span id="receiptZoomValue" aria-live="polite">100%</span><button class="button secondary" type="button" id="receiptZoomIn" aria-label="Phóng to ảnh">+</button><button class="button secondary" type="button" id="receiptZoomFit">Vừa khung</button></div><div id="receiptViewport" tabindex="0" role="region" aria-label="Ảnh hóa đơn có thể phóng to" aria-describedby="receiptZoomHint"><img id="receiptImage" class="receipt-preview" alt="Ảnh hóa đơn" draggable="false"></div><p id="receiptZoomHint">Cuộn chuột hoặc bấm + / − để phóng to, kéo ảnh để xem từng vùng. 100% là vừa khung; phím 0 để đặt lại.</p></div></div></div>
   <div class="modal-backdrop" id="profileModal"><div class="modal" style="width:min(480px,100%)"><div class="modal-head"><div><h2>Tạo hồ sơ mới</h2><p>Hồ sơ mới bắt đầu trống và không dùng chung giao dịch.</p></div><button class="close" data-close="profileModal">×</button></div><div class="modal-body"><form class="form-grid" id="profileForm"><label class="full"><span>Tên hồ sơ</span><input class="control" id="profileNameInput" maxlength="40" placeholder="Ví dụ: Cửa hàng Minh" required></label><label class="full"><span>Biểu tượng hồ sơ</span><select class="control" id="profileTypeInput"><option value="personal">👤 Cá nhân hồng</option><option value="company">🏢 Công ty</option><option value="project">📁 Dự án</option><option value="shop">🏪 Cửa hàng</option><option value="other">📌 Khác</option></select></label><div class="note full" style="margin-top:0">Dữ liệu của hồ sơ này chỉ xuất hiện khi bạn chọn đúng hồ sơ.</div><div class="form-actions full"><button class="button secondary" type="button" data-close="profileModal">Hủy</button><button class="button primary" type="submit">Tạo hồ sơ</button></div></form></div></div></div>
   <div class="modal-backdrop" id="pinSettingsModal"><div class="modal" style="width:min(450px,100%)"><div class="modal-head"><div><h2 id="pinSettingsTitle">Thiết lập mã PIN</h2><p id="pinSettingsSubtitle">Mã PIN gồm 4–6 chữ số và được bảo vệ bằng PBKDF2.</p></div><button class="close" data-close="pinSettingsModal">×</button></div><div class="modal-body"><form class="form-grid" id="pinSettingsForm"><label class="full hidden" id="currentPinWrap"><span>Mã PIN hiện tại</span><input class="control pin-entry" id="currentPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="current-password"></label><label class="full" id="newPinWrap"><span>Mã PIN mới</span><input class="control pin-entry" id="newPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="new-password" required></label><label class="full" id="confirmPinWrap"><span>Nhập lại mã PIN mới</span><input class="control pin-entry" id="confirmPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="new-password" required></label><div class="pin-error full" id="pinSettingsError"></div><div class="form-actions full"><button class="button danger hidden" id="disablePin" type="button">Tắt mã PIN</button><button class="button secondary" type="button" data-close="pinSettingsModal">Hủy</button><button class="button primary" id="savePinButton" type="submit">Lưu mã PIN</button></div></form></div></div></div>
-  <div class="pin-lock hidden" id="pinLock" aria-modal="true" role="dialog"><div class="pin-card"><img class="pin-logo" src="icon.svg" alt="Logo Trợ Lý Ví"><h2>Trợ Lý Ví đã khóa</h2><p>Nhập mã PIN để tiếp tục sử dụng.</p><form id="unlockForm"><input class="control pin-entry" id="unlockPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="current-password" aria-label="Mã PIN" placeholder="••••"><div class="pin-error" id="unlockPinError"></div><button class="button primary" style="width:100%" type="submit">Mở khóa</button></form></div></div>
+  <div class="pin-lock hidden" id="pinLock" aria-modal="true" role="dialog"><div class="pin-card"><img class="pin-logo" src="logo.png" alt="Logo Trợ Lý Ví"><h2>Trợ Lý Ví đã khóa</h2><p>Nhập mã PIN để tiếp tục sử dụng.</p><form id="unlockForm"><input class="control pin-entry" id="unlockPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="current-password" aria-label="Mã PIN" placeholder="••••"><div class="pin-error" id="unlockPinError"></div><button class="button primary" style="width:100%" type="submit">Mở khóa</button></form></div></div>
   <div class="toast" id="toast">Đã lưu</div>
 
   <script>
@@ -2320,13 +2320,30 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   }
 </style>
 <style id="iphone-mobile-final-ui">
-  @media(max-width:650px){
+  @media screen{
+    .side{display:none}
+    .main{width:min(100%,680px);margin:0 auto}
+    .mobile-nav{display:grid;position:fixed;left:50%;right:auto;bottom:0;z-index:20;width:min(100%,680px);transform:translateX(-50%);background:color-mix(in srgb,var(--paper),transparent 5%);border-top:1px solid var(--line);backdrop-filter:blur(12px)}
     .top{min-height:72px;padding:10px 15px;background:color-mix(in srgb,var(--bg),transparent 4%)}
     .top h1{font-size:calc(20px * var(--font-scale,1))}
     .top p{display:block;font-size:calc(11px * var(--font-scale,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62vw}
     .top .tools>.icon-btn{display:none}
     .top .avatar{display:grid;place-items:center;width:42px;height:42px}
     .content{padding:14px 13px calc(84px + env(safe-area-inset-bottom))}
+    .title{align-items:flex-start}
+    .title h2{font-size:calc(21px * var(--font-scale,1))}
+    .form-grid{grid-template-columns:1fr}
+    .form-grid .full{grid-column:auto}
+    .cards,.stats,.analytics-stats,.analytics-filter,.analytics-grid,.calendar-layout,.backup-grid,.settings-grid,.history-grid{grid-template-columns:1fr}
+    .analytics-filter .button{width:100%}
+    .calendar-card{padding:13px}
+    .calendar-toolbar{align-items:flex-start;flex-direction:column}
+    .calendar-navigation{width:100%;flex-wrap:wrap}
+    .calendar-month-name{flex:1}
+    .calendar-detail{position:static;padding:15px}
+    .modal-backdrop{align-items:flex-end;padding:0}
+    .modal{width:100%;border-radius:22px 22px 0 0}
+    #reminders .reminder-layout{grid-template-columns:1fr}
     #home .hero{padding:20px;border-radius:22px;background:linear-gradient(145deg,var(--p),color-mix(in srgb,var(--p) 72%,#6b4660));color:#fff}
     #home .hero small,#home .hero p{color:#ffffffd6}
     #home .balance{font-size:calc(29px * var(--font-scale,1));margin:7px 0 16px}

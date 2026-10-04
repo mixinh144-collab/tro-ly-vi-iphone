@@ -10,7 +10,7 @@
 
 ## Cách chạy thử trên iPhone
 
-1. Đưa toàn bộ thư mục `PHAT-TRIEN/iphone` lên một địa chỉ HTTPS.
+1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
 4. Mở biểu tượng **Trợ Lý Ví** vừa thêm.
@@ -18,3 +18,9 @@
 ## Giới hạn có chủ đích
 
 Đây chưa phải ứng dụng iOS native, nên chưa tự đồng bộ iCloud sau mỗi thay đổi. Dữ liệu được lưu cục bộ trên iPhone; iCloud Drive là kênh sao lưu/khôi phục do người dùng chủ động chọn tệp. Làm đồng bộ tự động cần dự án iOS/CloudKit riêng để xử lý an toàn trường hợp máy tính và điện thoại cùng sửa dữ liệu.
+
+## Giao diện điện thoại đã chốt
+
+- Tổng quan dùng khung hồng lớn: tổng đã chi trong tháng, đã chi trong hôm nay và đã thu trong tháng.
+- Nút **Thêm giao dịch** gọn ngay dưới khung tổng quan.
+- Thanh dưới có 5 mục: **Tổng quan, Giao dịch, Lịch, Báo cáo, Khác**. Thống kê, Lịch chi tiêu, Chi hộ & Hoàn tiền, Sao lưu và Cài đặt nằm trong **Khác**.

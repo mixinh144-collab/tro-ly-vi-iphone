@@ -5,7 +5,7 @@
   "enabled": true,
   "id": "notice-test-1-2-4-01",
   "title": "Thông báo thử nghiệm",
-  "message": "Nếu thấy hộp này và vẫn bấm được app phía sau thì notice đã hoạt động đúng.",
+  "message": "xin chao.",
   "showUpdateButton": false
 }
   "shutdown": {

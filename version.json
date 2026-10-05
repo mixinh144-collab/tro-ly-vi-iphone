@@ -3,9 +3,10 @@
   "releasedAt": "2026-10-05",
   "notice": {
     "enabled": false,
-    "id": "notice-001",
+    "id": ""enabled": true,
+"id": "notice-1-2-5-test-01"",
     "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "message": "xin chao.",
     "showUpdateButton": false
   },
   "shutdown": {

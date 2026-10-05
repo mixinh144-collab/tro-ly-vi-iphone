@@ -2,12 +2,11 @@
   "version": "1.2.1",
   "releasedAt": "2026-10-05",
   "notice": {
-  "enabled": true,
-  "id": "notice-1-2-1-welcome",
-  "title": "Xin chào mọi người!",
-  "message": "Cảm ơn bạn đã sử dụng Trợ Lý Ví Mimi.",
-  "showUpdateButton": false
-}
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "showUpdateButton": false
   },
   "shutdown": {
     "enabled": false,

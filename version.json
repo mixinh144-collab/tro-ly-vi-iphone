@@ -2,9 +2,8 @@
   "version": "1.2.5",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": false,
-    "id": ""enabled": true,
-"id": "notice-1-2-5-test-01"",
+    "enabled": true,
+"id": "notice-1-2-5-test-01"
     "title": "Thông báo từ Mimi Studio",
     "message": "xin chao.",
     "showUpdateButton": false

@@ -1,13 +1,13 @@
 {
-  "version": "1.2.4",
+  "version": "1.2.5",
   "releasedAt": "2026-10-05",
   "notice": {
-  "enabled": true,
-  "id": "notice-test-1-2-4-01",
-  "title": "Thông báo thử nghiệm",
-  "message": "xin chao.",
-  "showUpdateButton": false
-}
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "showUpdateButton": false
+  },
   "shutdown": {
     "enabled": false,
     "id": "shutdown-001",

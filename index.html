@@ -424,7 +424,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
     function showView(view,options={}){
       if(view==="calendar")calendarSelectedDate="";
       if(!options.fromBack&&view!==currentView){if(view==="home")viewHistory=[];else viewHistory.push(currentView)}
-      currentView=view;document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===view));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));const backButton=document.getElementById("iphoneBackButton");if(backButton)backButton.hidden=view==="home";
+      currentView=view;document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===view));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));const backButton=document.getElementById("iphoneBackButton"),fromMore=viewHistory[viewHistory.length-1]==="mobileMore";if(backButton)backButton.hidden=!(view!=="home"&&view!=="mobileMore"&&fromMore);
       document.getElementById("pageTitle").textContent=meta[view][0];document.getElementById("pageSub").textContent=meta[view][1];window.scrollTo(0,0);renderAll();
     }
     function renderProfileControls(){const profile=getActiveProfile();["profileSelect","settingsProfileSelect"].forEach(id=>{const select=document.getElementById(id);if(!select)return;select.replaceChildren(...profileStore.profiles.map(item=>{const option=document.createElement("option");option.value=item.id;option.textContent=`${item.icon==="u-p"||item.icon==="u-b"?"👤":item.icon} ${item.label}`;return option}));select.value=profile.id});renderProfileVisual(document.getElementById("profileIcon"),profile.icon,"",profile.photo);document.getElementById("brandSubtitle").textContent=`Hồ sơ ${profile.label}`;document.getElementById("profileStorageLabel").textContent=`Dữ liệu hồ sơ ${profile.label}`}
@@ -2706,7 +2706,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.2.4";
+  const APP_VERSION="1.2.5";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2742,7 +2742,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.4",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.5",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2799,7 +2799,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.4');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.5');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

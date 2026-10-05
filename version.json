@@ -2,12 +2,12 @@
   "version": "1.2.4",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
-    "showUpdateButton": false
-  },
+  "enabled": true,
+  "id": "notice-test-1-2-4-01",
+  "title": "Thông báo thử nghiệm",
+  "message": "Nếu thấy hộp này và vẫn bấm được app phía sau thì notice đã hoạt động đúng.",
+  "showUpdateButton": false
+}
   "shutdown": {
     "enabled": false,
     "id": "shutdown-001",

@@ -78,6 +78,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
 .rb-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.rb-toolbar .button{font-size:calc(12px * var(--font-scale,1));padding:9px 13px}.rb-more{position:relative;flex-shrink:0}.rb-more summary{display:grid;place-items:center;list-style:none;cursor:pointer;width:34px;height:32px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink);font-size:22px;line-height:1}.rb-more summary::-webkit-details-marker{display:none}.rb-more summary:focus-visible{outline:2px solid var(--p);outline-offset:3px}.rb-more-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;width:190px;max-width:calc(100vw - 30px);padding:6px;background:var(--paper);border:1px solid var(--line);border-radius:11px;box-shadow:0 8px 24px #00000018}.rb-more-menu .button{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--ink);box-shadow:none;border-radius:6px;font-weight:600}.rb-more-menu .button:hover,.rb-more-menu .button:focus-visible{background:var(--bg)}.rb-total{align-items:center}.rb-total b{display:block;font-size:calc(16px * var(--font-scale,1))}.rb-total-scope{display:block;color:var(--muted);font-size:calc(12px * var(--font-scale,1));margin:4px 0}.rb-total small{font-size:calc(11px * var(--font-scale,1))}.rb-total strong{font-size:calc(28px * var(--font-scale,1));font-variant-numeric:tabular-nums}@media(max-width:420px){.rb-toolbar{gap:6px}.rb-toolbar .rb-actions{gap:6px;flex:1}.rb-toolbar .button{padding:8px 10px}.rb-total{padding:14px}}
 </style>
 <style>.transaction-icon,.category-icon-choice{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}</style>
+<style id="iphone-back-button-style">.top-heading{display:flex;align-items:flex-start;gap:8px}.iphone-back-button{padding:8px 11px;line-height:1;white-space:nowrap}.iphone-back-button[hidden]{display:none}@media(max-width:767px){.iphone-back-button{display:inline-flex;align-items:center;justify-content:center}.iphone-back-button[hidden]{display:none}}</style>
 </head>
 <body>
   <div class="app">
@@ -99,7 +100,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
     </aside>
 
     <main class="main">
-      <header class="top"><div><h1 id="pageTitle">Xin chào!</h1><p id="pageSub">Tình hình thu chi của hồ sơ đang dùng</p></div><div class="tools"><button class="icon-btn" id="quickTheme">🎨 Đổi màu</button><button class="avatar" id="avatar">B</button></div></header>
+      <header class="top"><div class="top-heading"><button class="button secondary iphone-back-button" id="iphoneBackButton" type="button" aria-label="Quay lại tổng quan">←</button><div><h1 id="pageTitle">Xin chào!</h1><p id="pageSub">Tình hình thu chi của hồ sơ đang dùng</p></div></div><div class="tools"><button class="icon-btn" id="quickTheme">🎨 Đổi màu</button><button class="avatar" id="avatar">B</button></div></header>
       <div class="content">
         <section class="screen active" id="home">
           <div class="hero"><div><small>Số tiền đã chi tháng này</small><div class="balance" id="heroBalance">0 ₫</div><p id="heroHint">Bắt đầu bằng cách thêm khoản chi đầu tiên.</p><div class="actions"><button class="button light add-button">＋ Thêm giao dịch</button><button class="button ghost" data-jump="transactions">Xem sổ chi tiêu</button></div></div><div class="hero-summary"><div class="summary-row"><span>Tổng thu tháng này</span><b id="heroIncome">0 ₫</b></div><div class="summary-row"><span>Tổng chi tháng này</span><b id="heroExpense">0 ₫</b></div><div class="summary-row"><span>Số giao dịch</span><b id="heroCount">0</b></div></div></div>
@@ -422,7 +423,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
     }
     function showView(view){
       if(view==="calendar")calendarSelectedDate="";
-      currentView=view;document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===view));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));
+      currentView=view;document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===view));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));const backButton=document.getElementById("iphoneBackButton");if(backButton)backButton.hidden=view==="home";
       document.getElementById("pageTitle").textContent=meta[view][0];document.getElementById("pageSub").textContent=meta[view][1];window.scrollTo(0,0);renderAll();
     }
     function renderProfileControls(){const profile=getActiveProfile();["profileSelect","settingsProfileSelect"].forEach(id=>{const select=document.getElementById(id);if(!select)return;select.replaceChildren(...profileStore.profiles.map(item=>{const option=document.createElement("option");option.value=item.id;option.textContent=`${item.icon==="u-p"||item.icon==="u-b"?"👤":item.icon} ${item.label}`;return option}));select.value=profile.id});renderProfileVisual(document.getElementById("profileIcon"),profile.icon,"",profile.photo);document.getElementById("brandSubtitle").textContent=`Hồ sơ ${profile.label}`;document.getElementById("profileStorageLabel").textContent=`Dữ liệu hồ sơ ${profile.label}`}
@@ -2669,18 +2670,18 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     const id=cleanText(notice.id,80),title=cleanText(notice.title,100),message=cleanText(notice.message,1000);
     if(notice.enabled!==true||!id||!title||!message||alreadySeen(id))return;
     const dialog=document.createElement("div");
-    dialog.className="iphone-install-guide iphone-remote-notice";
-    dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneRemoteNoticeTitle");
+    dialog.className="iphone-remote-notice";
+    dialog.setAttribute("role","status");dialog.setAttribute("aria-live","polite");dialog.setAttribute("aria-labelledby","iphoneRemoteNoticeTitle");
     dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneRemoteNoticeTitle"></h2><p>Thông báo từ Mimi Studio</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-update-status"><div id="iphoneRemoteNoticeMessage"></div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-notice-update>Kiểm tra cập nhật</button><button class="button primary" type="button" data-notice-understood>Đã hiểu</button></div></div>';
     dialog.querySelector("#iphoneRemoteNoticeTitle").textContent=title;
     dialog.querySelector("#iphoneRemoteNoticeMessage").textContent=message;
     const updateButton=dialog.querySelector("[data-notice-update]");
     updateButton.hidden=notice.showUpdateButton!==true;
     document.body.append(dialog);
-    const close=()=>{remember(id);dialog.classList.remove("open");document.body.style.overflow="";setTimeout(()=>dialog.remove(),180)};
+    const close=()=>{remember(id);dialog.classList.remove("open");setTimeout(()=>dialog.remove(),180)};
     const openWhenReady=()=>{
       if(document.querySelector(".iphone-install-guide.open")){setTimeout(openWhenReady,500);return}
-      dialog.classList.add("open");dialog.querySelector("[data-notice-understood]").focus();
+      dialog.classList.add("open");
     };
     dialog.querySelector(".iphone-install-close").addEventListener("click",close);
     dialog.querySelector("[data-notice-understood]").addEventListener("click",close);
@@ -2699,7 +2700,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.2.2";
+  const APP_VERSION="1.2.3";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2735,7 +2736,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.2",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.3",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2792,7 +2793,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.2');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.3');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>
@@ -2851,6 +2852,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   },true);
 })();
 </script>
+<script id="iphone-back-button-runtime">document.getElementById("iphoneBackButton")?.addEventListener("click",()=>showView("home"));</script>
 </body>
 </html>
 

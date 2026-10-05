@@ -1,4 +1,4 @@
-# Trợ Lý Ví cho iPhone, iPad và Android
+# Trợ Lý Ví Mimi cho iPhone, iPad và Android
 
 Đây là web-app độc lập, không thay đổi `index.html` hay dữ liệu của bản Windows. Ứng dụng dùng giao diện điện thoại trên màn hình nhỏ và tự mở rộng theo chiều rộng máy tính bảng.
 
@@ -17,7 +17,7 @@ Phía dưới thẻ QR có dòng ghi công **Tạo bởi Mimi Studio** để ng�
 1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
-4. Mở biểu tượng **Trợ Lý Ví** vừa thêm.
+4. Mở biểu tượng **Ví Mimi** vừa thêm.
 
 Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự hiện bảng hướng dẫn ba bước: mở bằng Safari, bấm Chia sẻ và chọn **Thêm vào Màn hình chính**. Bảng không tự hiện khi ứng dụng đã chạy ở chế độ Màn hình chính. Có thể mở lại bất cứ lúc nào tại **Khác → Hướng dẫn cài đặt**.
 
@@ -27,7 +27,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 `version.json` còn có khối `notice` để Mimi Studio gửi thông báo khi người dùng mở ứng dụng. Đổi `id` mỗi lần có nội dung mới, sửa `title` và `message`, đặt `enabled` thành `true`, rồi tải tệp lên GitHub Pages. Mỗi thiết bị chỉ hiện một lần cho mỗi `id`; đặt `showUpdateButton` thành `true` nếu thông báo cần kèm nút **Kiểm tra cập nhật**. Đặt `enabled` về `false` để ngừng hiện thông báo. Chức năng này chỉ đọc tệp công khai trên GitHub và không gửi dữ liệu người dùng.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.7**. Số cache `tro-ly-vi-iphone-18` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.8**. Số cache `tro-ly-vi-iphone-19` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

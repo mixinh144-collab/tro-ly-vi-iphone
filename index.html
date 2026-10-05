@@ -7,11 +7,11 @@
   <meta name="theme-color" content="#F498C2">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Trợ Lý Ví">
+  <meta name="apple-mobile-web-app-title" content="Ví Mimi">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon-white.png">
   <link rel="icon" type="image/png" href="logo.png">
-  <title>Trợ Lý Ví — Quản lý thu chi</title>
+  <title>Trợ Lý Ví Mimi — Quản lý thu chi</title>
   <style>
     :root{--p:#F498C2;--pd:#C87D9F;--ps:#FDECF4;--rgb:244,152,194;--on:#3b2330;--bg:#FFF9FB;--paper:#FFFFFF;--ink:#3B2330;--muted:#806871;--line:#F1DFE5;--side:#503845;--danger:#c24141;--success:#13805a}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:calc(14px * var(--font-scale,1))/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
@@ -2695,7 +2695,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.1.7";
+  const APP_VERSION="1.1.8";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2731,7 +2731,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.7",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.1.8",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2772,6 +2772,15 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   action.addEventListener("click",()=>ready?applyUpdate():check());
   document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()});
   if("serviceWorker" in navigator){const hadController=Boolean(navigator.serviceWorker.controller);navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadController)markReady(expectedVersion)});navigator.serviceWorker.ready.then(reg=>{registration=reg;watch(reg);if(reg.waiting&&navigator.serviceWorker.controller)markReady()}).catch(()=>{})}
+})();
+</script>
+<script id="iphone-app-name-runtime">
+(()=>{
+  const brand=document.querySelector('.brand b');
+  if(brand)brand.textContent='Trợ Lý Ví Mimi';
+  const versionLabel=document.getElementById('iphoneVersionLabel');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.1.8');
+  document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>
 </body>

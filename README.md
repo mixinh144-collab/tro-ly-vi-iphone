@@ -42,6 +42,7 @@ Bấm trực tiếp vào ảnh hoặc icon này để mở bảng **Ảnh hồ s
 Trên điện thoại, giao diện hiện tại được giữ nguyên. Từ 700 px, khung ứng dụng và thanh điều hướng mở rộng linh hoạt gần hết màn hình; từ 960 px, các khu vực đủ chỗ như Tổng quan, Lịch, Nhắc việc, Cài đặt và Sao lưu mới chuyển sang hai cột.
 
 Khi người dùng chọn **Cập nhật ngay** hoặc **Tải lại để cập nhật**, ứng dụng yêu cầu service worker đang chờ kích hoạt trước, sau đó chỉ xóa các cache chương trình có tiền tố `tro-ly-vi-iphone-`, giữ nguyên dữ liệu giao dịch trong `localStorage`, rồi mở lại bằng URL chống cache. Bản cũ giữ nguyên HTML đã cache cho đến khi người dùng xác nhận cập nhật; vì vậy mở app không tự nhảy sang giao diện mới.
+Trình kiểm tra cập nhật so sánh số phiên bản theo từng phần; chỉ báo bản mới khi phiên bản trên máy chủ cao hơn. Nếu máy chủ đang thấp hơn do GitHub Pages chưa cập nhật xong, ứng dụng không báo nhầm là có bản mới.
 
 ## Giới hạn có chủ đích
 

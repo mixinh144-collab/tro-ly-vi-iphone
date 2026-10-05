@@ -2740,6 +2740,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   document.body.append(dialog);
   const status=dialog.querySelector("#iphoneUpdateStatus"),action=dialog.querySelector("[data-update-action]");
   let checking=false,ready=false,registration=null,watched=null,expectedVersion="";
+  const compareVersions=(left,right)=>{const a=String(left).split(".").map(part=>Number(part)||0),b=String(right).split(".").map(part=>Number(part)||0);for(let index=0;index<Math.max(a.length,b.length);index++){if((a[index]||0)!==(b[index]||0))return (a[index]||0)>(b[index]||0)?1:-1}return 0};
   const setStatus=(title,text)=>{status.innerHTML="<div><b>"+title+"</b>"+text+"</div>"};
   const close=()=>{dialog.classList.remove("open");document.body.style.overflow=""};
   const open=()=>{dialog.classList.add("open");document.body.style.overflow="hidden";action.focus();if(!checking&&!ready)check()};
@@ -2752,7 +2753,9 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
       if(!response.ok)throw new Error("version");
       const info=await response.json(),remote=String(info.version||"");
       if(!remote)throw new Error("version");
-      if(remote===APP_VERSION){checking=false;badge.textContent="Mới nhất";badge.style.color="";setStatus("Đã là bản mới nhất","Bạn đang dùng phiên bản "+APP_VERSION+".");action.disabled=false;action.textContent="Kiểm tra lại";return}
+      const comparison=compareVersions(remote,APP_VERSION);
+      if(comparison===0){checking=false;badge.textContent="Mới nhất";badge.style.color="";setStatus("Đã là bản mới nhất","Bạn đang dùng phiên bản "+APP_VERSION+".");action.disabled=false;action.textContent="Kiểm tra lại";return}
+      if(comparison<0){checking=false;badge.textContent="Mới nhất";badge.style.color="";setStatus("Máy chủ đang có bản cũ hơn","Bạn đang dùng phiên bản "+APP_VERSION+".");action.disabled=false;action.textContent="Kiểm tra lại";return}
       expectedVersion=remote;
       if(!("serviceWorker" in navigator))throw new Error("worker");
       registration=await navigator.serviceWorker.getRegistration()||await navigator.serviceWorker.ready;watch(registration);await registration.update();

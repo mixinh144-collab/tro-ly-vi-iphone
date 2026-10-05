@@ -100,7 +100,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
     </aside>
 
     <main class="main">
-      <header class="top"><div class="top-heading"><button class="button secondary iphone-back-button" id="iphoneBackButton" type="button" aria-label="Quay lại tổng quan">←</button><div><h1 id="pageTitle">Xin chào!</h1><p id="pageSub">Tình hình thu chi của hồ sơ đang dùng</p></div></div><div class="tools"><button class="icon-btn" id="quickTheme">🎨 Đổi màu</button><button class="avatar" id="avatar">B</button></div></header>
+      <header class="top"><div class="top-heading"><button class="button secondary iphone-back-button" id="iphoneBackButton" type="button" hidden aria-label="Quay lại tổng quan">←</button><div><h1 id="pageTitle">Xin chào!</h1><p id="pageSub">Tình hình thu chi của hồ sơ đang dùng</p></div></div><div class="tools"><button class="icon-btn" id="quickTheme">🎨 Đổi màu</button><button class="avatar" id="avatar">B</button></div></header>
       <div class="content">
         <section class="screen active" id="home">
           <div class="hero"><div><small>Số tiền đã chi tháng này</small><div class="balance" id="heroBalance">0 ₫</div><p id="heroHint">Bắt đầu bằng cách thêm khoản chi đầu tiên.</p><div class="actions"><button class="button light add-button">＋ Thêm giao dịch</button><button class="button ghost" data-jump="transactions">Xem sổ chi tiêu</button></div></div><div class="hero-summary"><div class="summary-row"><span>Tổng thu tháng này</span><b id="heroIncome">0 ₫</b></div><div class="summary-row"><span>Tổng chi tháng này</span><b id="heroExpense">0 ₫</b></div><div class="summary-row"><span>Số giao dịch</span><b id="heroCount">0</b></div></div></div>
@@ -2492,8 +2492,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-remote-notice .iphone-install-head h2{color:#3b2330;font-size:calc(23px * var(--font-scale,1));line-height:1.25}
     .iphone-remote-notice .iphone-install-head p,.iphone-remote-notice #iphoneRemoteNoticeMessage{color:#5b263b;line-height:1.7}
     .iphone-remote-notice #iphoneRemoteNoticeMessage{font-size:calc(16px * var(--font-scale,1));white-space:pre-wrap;overflow-wrap:anywhere}
-    .iphone-remote-notice .iphone-install-close{border:2px solid #5b263b;background:#ffeaf3;color:#3b2330;font-weight:900}
-    .iphone-remote-notice .iphone-install-actions{position:sticky;bottom:0;padding-top:12px;background:linear-gradient(transparent,#ffd5e7 35%)}
+    .iphone-remote-notice .iphone-install-close{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;padding:0;border:0;border-radius:50%;background:radial-gradient(circle,#ffeaf3 0 16px,transparent 16.5px);color:#5b263b;cursor:pointer;-webkit-tap-highlight-color:transparent}.iphone-remote-notice .iphone-install-close svg{width:18px;height:18px;pointer-events:none}.iphone-remote-notice .iphone-install-close:active{background:radial-gradient(circle,#f5bcd4 0 16px,transparent 16.5px)}.iphone-remote-notice .iphone-install-close:focus-visible{outline:2px solid #5b263b;outline-offset:2px}
+    .iphone-remote-notice .iphone-install-actions{grid-template-columns:1fr;position:sticky;bottom:0;padding-top:12px;background:linear-gradient(transparent,#ffd5e7 35%)}
     .iphone-install-card{width:min(100%,430px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
     .iphone-install-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
     .iphone-install-head h2{margin:0;font-size:calc(22px * var(--font-scale,1))}
@@ -2678,11 +2678,12 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     const dialog=document.createElement("div");
     dialog.className="iphone-remote-notice";
     dialog.setAttribute("role","status");dialog.setAttribute("aria-live","polite");dialog.setAttribute("aria-labelledby","iphoneRemoteNoticeTitle");
-    dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneRemoteNoticeTitle"></h2><p>Thông báo từ Mimi Studio</p></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-update-status"><div id="iphoneRemoteNoticeMessage"></div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-notice-update>Cập nhật ngay</button><button class="button primary" type="button" data-notice-understood>Đã hiểu</button></div></div>';
+    dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneRemoteNoticeTitle"></h2><p>Thông báo từ Mimi Studio</p></div><button class="iphone-install-close" type="button" aria-label="Đóng thông báo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="iphone-update-status"><div id="iphoneRemoteNoticeMessage"></div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-notice-update>Cập nhật ngay</button></div></div>';
     dialog.querySelector("#iphoneRemoteNoticeTitle").textContent=title;
     dialog.querySelector("#iphoneRemoteNoticeMessage").textContent=message;
     const updateButton=dialog.querySelector("[data-notice-update]");
     updateButton.hidden=notice.showUpdateButton!==true;
+    updateButton.parentElement.classList.toggle("hidden",updateButton.hidden);
     document.body.append(dialog);
     const close=()=>{remember(id);dialog.classList.remove("open");setTimeout(()=>dialog.remove(),180)};
     const openWhenReady=()=>{
@@ -2690,7 +2691,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
       dialog.classList.add("open");
     };
     dialog.querySelector(".iphone-install-close").addEventListener("click",close);
-    dialog.querySelector("[data-notice-understood]").addEventListener("click",close);
+
     updateButton.addEventListener("click",()=>{close();setTimeout(()=>document.querySelector("[data-check-update]")?.click(),220)});
     dialog.addEventListener("click",event=>{if(event.target===dialog)close()});
     document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()},{once:true});
@@ -2706,7 +2707,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.2.6";
+  const APP_VERSION="1.2.7";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2742,7 +2743,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.6",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.7",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2799,7 +2800,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.6');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.7');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

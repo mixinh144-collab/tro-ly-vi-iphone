@@ -2,10 +2,10 @@
   "version": "1.2.6",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
+    "enabled": true,
+    "id": "notice-003",
     "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "message": "xin chao.",
     "showUpdateButton": false
   },
   "shutdown": {

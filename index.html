@@ -2483,6 +2483,9 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-more-item small{display:block;margin-top:5px;color:var(--muted);font-size:calc(10px * var(--font-scale,1));font-weight:700}
     .iphone-install-guide{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;padding:18px 12px calc(18px + env(safe-area-inset-bottom));background:#211820a8;backdrop-filter:blur(5px)}
     .iphone-install-guide.open{display:flex}
+    .iphone-remote-notice{inset:auto 12px calc(76px + env(safe-area-inset-bottom));display:none;padding:0;background:transparent;backdrop-filter:none;pointer-events:none;align-items:stretch}
+    .iphone-remote-notice.open{display:block}
+    .iphone-remote-notice .iphone-install-card{width:min(100%,520px);margin:0 auto;pointer-events:auto;box-shadow:0 12px 36px #1f152040}
     .iphone-install-card{width:min(100%,430px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
     .iphone-install-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
     .iphone-install-head h2{margin:0;font-size:calc(22px * var(--font-scale,1))}
@@ -2677,7 +2680,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     const close=()=>{remember(id);dialog.classList.remove("open");document.body.style.overflow="";setTimeout(()=>dialog.remove(),180)};
     const openWhenReady=()=>{
       if(document.querySelector(".iphone-install-guide.open")){setTimeout(openWhenReady,500);return}
-      dialog.classList.add("open");document.body.style.overflow="hidden";dialog.querySelector("[data-notice-understood]").focus();
+      dialog.classList.add("open");dialog.querySelector("[data-notice-understood]").focus();
     };
     dialog.querySelector(".iphone-install-close").addEventListener("click",close);
     dialog.querySelector("[data-notice-understood]").addEventListener("click",close);
@@ -2696,7 +2699,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.2.0";
+  const APP_VERSION="1.2.1";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2732,7 +2735,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.0",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2789,7 +2792,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.0');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.1');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

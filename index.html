@@ -12,6 +12,26 @@
   <link rel="apple-touch-icon" href="apple-touch-icon-white.png">
   <link rel="icon" type="image/png" href="logo.png">
   <title>Ví Mimi</title>
+<script id="mimi-analytics">
+(()=>{
+  // Chỉ đo trên địa chỉ phát hành; không đưa dữ liệu hồ sơ hoặc giao dịch vào Analytics.
+  if(location.protocol!=="https:"||location.hostname!=="mixinh144-collab.github.io"||!location.pathname.startsWith("/tro-ly-vi-iphone/"))return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date());
+  gtag('config','G-5BNCNS7231',{
+    page_title:'Trợ Lý Ví Mimi',
+    page_location:'https://mixinh144-collab.github.io/tro-ly-vi-iphone/',
+    page_referrer:'',
+    cookie_path:'/tro-ly-vi-iphone/',
+    allow_google_signals:false,
+    allow_ad_personalization_signals:false
+  });
+  const tag=document.createElement('script');tag.async=true;
+  tag.src='https://www.googletagmanager.com/gtag/js?id=G-5BNCNS7231';
+  document.head.appendChild(tag);
+})();
+</script>
   <style>
     :root{--p:#F498C2;--pd:#C87D9F;--ps:#FDECF4;--rgb:244,152,194;--on:#3b2330;--bg:#FFF9FB;--paper:#FFFFFF;--ink:#3B2330;--muted:#806871;--line:#F1DFE5;--side:#503845;--danger:#c24141;--success:#13805a}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:calc(14px * var(--font-scale,1))/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
@@ -2731,7 +2751,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.2.9'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.3.0'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -2745,7 +2765,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.9",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.3.0",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2802,7 +2822,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.9');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.3.0');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

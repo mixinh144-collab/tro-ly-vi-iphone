@@ -223,7 +223,7 @@ body.dark .transaction-copy span,body.dark .top p,body.dark .title p,body.dark .
     const initialState = {name:"Bạn",theme:"pastelPink",dark:false,fontSize:"normal",sound:true,currency:"VND",exchangeRate:DEFAULT_EXCHANGE_RATE,pinSalt:"",pinHash:"",pinIterations:120000,transactions:[],savingsEntries:[]};
     let profileStore = loadProfileStore();
     let state = getActiveProfile().data;
-    let currentView = "home";
+    let currentView = "home",viewHistory=[];
     let calendarMonth = monthKey(localDate());
     let calendarSelectedDate = "";
     let transactionKind = "expense";
@@ -421,8 +421,9 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
       document.body.classList.toggle("dark",state.dark);document.getElementById("darkSwitch").classList.toggle("on",state.dark);document.getElementById("darkSwitch").setAttribute("aria-checked",String(state.dark));document.getElementById("soundSwitch").classList.toggle("on",state.sound);document.getElementById("soundSwitch").setAttribute("aria-checked",String(state.sound));
       document.querySelectorAll(".swatch").forEach(x=>x.classList.toggle("active",x.dataset.theme===state.theme));
     }
-    function showView(view){
+    function showView(view,options={}){
       if(view==="calendar")calendarSelectedDate="";
+      if(!options.fromBack&&view!==currentView){if(view==="home")viewHistory=[];else viewHistory.push(currentView)}
       currentView=view;document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===view));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));const backButton=document.getElementById("iphoneBackButton");if(backButton)backButton.hidden=view==="home";
       document.getElementById("pageTitle").textContent=meta[view][0];document.getElementById("pageSub").textContent=meta[view][1];window.scrollTo(0,0);renderAll();
     }
@@ -2486,7 +2487,13 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-install-guide.open{display:flex}
     .iphone-remote-notice{inset:auto 12px calc(76px + env(safe-area-inset-bottom));display:none;padding:0;background:transparent;backdrop-filter:none;pointer-events:none;align-items:stretch}
     .iphone-remote-notice.open{display:block}
-    .iphone-remote-notice .iphone-install-card{width:min(100%,520px);margin:0 auto;pointer-events:auto;box-shadow:0 12px 36px #1f152040}
+    .iphone-remote-notice .iphone-install-card{width:min(100%,520px);max-height:min(78vh,640px);margin:0 auto;overflow:auto;pointer-events:auto;background:#ffd5e7;color:#3b2330;border:3px solid #5b263b;border-radius:30px;padding:24px;box-shadow:0 16px 42px #5b263b40}
+    .iphone-remote-notice .iphone-install-head{align-items:center}
+    .iphone-remote-notice .iphone-install-head h2{color:#3b2330;font-size:calc(23px * var(--font-scale,1));line-height:1.25}
+    .iphone-remote-notice .iphone-install-head p,.iphone-remote-notice #iphoneRemoteNoticeMessage{color:#5b263b;line-height:1.7}
+    .iphone-remote-notice #iphoneRemoteNoticeMessage{font-size:calc(16px * var(--font-scale,1));white-space:pre-wrap;overflow-wrap:anywhere}
+    .iphone-remote-notice .iphone-install-close{border:2px solid #5b263b;background:#ffeaf3;color:#3b2330;font-weight:900}
+    .iphone-remote-notice .iphone-install-actions{position:sticky;bottom:0;padding-top:12px;background:linear-gradient(transparent,#ffd5e7 35%)}
     .iphone-install-card{width:min(100%,430px);max-height:min(92vh,760px);overflow:auto;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);padding:21px;box-shadow:0 22px 60px #1f152052}
     .iphone-install-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
     .iphone-install-head h2{margin:0;font-size:calc(22px * var(--font-scale,1))}
@@ -2656,8 +2663,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   guide.addEventListener("click",event=>{if(event.target===guide)close()});
   document.addEventListener("keydown",event=>{if(event.key==="Escape"&&guide.classList.contains("open"))close()});
   document.querySelector("[data-install-guide]")?.addEventListener("click",open);
-  let seen=false;try{seen=localStorage.getItem("tro_ly_vi_install_guide_seen_v1")==="1"}catch{}
-  if(!standalone()&&!seen)setTimeout(open,650);
+  // Không tự phủ lớp hướng dẫn khi mở trang; người dùng có thể mở từ mục "Hướng dẫn cài đặt".
 })();
 </script>
 <script id="iphone-remote-notice-runtime">
@@ -2700,7 +2706,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.2.3";
+  const APP_VERSION="1.2.4";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2736,7 +2742,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.3",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.4",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2793,7 +2799,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.3');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.4');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>
@@ -2852,7 +2858,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   },true);
 })();
 </script>
-<script id="iphone-back-button-runtime">document.getElementById("iphoneBackButton")?.addEventListener("click",()=>showView("home"));</script>
+<script id="iphone-back-button-runtime">document.getElementById("iphoneBackButton")?.addEventListener("click",()=>{const previous=viewHistory.pop()||"home";showView(previous,{fromBack:true})});</script>
 </body>
 </html>
 

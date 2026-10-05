@@ -1474,7 +1474,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
   function chooseDate(value) {
     dateInput.value=value;syncTrigger();renderCalendar();dateInput.dispatchEvent(new Event("input",{bubbles:true}));dateInput.dispatchEvent(new Event("change",{bubbles:true}));closeCalendar();
     const dateTextInput=document.getElementById("prettyDateTextInput");
-    if(dateTextInput)dateTextInput.focus({preventScroll:true});
+    if(dateTextInput)dateTextInput.blur();
   }
 
   const previousOpenAdd=openAdd;
@@ -1776,11 +1776,12 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
   };
   new MutationObserver(()=>modal.classList.contains("open")?lock():unlock()).observe(modal,{attributes:true,attributeFilter:["class"]});
   const dismissPreviousKeyboard=()=>{const active=document.activeElement;if(active&&active!==dateInput&&typeof active.blur==="function")active.blur()};
+  const dismissDateKeyboard=()=>{dateInput.blur();amountInput.blur();document.getElementById("prettyDateTextInput")?.blur()};
   dateInput.addEventListener("pointerdown",dismissPreviousKeyboard,true);
   dateInput.addEventListener("touchstart",dismissPreviousKeyboard,{capture:true,passive:true});
   dateInput.addEventListener("change",()=>{
-    dateInput.blur();amountInput.blur();
-    setTimeout(()=>{dateInput.blur();amountInput.blur()},100);
+    dismissDateKeyboard();
+    setTimeout(dismissDateKeyboard,100);
   });
 })();
 </script>
@@ -2695,7 +2696,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.1.10";
+  const APP_VERSION="1.2.0";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2731,7 +2732,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.10",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.0",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2788,7 +2789,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.1.10');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.0');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

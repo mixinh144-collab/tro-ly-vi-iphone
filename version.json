@@ -2,7 +2,7 @@
   "version": "1.2.7",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": false,
+    "enabled": true,
     "id": "notice-002",
     "title": "Thông báo từ Mimi Studio",
     "message": "Có bản cập nhật mới rồi ấn cập nhật thui.",

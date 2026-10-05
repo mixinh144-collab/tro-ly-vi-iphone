@@ -7,5 +7,11 @@
     "title": "Thông báo từ Mimi Studio",
     "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
+  },
+  "shutdown": {
+    "enabled": false,
+    "id": "shutdown-001",
+    "title": "Trợ Lý Ví Mimi đã tạm dừng",
+    "message": "Ứng dụng hiện không còn được cung cấp. Cảm ơn bạn đã trải nghiệm."
   }
 }

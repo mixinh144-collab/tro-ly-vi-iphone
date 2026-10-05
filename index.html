@@ -2783,6 +2783,33 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>
+<script id="iphone-remote-shutdown-runtime">
+(()=>{
+  const clean=(value,max)=>typeof value==='string'?value.trim().slice(0,max):'';
+  const show=shutdown=>{
+    if(!shutdown||shutdown.enabled!==true||document.querySelector('.iphone-remote-shutdown'))return;
+    const title=clean(shutdown.title,120)||'Ứng dụng đã tạm dừng';
+    const message=clean(shutdown.message,1200)||'Ứng dụng hiện không còn được cung cấp.';
+    const overlay=document.createElement('div');
+    overlay.className='iphone-remote-shutdown';
+    overlay.setAttribute('role','dialog');
+    overlay.setAttribute('aria-modal','true');
+    overlay.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2></h2><p>Thông báo từ Mimi Studio</p></div></div><div class="iphone-update-status"><div></div></div></div>';
+    overlay.querySelector('h2').textContent=title;
+    overlay.querySelector('.iphone-update-status div').textContent=message;
+    Object.assign(overlay.style,{position:'fixed',inset:'0',zIndex:'99999',display:'grid',placeItems:'center',padding:'20px',background:'rgba(248,239,244,.96)',color:'var(--ink)',textAlign:'center'});
+    const card=overlay.querySelector('.iphone-install-card');
+    Object.assign(card.style,{width:'min(100%,520px)',margin:'0'});
+    document.body.append(overlay);
+    document.documentElement.style.overflow='hidden';
+    document.body.style.overflow='hidden';
+  };
+  fetch('version.json?shutdown='+Date.now(),{cache:'no-store'}).then(response=>{
+    if(!response.ok)throw new Error('shutdown');
+    return response.json();
+  }).then(info=>show(info&&info.shutdown)).catch(()=>{});
+})();
+</script>
 </body>
 </html>
 

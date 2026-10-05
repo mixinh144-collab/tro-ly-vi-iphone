@@ -27,6 +27,8 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 `version.json` còn có khối `notice` để Mimi Studio gửi thông báo khi người dùng mở ứng dụng. Đổi `id` mỗi lần có nội dung mới, sửa `title` và `message`, đặt `enabled` thành `true`, rồi tải tệp lên GitHub Pages. Mỗi thiết bị chỉ hiện một lần cho mỗi `id`; đặt `showUpdateButton` thành `true` nếu thông báo cần kèm nút **Kiểm tra cập nhật**. Đặt `enabled` về `false` để ngừng hiện thông báo. Chức năng này chỉ đọc tệp công khai trên GitHub và không gửi dữ liệu người dùng.
 
+`version.json` có thêm khối `shutdown` để tạm khóa ứng dụng từ xa khi bạn không muốn tiếp tục cho người khác trải nghiệm. Giữ `enabled` ở `false` để ứng dụng hoạt động bình thường. Khi cần khóa, đổi `enabled` thành `true`, sửa `title` và `message`, rồi tự tải riêng `version.json` lên GitHub Pages. Người dùng cần có mạng và mở/tải lại ứng dụng để nhận lệnh; bản đang mở khi hoàn toàn mất mạng có thể chưa nhận được lệnh khóa.
+
 Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.8**. Số cache `tro-ly-vi-iphone-19` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.

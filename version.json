@@ -1,13 +1,12 @@
 {
-  "version": "1.1.9",
+  "version": "1.1.10",
   "releasedAt": "2026-10-05",
- "notice": {
-  "enabled": true,
-  "id": "update-1-1-9",
-  "title": "Có bản cập nhật mới",
-  "message": "Trợ Lý Ví Mimi đã có phiên bản 1.1.9. Bấm Cập nhật ngay để dùng bản mới.",
-  "showUpdateButton": true
-}
+  "notice": {
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "showUpdateButton": false
   },
   "shutdown": {
     "enabled": false,

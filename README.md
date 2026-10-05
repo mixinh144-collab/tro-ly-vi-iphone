@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.9**. Số cache `tro-ly-vi-iphone-20` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.10**. Số cache `tro-ly-vi-iphone-21` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 
@@ -41,7 +41,7 @@ Bấm trực tiếp vào ảnh hoặc icon này để mở bảng **Ảnh hồ s
 
 Trên điện thoại, giao diện hiện tại được giữ nguyên. Từ 700 px, khung ứng dụng và thanh điều hướng mở rộng linh hoạt gần hết màn hình; từ 960 px, các khu vực đủ chỗ như Tổng quan, Lịch, Nhắc việc, Cài đặt và Sao lưu mới chuyển sang hai cột.
 
-Khi người dùng chọn **Tải lại để cập nhật**, ứng dụng chỉ xóa các cache chương trình có tiền tố `tro-ly-vi-iphone-`, giữ nguyên dữ liệu giao dịch trong `localStorage`, rồi mở lại bằng URL chống cache. Điều hướng trang dùng mạng trước khi có kết nối và chỉ dùng bản ngoại tuyến khi mạng lỗi, tránh iOS mở lại HTML phiên bản cũ.
+Khi người dùng chọn **Cập nhật ngay** hoặc **Tải lại để cập nhật**, ứng dụng yêu cầu service worker đang chờ kích hoạt trước, sau đó chỉ xóa các cache chương trình có tiền tố `tro-ly-vi-iphone-`, giữ nguyên dữ liệu giao dịch trong `localStorage`, rồi mở lại bằng URL chống cache. Bản cũ giữ nguyên HTML đã cache cho đến khi người dùng xác nhận cập nhật; vì vậy mở app không tự nhảy sang giao diện mới.
 
 ## Giới hạn có chủ đích
 

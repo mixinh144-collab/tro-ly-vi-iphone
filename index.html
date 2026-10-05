@@ -2695,7 +2695,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 (()=>{
   const tile=document.querySelector("[data-report-issue]");
   if(!tile)return;
-  const APP_VERSION="1.1.9";
+  const APP_VERSION="1.1.10";
   const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
   const TECHNICAL_FIELD="entry.971615095";
   const deviceName=()=>{
@@ -2731,7 +2731,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.1.9",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.1.10",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2762,6 +2762,12 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   }
   async function applyUpdate(){
     action.disabled=true;action.textContent="Đang áp dụng…";setStatus("Đang cập nhật","Đang làm mới tệp chương trình. Dữ liệu của bạn vẫn được giữ nguyên.");
+    try{
+      const reg=registration||await navigator.serviceWorker.getRegistration();
+      if(reg&&reg.waiting){
+        await new Promise(resolve=>{let done=false;const finish=()=>{if(done)return;done=true;resolve()};navigator.serviceWorker.addEventListener("controllerchange",finish,{once:true});reg.waiting.postMessage({type:"SKIP_WAITING"});setTimeout(finish,4000)})
+      }
+    }catch(error){}
     try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.filter(key=>key.startsWith("tro-ly-vi-iphone-")).map(key=>caches.delete(key)))}}catch(error){}
     const url=new URL(location.href);url.searchParams.set("app-update",expectedVersion||APP_VERSION);url.searchParams.set("refresh",Date.now().toString());location.replace(url.href);
   }
@@ -2779,7 +2785,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.1.9');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.1.10');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

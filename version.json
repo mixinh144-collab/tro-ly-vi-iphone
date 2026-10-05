@@ -2,7 +2,7 @@
   "version": "1.1.10",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": true,
+    "enabled": false,
     "id": "update-1-1-10-new",
     "title": "Có bản cập nhật mới",
     "message": "Trợ Lý Ví Mimi đã có phiên bản 1.1.10. Bấm nút bên dưới để cập nhật.",

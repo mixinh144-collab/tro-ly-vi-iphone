@@ -3,9 +3,9 @@
   "releasedAt": "2026-10-05",
   "notice": {
     "enabled": false,
-    "id": "notice-001",
+    "id": "notice-002",
     "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "message": "Có bản cập nhật mới rồi ấn cập nhật thui.",
     "showUpdateButton": false
   },
   "shutdown": {

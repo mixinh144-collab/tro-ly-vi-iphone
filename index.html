@@ -2484,9 +2484,9 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     .iphone-version-card strong{color:var(--ink);font-size:calc(13px * var(--font-scale,1));white-space:nowrap}
     .iphone-more-item small{display:block;margin-top:5px;color:var(--muted);font-size:calc(10px * var(--font-scale,1));font-weight:700}
     .iphone-install-guide{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;padding:18px 12px calc(18px + env(safe-area-inset-bottom));background:#211820a8;backdrop-filter:blur(5px)}
-    .iphone-install-guide.open{display:flex}
-    .iphone-remote-notice{position:fixed;z-index:121;inset:auto 12px calc(76px + env(safe-area-inset-bottom));display:none;padding:0;background:transparent;backdrop-filter:none;pointer-events:none;align-items:stretch}
-    .iphone-remote-notice.open{display:block}
+    .iphone-install-guide.open{display:flex}.iphone-install-guide.iphone-update-dialog{align-items:center;padding:18px max(12px,env(safe-area-inset-right)) 18px max(12px,env(safe-area-inset-left))}.iphone-update-dialog .iphone-install-card{max-height:calc(100dvh - 36px)}
+    .iphone-remote-notice{position:fixed;z-index:121;inset:0;display:none;padding:12px max(12px,env(safe-area-inset-right)) 12px max(12px,env(safe-area-inset-left));background:transparent;backdrop-filter:none;pointer-events:none;align-items:center;justify-content:center}
+    .iphone-remote-notice.open{display:flex}
     .iphone-remote-notice .iphone-install-card{width:min(100%,520px);max-height:min(78vh,640px);margin:0 auto;overflow:auto;pointer-events:auto;background:#ffd5e7;color:#3b2330;border:3px solid #5b263b;border-radius:30px;padding:24px;box-shadow:0 16px 42px #5b263b40}
     .iphone-remote-notice .iphone-install-head{align-items:center}
     .iphone-remote-notice .iphone-install-head h2{color:#3b2330;font-size:calc(23px * var(--font-scale,1));line-height:1.25}
@@ -2705,49 +2705,50 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 </script>
 <script id="iphone-report-issue-runtime">
 (()=>{
-  const tile=document.querySelector("[data-report-issue]");
-  if(!tile)return;
-  const APP_VERSION="1.2.7";
-  const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSeVR5yLUF9jIhw0V2aPT8VQLDVyOhM2uinfQatwBGGX7fQz_g/viewform";
-  const TECHNICAL_FIELD="entry.971615095";
-  const deviceName=()=>{
-    const ua=navigator.userAgent||"";
-    if(/iPad/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1))return "iPad";
-    if(/iPhone/i.test(ua))return "iPhone";
-    if(/Android/i.test(ua))return "Android";
-    return "Thiết bị khác";
-  };
-  const activeArea=()=>{
-    const screen=document.querySelector(".screen.active");
-    const heading=screen?.querySelector("h1,h2")?.textContent?.trim();
-    return heading||screen?.id||"Không xác định";
-  };
-  tile.addEventListener("click",()=>{
-    const standalone=window.matchMedia?.("(display-mode: standalone)")?.matches||navigator.standalone===true;
-    const details=[
-      "Phiên bản ứng dụng: "+APP_VERSION,
-      "Thiết bị: "+deviceName(),
-      "Kích thước giao diện: "+window.innerWidth+" × "+window.innerHeight+" px",
-      "Khu vực đang mở: "+activeArea(),
-      "Cách mở: "+(standalone?"Ứng dụng trên Màn hình chính":"Trình duyệt"),
-      "Thời gian: "+new Date().toLocaleString("vi-VN"),
-      "Trình duyệt: "+(navigator.userAgent||"Không xác định")
-    ].join("\n");
-    const url=new URL(FORM_URL);
-    url.searchParams.set("usp","pp_url");
-    url.searchParams.set(TECHNICAL_FIELD,details);
-    const opened=window.open(url.toString(),"_blank","noopener,noreferrer");
-    if(!opened)location.href=url.toString();
+  const tile=document.querySelector('[data-report-issue]');if(!tile)return;
+  const style=document.createElement('style');style.textContent=`
+  #mimiFeedback{border:1px solid var(--line);border-radius:24px;padding:22px;width:min(440px,calc(100% - 24px));max-height:calc(100dvh - 32px);overflow:auto;background:var(--paper);color:var(--ink);box-shadow:0 20px 60px #50384540}
+  #mimiFeedback::backdrop{background:#21182066}#mimiFeedback *{box-sizing:border-box}
+  #mimiFeedback header{display:flex;align-items:center;justify-content:space-between;gap:12px}#mimiFeedback h2{font-size:21px;margin:0}#mimiFeedback p{color:var(--muted);line-height:1.5;font-size:13px}
+  #mimiFeedback .feedback-close{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:var(--ps);color:var(--ink)}
+  #mimiFeedback form{display:grid;gap:16px}#mimiFeedback label{display:grid;gap:7px;font-weight:650;font-size:14px}#mimiFeedback textarea,#mimiFeedback input[type=email]{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}#mimiFeedback textarea{min-height:130px;resize:vertical}
+  #mimiFeedback fieldset{border:0;padding:0;margin:0}#mimiFeedback legend{font-size:14px;font-weight:650;margin-bottom:6px}.feedback-stars{display:flex;gap:4px}.feedback-stars label{position:relative;display:block}.feedback-stars input{position:absolute;opacity:0;width:44px;height:44px;margin:0}.feedback-stars span{display:grid;place-items:center;width:44px;height:44px;color:var(--muted);font-size:30px;cursor:pointer}.feedback-stars label.selected span{color:#c27605}.feedback-stars input:focus-visible+span{outline:2px solid var(--ink);border-radius:8px}
+  #mimiFeedback [role=status]{margin:0;min-height:20px}#mimiFeedback button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}#mimiFeedback [type=submit]{min-height:46px}#mimiFeedback [type=submit]:disabled{opacity:.6}
+  `;document.head.append(style);
+  const dialog=document.createElement('dialog');dialog.id='mimiFeedback';dialog.setAttribute('aria-labelledby','mimiFeedbackTitle');
+  dialog.innerHTML=`<header><h2 id="mimiFeedbackTitle">Góp ý cho Trợ Lý Ví Mimi</h2><button type="button" class="feedback-close" aria-label="Đóng góp ý"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header><p>Ý kiến của bạn giúp Mimi ngày càng dễ dùng hơn.</p><form><fieldset><legend>Bạn thấy ứng dụng thế nào? (tùy chọn)</legend><div class="feedback-stars">${[1,2,3,4,5].map(n=>`<label><input type="radio" name="rating" value="${n}" aria-label="${n} sao"><span aria-hidden="true">★</span></label>`).join('')}</div></fieldset><label>Góp ý hoặc lỗi bạn gặp<textarea name="message" required maxlength="3000" placeholder="Bạn muốn cải thiện điều gì? Nếu gặp lỗi, hãy kể các bước vừa thực hiện nhé."></textarea></label><label>Email liên hệ (tùy chọn)<input type="email" name="email" maxlength="254" autocomplete="email" placeholder="Để Mimi có thể phản hồi cho bạn"></label><p>Nội dung và email bạn nhập được gửi qua FormSubmit tới Mimi Studio. Không gửi dữ liệu thu chi.</p><p role="status" aria-live="polite"></p><button type="submit" class="button primary">Gửi góp ý</button></form>`;
+  document.body.append(dialog);
+  const form=dialog.querySelector('form'),status=dialog.querySelector('[role=status]'),send=form.querySelector('[type=submit]');let pending=false;
+  const updateStars=()=>{const selected=Number(new FormData(form).get('rating')||0);form.querySelectorAll('.feedback-stars label').forEach((el,i)=>el.classList.toggle('selected',i<selected))};
+  form.addEventListener('change',updateStars);
+  tile.addEventListener('click',()=>{if(!dialog.open){dialog.showModal();dialog.querySelector('.feedback-close').focus()}});
+  dialog.querySelector('.feedback-close').addEventListener('click',()=>dialog.close());
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();if(pending)return;
+    const fields=new FormData(form),message=String(fields.get('message')||'').trim();
+    if(!message){status.textContent='Bạn nhập nội dung góp ý nhé.';form.elements.message.focus();return}
+    if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
+    pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.2.8'};
+    const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
+    try{
+      const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
+      const result=await response.json();if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('not-accepted');
+      status.textContent='Góp ý đã được tiếp nhận. Cảm ơn bạn!';form.reset();updateStars();
+    }catch{status.textContent='Chưa xác nhận được gửi thành công. Nội dung vẫn được giữ để bạn thử lại.'}
+    finally{clearTimeout(timer);pending=false;send.disabled=false;send.textContent='Gửi góp ý'}
   });
 })();
 </script>
+
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.2.7",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.2.8",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
-  dialog.className="iphone-install-guide";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneUpdateTitle");
+  dialog.className="iphone-install-guide iphone-update-dialog";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-labelledby","iphoneUpdateTitle");
   dialog.innerHTML='<div class="iphone-install-card"><div class="iphone-install-head"><div><h2 id="iphoneUpdateTitle">Cập nhật Trợ Lý Ví</h2><p>Kiểm tra bản điện thoại mới trên máy chủ.</p><div class="iphone-update-version">Phiên bản đang dùng: '+APP_VERSION+'</div></div><button class="iphone-install-close" type="button" aria-label="Đóng">×</button></div><div class="iphone-update-status" id="iphoneUpdateStatus"><div><b>Sẵn sàng kiểm tra</b>Cần kết nối Internet để tìm bản mới.</div></div><div class="iphone-install-actions"><button class="button secondary" type="button" data-update-close>Đóng</button><button class="button primary" type="button" data-update-action>Kiểm tra ngay</button></div></div>';
   document.body.append(dialog);
   const status=dialog.querySelector("#iphoneUpdateStatus"),action=dialog.querySelector("[data-update-action]");
@@ -2800,7 +2801,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.7');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.2.8');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

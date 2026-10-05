@@ -1,11 +1,11 @@
 {
-  "version": "1.2.7",
+  "version": "1.2.8",
   "releasedAt": "2026-10-05",
   "notice": {
-    "enabled": true,
-    "id": "notice-002",
+    "enabled": false,
+    "id": "notice-001",
     "title": "Thông báo từ Mimi Studio",
-    "message": "Có bản cập nhật mới rồi ấn cập nhật thui.",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

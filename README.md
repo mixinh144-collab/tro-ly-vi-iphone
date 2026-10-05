@@ -13,6 +13,7 @@
 Bạn có thể mở ảnh `qr-tro-ly-vi-iphone.png`, dùng Camera quét mã rồi mở liên kết bằng Safari. QR có tham số phiên bản `?v=8` để tránh trình quét mở lại trang hoặc biểu tượng nền đen từ bộ nhớ đệm.
 Ảnh dùng thẻ trắng bo góc với viền hồng nhẹ, không có mảng bóng xám phía sau và không in địa chỉ GitHub bên dưới; đường dẫn vẫn nằm đầy đủ trong mã QR.
 Phía dưới thẻ QR có dòng ghi công **Tạo bởi Mimi Studio** để người nhận ảnh biết người tạo ứng dụng.
+Logo mới của Trợ Lý Ví Mimi là hình chiếc ví hồng có chữ M; cùng ảnh được dùng cho biểu tượng ứng dụng và biểu tượng trong giao diện.
 
 1. Đưa toàn bộ thư mục `D:\Codex\2026-08-20\iphone` lên một địa chỉ HTTPS.
 2. Mở địa chỉ đó bằng Safari trên iPhone.
@@ -29,7 +30,9 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 `version.json` có thêm khối `shutdown` để tạm khóa ứng dụng từ xa khi bạn không muốn tiếp tục cho người khác trải nghiệm. Giữ `enabled` ở `false` để ứng dụng hoạt động bình thường. Khi cần khóa, đổi `enabled` thành `true`, sửa `title` và `message`, rồi tự tải riêng `version.json` lên GitHub Pages. Người dùng cần có mạng và mở/tải lại ứng dụng để nhận lệnh; bản đang mở khi hoàn toàn mất mạng có thể chưa nhận được lệnh khóa.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.8**. Số cache `tro-ly-vi-iphone-19` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
+
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.1.9**. Số cache `tro-ly-vi-iphone-20` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

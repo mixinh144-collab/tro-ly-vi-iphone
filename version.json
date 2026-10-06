@@ -1,11 +1,11 @@
 {
-  "version": "1.3.2",
+  "version": "1.3.3",
   "releasedAt": "2026-10-06",
   "notice": {
-    "enabled": true,
-    "id": "notice-007",
-    "title": "Sửa lỗi",
-    "message": "Một số giao diện đang bị lỗi, bản cập nhật sửa lỗi sẽ phát hành trong ít phút nữa, mọi người nhớ cập nhật nhé Phiên bản 1.3.3.",
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

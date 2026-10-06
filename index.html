@@ -2447,8 +2447,9 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     #reminders .reminder-form>.reminder-field:has(textarea){grid-column:1/-1}
     #reminders .reminder-field input,#reminders .reminder-field select,#reminders .reminder-field textarea{font-size:calc(12px * var(--font-scale,1));border-radius:12px;padding:8px 10px}
     #reminders .reminder-picker-trigger{min-height:36px;padding:5px 8px;font-size:calc(12px * var(--font-scale,1));gap:4px}
-    #reminders .reminder-time-entry{min-height:36px;grid-template-columns:minmax(0,1fr) 26px;gap:3px;padding:2px 4px 2px 8px}
-    #reminders .reminder-time-open{width:26px;height:28px}
+    #reminders .reminder-time-entry{min-height:36px;grid-template-columns:minmax(0,1fr) 23px;gap:3px;padding:2px 8px}
+    #reminders .reminder-time-text{font-size:calc(12px * var(--font-scale,1))!important;line-height:1.45!important}
+    #reminders .reminder-time-open{width:23px;height:23px;border-radius:8px}
     #reminders .reminder-picker-icon{width:23px;height:23px;flex-basis:23px}
     #reminders .reminder-field textarea{min-height:58px}
     #reminders .reminder-checkbox{font-size:calc(11px * var(--font-scale,1));gap:5px}
@@ -2808,24 +2809,55 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   #mimiFeedback .feedback-close{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:var(--ps);color:var(--ink)}
   #mimiFeedback form{display:grid;gap:16px}#mimiFeedback label{display:grid;gap:7px;font-weight:650;font-size:14px}#mimiFeedback textarea,#mimiFeedback input[type=email]{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}#mimiFeedback textarea{min-height:130px;resize:vertical}
   #mimiFeedback fieldset{border:0;padding:0;margin:0}#mimiFeedback legend{font-size:14px;font-weight:650;margin-bottom:6px}.feedback-stars{display:flex;gap:4px}.feedback-stars label{position:relative;display:block}.feedback-stars input{position:absolute;opacity:0;width:44px;height:44px;margin:0}.feedback-stars span{display:grid;place-items:center;width:44px;height:44px;color:var(--muted);font-size:30px;cursor:pointer}.feedback-stars label.selected span{color:#c27605}.feedback-stars input:focus-visible+span{outline:2px solid var(--ink);border-radius:8px}
+  #mimiFeedback .feedback-photos{display:grid;gap:9px}#mimiFeedback .feedback-photo-heading{display:grid;gap:2px;font-size:14px;font-weight:650}#mimiFeedback .feedback-photo-heading small{font-size:11px;font-weight:500;color:var(--muted);text-align:left}
+  #mimiFeedback .feedback-photo-add{justify-self:start;border:1px solid var(--line);border-radius:11px;padding:9px 12px;background:var(--bg);color:var(--ink);font:inherit;font-weight:700}#mimiFeedback .feedback-photo-add:disabled{opacity:.5}
+  #mimiFeedback .feedback-photo-list{display:grid;gap:7px}#mimiFeedback .feedback-photo-item{display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg)}#mimiFeedback .feedback-photo-item img{width:48px;height:48px;border-radius:8px;object-fit:cover;background:var(--paper)}#mimiFeedback .feedback-photo-item span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}#mimiFeedback .feedback-photo-item button{border:0;border-radius:8px;padding:8px;background:var(--ps);color:var(--p);font:inherit;font-size:12px;font-weight:700}
+  #mimiFeedback .feedback-photo-hint{margin:0;font-size:11px}
   #mimiFeedback [role=status]{margin:0;min-height:20px}#mimiFeedback button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}#mimiFeedback [type=submit]{min-height:46px}#mimiFeedback [type=submit]:disabled{opacity:.6}
   `;document.head.append(style);
   const dialog=document.createElement('dialog');dialog.id='mimiFeedback';dialog.setAttribute('aria-labelledby','mimiFeedbackTitle');
-  dialog.innerHTML=`<header><h2 id="mimiFeedbackTitle">Góp ý cho Trợ Lý Ví Mimi</h2><button type="button" class="feedback-close" aria-label="Đóng góp ý"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header><p>Ý kiến của bạn giúp Mimi ngày càng dễ dùng hơn.</p><form><fieldset><legend>Bạn thấy ứng dụng thế nào? (tùy chọn)</legend><div class="feedback-stars">${[1,2,3,4,5].map(n=>`<label><input type="radio" name="rating" value="${n}" aria-label="${n} sao"><span aria-hidden="true">★</span></label>`).join('')}</div></fieldset><label>Góp ý hoặc lỗi bạn gặp<textarea name="message" required maxlength="3000" placeholder="Bạn muốn cải thiện điều gì? Nếu gặp lỗi, hãy kể các bước vừa thực hiện nhé."></textarea></label><label>Email liên hệ (tùy chọn)<input type="email" name="email" maxlength="254" autocomplete="email" placeholder="Để Mimi có thể phản hồi cho bạn"></label><p>Nội dung và email bạn nhập được gửi qua FormSubmit tới Mimi Studio. Không gửi dữ liệu thu chi.</p><p role="status" aria-live="polite"></p><button type="submit" class="button primary">Gửi góp ý</button></form>`;
+  dialog.innerHTML=`<header><h2 id="mimiFeedbackTitle">Góp ý cho Trợ Lý Ví Mimi</h2><button type="button" class="feedback-close" aria-label="Đóng góp ý"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header><p>Ý kiến của bạn giúp Mimi ngày càng dễ dùng hơn.</p><form action="https://formsubmit.co/mixinh144@gmail.com" method="POST" enctype="multipart/form-data" target="_blank" rel="noopener"><input type="hidden" name="_subject" value="Góp ý / Báo lỗi — Ví Mimi"><input type="hidden" name="_template" value="table"><input type="hidden" name="app_version" value="1.3.7"><fieldset><legend>Bạn thấy ứng dụng thế nào? (tùy chọn)</legend><div class="feedback-stars">${[1,2,3,4,5].map(n=>`<label><input type="radio" name="rating" value="${n}" aria-label="${n} sao"><span aria-hidden="true">★</span></label>`).join('')}</div></fieldset><label>Góp ý hoặc lỗi bạn gặp<textarea name="message" required maxlength="3000" placeholder="Bạn muốn cải thiện điều gì? Nếu gặp lỗi, hãy kể các bước vừa thực hiện nhé."></textarea></label><label>Email liên hệ (tùy chọn)<input type="email" name="email" maxlength="254" autocomplete="email" placeholder="Để Mimi có thể phản hồi cho bạn"></label><div class="feedback-photos"><div class="feedback-photo-heading"><span>Ảnh minh họa (tùy chọn)</span><small>Tối đa 3 ảnh, tổng không quá 9 MB</small></div><button type="button" class="feedback-photo-add">＋ Thêm ảnh</button><div class="feedback-photo-list" aria-live="polite"></div><p class="feedback-photo-hint">Chỉ ảnh bạn chọn mới được gửi. Hãy che thông tin riêng tư trong ảnh. Khi gửi kèm ảnh, trang xác nhận sẽ mở.</p></div><p>Nội dung, email và ảnh bạn chọn được gửi qua FormSubmit tới Mimi Studio. Không tự gửi dữ liệu thu chi.</p><p role="status" aria-live="polite"></p><button type="submit" class="button primary">Gửi góp ý</button></form>`;
   document.body.append(dialog);
   const form=dialog.querySelector('form'),status=dialog.querySelector('[role=status]'),send=form.querySelector('[type=submit]');let pending=false;
+  const addPhoto=form.querySelector('.feedback-photo-add'),photoList=form.querySelector('.feedback-photo-list'),photos=[];
+  const renderPhotos=()=>{
+    photoList.replaceChildren();
+    photos.forEach(entry=>{
+      const item=document.createElement('div');item.className='feedback-photo-item';
+      const image=document.createElement('img');image.src=entry.url;image.alt='Ảnh đã chọn';
+      const name=document.createElement('span');name.textContent=entry.file.name;
+      const remove=document.createElement('button');remove.type='button';remove.textContent='Xóa';remove.setAttribute('aria-label','Xóa ảnh '+entry.file.name);
+      remove.addEventListener('click',()=>{const index=photos.indexOf(entry);if(index<0)return;photos.splice(index,1);URL.revokeObjectURL(entry.url);entry.input.remove();status.textContent='';renderPhotos()});
+      item.append(image,name,remove);photoList.append(item);
+    });
+    addPhoto.disabled=photos.length>=3;addPhoto.textContent=photos.length?'＋ Thêm ảnh ('+photos.length+'/3)':'＋ Thêm ảnh';
+  };
+  addPhoto.addEventListener('click',()=>{
+    if(photos.length>=3)return;
+    const input=document.createElement('input');input.type='file';input.accept='image/png,image/jpeg,image/webp,image/gif,image/heic,image/heif';input.style.display='none';input.setAttribute('aria-label','Chọn ảnh minh họa');form.append(input);
+    input.addEventListener('change',()=>{
+      const file=input.files?.[0];if(!file){input.remove();return}
+      if(!['image/png','image/jpeg','image/webp','image/gif','image/heic','image/heif'].includes(file.type)&&!(file.type===''&&/\.(png|jpe?g|webp|heic|heif|gif)$/i.test(file.name))){status.textContent='Vui lòng chọn tệp ảnh PNG, JPG, WebP, GIF hoặc HEIC.';input.remove();return}
+      if(photos.some(entry=>entry.file.name===file.name&&entry.file.size===file.size&&entry.file.lastModified===file.lastModified)){status.textContent='Ảnh này đã được chọn.';input.remove();return}
+      const total=photos.reduce((sum,entry)=>sum+entry.file.size,0)+file.size;
+      if(total>9*1024*1024){status.textContent='Tổng dung lượng ảnh không được quá 9 MB.';input.remove();return}
+      const slot=[1,2,3].find(n=>!photos.some(entry=>entry.slot===n));input.name='attachment'+slot;photos.push({file,input,slot,url:URL.createObjectURL(file)});status.textContent='';renderPhotos();
+    },{once:true});
+    input.click();
+  });
   const updateStars=()=>{const selected=Number(new FormData(form).get('rating')||0);form.querySelectorAll('.feedback-stars label').forEach((el,i)=>el.classList.toggle('selected',i<selected))};
   form.addEventListener('change',updateStars);
   tile.addEventListener('click',()=>{if(!dialog.open){dialog.showModal();dialog.querySelector('.feedback-close').focus()}});
   dialog.querySelector('.feedback-close').addEventListener('click',()=>dialog.close());
   form.addEventListener('submit',async event=>{
-    event.preventDefault();if(pending)return;
+    if(pending){event.preventDefault();return}
     const fields=new FormData(form),message=String(fields.get('message')||'').trim();
-    if(!message){status.textContent='Bạn nhập nội dung góp ý nhé.';form.elements.message.focus();return}
-    if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
-    pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
+    if(!message){event.preventDefault();status.textContent='Bạn nhập nội dung góp ý nhé.';form.elements.message.focus();return}
+    if(!navigator.onLine){event.preventDefault();status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
+    if(photos.length){status.textContent='Trang xác nhận gửi ảnh đang mở. Hãy hoàn tất tại đó.';pending=true;send.disabled=true;setTimeout(()=>{pending=false;send.disabled=false},4000);return}
+    event.preventDefault();pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.3.5'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.3.7'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -2839,7 +2871,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.3.5",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.3.7",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2896,7 +2928,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.3.5');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.3.7');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

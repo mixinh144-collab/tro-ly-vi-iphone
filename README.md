@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.3.1**. Số cache `tro-ly-vi-iphone-33` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.3.2**. Số cache `tro-ly-vi-iphone-34` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

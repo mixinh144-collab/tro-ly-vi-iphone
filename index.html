@@ -2769,13 +2769,17 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const cleanText=(value,max)=>typeof value==="string"?value.trim().slice(0,max):"";
   const alreadySeen=id=>{try{return localStorage.getItem(SEEN_KEY)===id}catch{return false}};
   const remember=id=>{try{localStorage.setItem(SEEN_KEY,id)}catch{}};
+  let activeNoticeId="";
   const playArrivalSound=dialog=>{
-    if(!state.sound)return;
+    if(!state.sound)return ()=>{};
     try{
-      const AudioEngine=window.AudioContext||window.webkitAudioContext;if(!AudioEngine)return;
+      const AudioEngine=window.AudioContext||window.webkitAudioContext;if(!AudioEngine)return ()=>{};
       audioContext=audioContext||new AudioEngine();const context=audioContext;
+      let played=false;
+      const stop=()=>{document.removeEventListener("pointerdown",retry,true);document.removeEventListener("keydown",retry,true)};
       const play=()=>{
-        if(!dialog.isConnected||!dialog.classList.contains("open"))return;
+        if(played||!state.sound||!dialog.isConnected||!dialog.classList.contains("open")||context.state!=="running")return;
+        played=true;stop();
         const now=context.currentTime;
         for(const [frequency,offset,duration,volume] of [[660,0,.18,.029],[880,.12,.26,.025]]){
           const oscillator=context.createOscillator(),gain=context.createGain(),at=now+offset;
@@ -2784,12 +2788,17 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
           oscillator.connect(gain);gain.connect(context.destination);oscillator.start(at);oscillator.stop(at+duration+.01);
         }
       };
-      if(context.state==="suspended")context.resume().then(play).catch(()=>{});else play();
-    }catch{}
+      const retry=()=>{if(context.state==="running")play();else context.resume().then(play).catch(()=>{})};
+      document.addEventListener("pointerdown",retry,true);
+      document.addEventListener("keydown",retry,true);
+      retry();
+      return stop;
+    }catch{return ()=>{}}
   };
   const showNotice=notice=>{
     const id=cleanText(notice.id,80),title=cleanText(notice.title,100),message=cleanText(notice.message,1000);
-    if(notice.enabled!==true||!id||!title||!message||alreadySeen(id))return;
+    if(notice.enabled!==true||!id||!title||!message||alreadySeen(id)||activeNoticeId)return;
+    activeNoticeId=id;
     const dialog=document.createElement("div");
     dialog.className="iphone-remote-notice";
     dialog.setAttribute("role","status");dialog.setAttribute("aria-live","polite");dialog.setAttribute("aria-labelledby","iphoneRemoteNoticeTitle");
@@ -2800,10 +2809,11 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     updateButton.hidden=notice.showUpdateButton!==true;
     updateButton.parentElement.classList.toggle("hidden",updateButton.hidden);
     document.body.append(dialog);
-    const close=()=>{remember(id);dialog.classList.remove("open");setTimeout(()=>dialog.remove(),180)};
+    let stopSoundRetry=()=>{};
+    const close=()=>{stopSoundRetry();remember(id);activeNoticeId="";dialog.classList.remove("open");setTimeout(()=>dialog.remove(),180)};
     const openWhenReady=()=>{
       if(document.querySelector(".iphone-install-guide.open")){setTimeout(openWhenReady,500);return}
-      dialog.classList.add("open");playArrivalSound(dialog);
+      dialog.classList.add("open");stopSoundRetry=playArrivalSound(dialog);
     };
     dialog.querySelector(".iphone-install-close").addEventListener("click",close);
 
@@ -2812,10 +2822,19 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     document.addEventListener("keydown",event=>{if(event.key==="Escape"&&dialog.classList.contains("open"))close()},{once:true});
     setTimeout(openWhenReady,900);
   };
-  fetch("version.json?notice="+Date.now(),{cache:"no-store"}).then(response=>{
-    if(!response.ok)throw new Error("notice");
-    return response.json();
-  }).then(info=>{if(info&&info.notice)showNotice(info.notice)}).catch(()=>{});
+  let checkingNotice=false;
+  const checkNotice=()=>{
+    if(document.hidden||checkingNotice||activeNoticeId)return;
+    checkingNotice=true;
+    fetch("version.json?notice="+Date.now(),{cache:"no-store"}).then(response=>{
+      if(!response.ok)throw new Error("notice");
+      return response.json();
+    }).then(info=>{if(info&&info.notice)showNotice(info.notice)}).catch(()=>{}).finally(()=>{checkingNotice=false});
+  };
+  checkNotice();
+  setInterval(checkNotice,15000);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)checkNotice()});
+  window.addEventListener("focus",checkNotice);
 })();
 </script>
 <script id="iphone-report-issue-runtime">
@@ -2845,7 +2864,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.3.9'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.4.0'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -2859,7 +2878,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.3.9",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.4.0",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2916,7 +2935,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.3.9');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.4.0');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

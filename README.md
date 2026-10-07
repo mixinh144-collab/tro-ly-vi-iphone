@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.1**. Số cache `tro-ly-vi-iphone-43` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.2**. Số cache `tro-ly-vi-iphone-44` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 
@@ -62,3 +62,4 @@ Trên iPhone/iPad, mở ứng dụng từ biểu tượng trên Màn hình chín
 - `apple-touch-icon.png` là bản sao cùng nội dung đặt đúng tên Safari ưu tiên khi tạo biểu tượng Màn hình chính. Sau khi thay logo, cần xóa biểu tượng cũ trên iPhone rồi thêm lại từ Safari để tránh bộ nhớ đệm.
 - `apple-touch-icon-white.png` là biểu tượng cài lên Màn hình chính có nền trắng kín, giữ nguyên hình chiếc ví. Safari dùng tên tệp mới để tránh lấy lại biểu tượng nền đen đã lưu trước đó.
 - Tỷ lệ giao diện được cố định ở 100%. Cử chỉ thu phóng bằng hai ngón bị chặn, còn cuộn bằng một ngón vẫn hoạt động. Các ô nhập dùng cỡ chữ tối thiểu 16 px để Safari không tự phóng to khi bắt đầu nhập liệu.
+

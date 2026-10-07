@@ -3,9 +3,9 @@
   "releasedAt": "2026-10-07",
   "notice": {
     "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "id": "notice-008",
+    "title": "Đã có bản cập nhật mới 🎉",
+    "message": "Trợ Lý Ví Mimi vừa có bản cập nhật mới với một số cải thiện và sửa lỗi. Vào mục Khác → Kiểm tra cập nhật để xem phiên bản mới nhé!.",
     "showUpdateButton": false
   },
   "shutdown": {

@@ -3,9 +3,9 @@
   "releasedAt": "2026-10-07",
   "notice": {
     "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "id": "notice-013",
+    "title": "Đã có bản cập nhật Trợ Lý Ví Mimi 1.4.2 🎉",
+    "message": "Cài đặt nay gọn hơn với 6 mục riêng, các nút mũi tên được đồng bộ và hiệu ứng âm thanh được cải thiện. Vào Khác → Kiểm tra cập nhật để tải bản mới nhé.",
     "showUpdateButton": false
   },
   "shutdown": {

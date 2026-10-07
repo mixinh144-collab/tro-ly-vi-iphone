@@ -2,10 +2,10 @@
   "version": "1.4.1",
   "releasedAt": "2026-10-07",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "enabled": true,
+    "id": "notice-012",
+    "title": "Bản Cập Nhật Mới 1.4.1",
+    "message": "Bản mới hỗ trợ thông báo trên màn hình khóa. Mở Ví Mimi và vào Khác → Kiểm tra cập nhật để trải nghiệm nhé!.",
     "showUpdateButton": false
   },
   "shutdown": {

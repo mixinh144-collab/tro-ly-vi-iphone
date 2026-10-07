@@ -2,7 +2,7 @@
   "version": "1.3.9",
   "releasedAt": "2026-10-07",
   "notice": {
-    "enabled": false,
+    "enabled": true,
     "id": "notice-009",
     "title": "Đã có bản cập nhật mới 🎉",
     "message": "Trợ Lý Ví Mimi vừa có bản cập nhật mới với một số cải thiện và sửa lỗi. Vào mục Khác → Kiểm tra cập nhật để xem phiên bản mới nhé!.",

@@ -2,10 +2,14 @@
   "version": "1.4.6",
   "releasedAt": "2026-10-08",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "enabled": true,
+    "id": "notice-019",
+    "title": "Bản Cập Nhật Mới 1.4.6",
+    "message": "Ví Mimi 1.4.6 có gì mới?
+- Nhắc sự kiện trên màn hình khóa:** chọn thời gian “Nhắc trước” cho từng sự kiện và bật thông báo để nhận lời nhắc.
+- Tiếng bấm rõ hơn:** tăng âm lượng hiệu ứng khi chạm nút.
+- Icon Cài đặt mới:** bánh răng nét gọn, cân đối và không bị lệch.
+Các sự kiện cũ mặc định không nhắc; bạn cần chọn thời gian nhắc cho sự kiện muốn nhận thông báo.*.",
     "showUpdateButton": false
   },
   "shutdown": {

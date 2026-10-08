@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.5**. Số cache `tro-ly-vi-iphone-47` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.6**. Số cache `tro-ly-vi-iphone-48` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 
@@ -47,6 +47,8 @@ Trình kiểm tra cập nhật so sánh số phiên bản theo từng phần; ch
 ## Thông báo màn hình khóa
 
 Trên iPhone/iPad, mở ứng dụng từ biểu tượng trên Màn hình chính, vào **Cài đặt → Thông báo màn hình khóa → Bật thông báo** rồi chọn **Cho phép** trong hộp thoại iOS. Khi `notice.enabled=true` và `notice.id` mới được tải lên `version.json`, Cloudflare Worker kiểm tra khoảng mỗi phút và gửi thông báo tới thiết bị đã đăng ký. `push-client.js` và `push-config.json` phải được tải cùng bản cập nhật. Có thể có thêm độ trễ từ mạng hoặc iOS; bản này chưa được kiểm thử trên iPhone thật.
+
+Trong **Lịch & nhắc việc**, mỗi sự kiện có mục **Nhắc trước** (mặc định **Không nhắc**). Khi đã bật thông báo màn hình khóa và chọn nhắc, ứng dụng đồng bộ tên cùng thời điểm nhắc lên Cloudflare để Worker tự gửi thông báo khi app đóng. Ghi chú sự kiện và dữ liệu thu chi vẫn ở trên thiết bị. Sửa, xóa sự kiện hoặc tắt thông báo sẽ cập nhật/xóa lịch nhắc trên máy chủ khi có mạng. Cần cập nhật bảng D1 và Worker theo `_internal/PHAT-TRIEN/cloudflare-push/README.md` trước khi phát hành các tệp ứng dụng mới.
 
 ## Giới hạn có chủ đích
 

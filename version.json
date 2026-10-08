@@ -1,11 +1,11 @@
 {
-  "version": "1.4.5",
+  "version": "1.4.6",
   "releasedAt": "2026-10-08",
   "notice": {
-    "enabled": true,
-    "id": "notice-018",
-    "title": "Bản Cập Nhật Mới 1.4.5",
-    "message": "Sửa lỗi và tối ưu một số tính năng.",
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

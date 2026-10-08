@@ -168,6 +168,28 @@ body .iphone-remote-notice .iphone-install-actions{flex:0 0 auto;position:static
 #reminders .reminder-checkbox input[type="checkbox"]:checked::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:translateY(-1px) rotate(-45deg)}
 #reminders .reminder-checkbox input[type="checkbox"]:focus-visible{outline:2px solid var(--p);outline-offset:2px}
 </style>
+<style id="analytics-range-disclosure-style">
+#analytics .analytics-filter{padding:9px 12px;gap:6px}
+#analytics .analytics-filter label{gap:3px;min-width:0}
+#analytics .analytics-filter .analytics-date-picker{margin-top:0;gap:6px}
+#analytics .analytics-filter .analytics-date-text{height:36px;padding:0 9px}
+#analytics .analytics-filter .analytics-date-open{height:36px}
+#analytics .analytics-filter select.control{min-height:36px;padding:6px 34px 6px 9px;margin-top:0}
+.analytics-range-disclosure{margin:12px 0 14px;border:1px solid var(--line);border-radius:19px;background:var(--paper);min-width:0}
+.analytics-range-disclosure>summary{min-height:68px;box-sizing:border-box;padding:10px 14px;display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer;color:var(--ink);border-radius:inherit}
+.analytics-range-disclosure>summary::-webkit-details-marker{display:none}
+.analytics-range-disclosure>summary:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+.analytics-range-disclosure>summary strong{flex:1;min-width:0;font-size:17px;font-weight:750;line-height:1.25}
+.analytics-range-icon{width:32px;height:32px;flex:0 0 32px;color:var(--p)}
+.analytics-range-chevron{width:20px;height:20px;flex:0 0 20px;transition:transform .2s ease}
+.analytics-range-disclosure[open] .analytics-range-chevron{transform:rotate(180deg)}
+.analytics-range-disclosure>.analytics-presets{margin:0;padding:0 15px 15px}
+.analytics-range-disclosure .analytics-week{min-width:0;max-width:100%}
+.analytics-range-disclosure .analytics-week-trigger{min-width:0;text-align:left}
+.analytics-range-disclosure .analytics-week-trigger span{min-width:0;overflow-wrap:anywhere}
+.analytics-range-disclosure .analytics-week-trigger b{flex-shrink:0}
+@media(max-width:460px){.analytics-range-icon{width:28px;height:28px;flex-basis:28px}}
+</style>
 <style id="mimi-reminder-form-toggle-style">
 #reminders .reminder-card.reminder-form-card{padding:0;overflow:hidden}
 #reminders .reminder-form-card.is-collapsed{width:100%;justify-self:stretch;align-self:start;margin-left:0;margin-right:0;border-radius:19px}
@@ -245,7 +267,10 @@ body .iphone-remote-notice .iphone-install-actions{flex:0 0 auto;position:static
             <label>Đến ngày<input class="control" id="analyticsTo" type="date"></label>
             <label>Tiền tệ hiển thị<span class="system-select-wrap"><select class="control" id="analyticsCurrency"><option value="VND">VND — Việt Nam đồng</option><option value="USD">USD — Đô la Mỹ</option></select></span></label>
           </div>
-          <div class="analytics-presets"><label class="analytics-week">Chọn tuần<input class="control" id="analyticsWeek" type="week"></label><button id="applyAnalyticsToday">Hôm nay</button><button data-analytics-range="week">Tuần này</button><button data-analytics-range="month">Tháng này</button><button data-analytics-range="30days">30 ngày gần nhất</button><button data-analytics-range="year">Năm nay</button><button data-analytics-range="all">Toàn bộ</button></div>
+          <details class="analytics-range-disclosure">
+            <summary><svg class="analytics-range-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg><strong>Chọn tuần</strong><svg class="analytics-range-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="analytics-presets"><label class="analytics-week">Chọn tuần<input class="control" id="analyticsWeek" type="week"></label><button id="applyAnalyticsToday">Hôm nay</button><button data-analytics-range="week">Tuần này</button><button data-analytics-range="month">Tháng này</button><button data-analytics-range="30days">30 ngày gần nhất</button><button data-analytics-range="year">Năm nay</button><button data-analytics-range="all">Toàn bộ</button></div>
+          </details>
           <div class="stats analytics-stats">
             <div class="stat analytics-stat income"><small>Tổng thu (doanh thu)</small><b id="analyticsIncome">0 ₫</b></div>
             <div class="stat analytics-stat expense"><small>Tổng chi phí</small><b id="analyticsExpense">0 ₫</b></div>
@@ -1618,6 +1643,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
   let scrollPositionFrame=0;
   document.addEventListener("scroll",event=>{if(calendar.classList.contains("hidden")||calendar.contains(event.target))return;if(scrollPositionFrame)return;scrollPositionFrame=requestAnimationFrame(()=>{scrollPositionFrame=0;positionCalendar();});},true);
   window.addEventListener("resize",closeCalendar);
+  input.closest(".analytics-range-disclosure")?.addEventListener("toggle",event=>{if(!event.currentTarget.open)close();});
   syncTrigger();
 }());
 </script>
@@ -2904,7 +2930,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.4.2'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.4.3'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -2918,7 +2944,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.4.2",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.4.3",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -2975,7 +3001,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.4.2');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.4.3');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>
@@ -3084,6 +3110,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   grid.dataset.pagesReady='true';
 })();
 </script><style id="unified-arrow-style">
+body button[data-unified-arrow]:is([aria-label="Tháng trước"],[aria-label="Tháng sau"],[aria-label="Năm trước"],[aria-label="Năm sau"]){display:inline-grid!important;place-items:center;padding:0!important;line-height:1;box-sizing:border-box}
+body button[data-unified-arrow]:is([aria-label="Tháng trước"],[aria-label="Tháng sau"],[aria-label="Năm trước"],[aria-label="Năm sau"])>.unified-arrow-icon{margin:0;width:20px;height:20px}
 button[data-unified-arrow] .unified-arrow-icon{display:block;width:20px;height:20px;margin:auto;flex:none}
 .iphone-back-button{width:42px;height:42px;min-height:42px;padding:0!important;display:grid;place-items:center;border-radius:12px;flex:none}
 </style>

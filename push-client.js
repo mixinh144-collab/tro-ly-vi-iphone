@@ -1,1 +1,168 @@
-function _0x13d8(){const _0x535b3f=['publicKey','getTime','getDate','textContent','Không\x20lưu\x20được\x20thiết\x20bị','Máy\x20chủ\x20chưa\x20sẵn\x20sàng','654966VqJamr','PushManager','visibilitychange','no-store','protocol','title','fireAt','push-config.json?t=','Đã\x20bật\x20thông\x20báo\x20trên\x20thiết\x20bị\x20này.','getElementById','slice','length','json','application/json','5023608kNTSEN','toJSON','Notification','map','apiBaseUrl','includes','/subscriptions','reminderSyncStatus','sort','44193zcEUrW','Chưa\x20có\x20cấu\x20hình','Bật\x20thông\x20báo\x20màn\x20hình\x20khóa\x20để\x20nhận\x20nhắc\x20sự\x20kiện.','ready','trim','getSubscription','unsubscribe','now','524cpYuGk','granted','tro_ly_vi_portable_v1','repeatYearly','(display-mode:\x20standalone)','68vhuJSw','https:','requestPermission','pushStatus','padStart','POST','from','Thiếu\x20khóa\x20công\x20khai','09:00','standalone','/reminders','charCodeAt','online','3962jhwMKG','date','split','catch','parse','notifyBefore','getMonth','isArray','getFullYear','Hãy\x20mở\x20ứng\x20dụng\x20từ\x20biểu\x20tượng\x20đã\x20thêm\x20vào\x20Màn\x20hình\x20chính.','35390MqVTEW','Bạn\x20chưa\x20cho\x20phép\x20thông\x20báo.\x20Có\x20thể\x20bật\x20lại\x20trong\x20Cài\x20đặt\x20của\x20iPhone.','string','subscribe','replace','test','Chưa\x20tắt\x20được\x20thông\x20báo.\x20Hãy\x20thử\x20lại.','null','12789896mDUjQs','Chưa\x20có\x20sự\x20kiện\x20được\x20chọn\x20nhắc.','disabled','15961YpaHNk','serviceWorker','hidden','join','Thông\x20báo\x20màn\x20hình\x20khóa\x20chưa\x20được\x20thiết\x20lập.','Không\x20đồng\x20bộ\x20được\x20lịch\x20nhắc','DELETE','closest','mimi-reminders-changed','profiles','click','reminderEvents','Chưa\x20bật\x20được\x20thông\x20báo.\x20Hãy\x20kiểm\x20tra\x20mạng\x20rồi\x20thử\x20lại.','pushEnable','45iiIpgh','stringify','userAgent','pushManager','10559628lJfsmJ','addEventListener','pushDisable'];_0x13d8=function(){return _0x535b3f;};return _0x13d8();}function _0x3b26(_0x1b7e75,_0x15c40d){_0x1b7e75=_0x1b7e75-0x166;const _0x13d8ac=_0x13d8();let _0x3b2614=_0x13d8ac[_0x1b7e75];return _0x3b2614;}(function(_0x534c7d,_0x1cee64){const _0x33c3b3=_0x3b26,_0x4ace39=_0x534c7d();while(!![]){try{const _0xdb6ca5=-parseInt(_0x33c3b3(0x1a9))/0x1*(parseInt(_0x33c3b3(0x1bb))/0x2)+-parseInt(_0x33c3b3(0x1a1))/0x3*(-parseInt(_0x33c3b3(0x1ae))/0x4)+-parseInt(_0x33c3b3(0x17d))/0x5*(parseInt(_0x33c3b3(0x18a))/0x6)+-parseInt(_0x33c3b3(0x16c))/0x7+parseInt(_0x33c3b3(0x198))/0x8+-parseInt(_0x33c3b3(0x181))/0x9+parseInt(_0x33c3b3(0x1c5))/0xa*(parseInt(_0x33c3b3(0x16f))/0xb);if(_0xdb6ca5===_0x1cee64)break;else _0x4ace39['push'](_0x4ace39['shift']());}catch(_0x9bfadd){_0x4ace39['push'](_0x4ace39['shift']());}}}(_0x13d8,0xf252a),((()=>{const _0x2d88ae=_0x3b26,_0x3516ef=document[_0x2d88ae(0x193)](_0x2d88ae(0x17c)),_0xaec483=document[_0x2d88ae(0x193)](_0x2d88ae(0x183)),_0x26d672=document[_0x2d88ae(0x193)](_0x2d88ae(0x1b1));if(!_0x3516ef||!_0xaec483||!_0x26d672)return;const _0x2dfb52=_0x3516ef[_0x2d88ae(0x176)]('.card')?.['querySelector']('p');if(_0x2dfb52)_0x2dfb52['textContent']='Nhận\x20thông\x20báo\x20khi\x20ứng\x20dụng\x20không\x20mở.\x20Dữ\x20liệu\x20thu\x20chi\x20vẫn\x20ở\x20trên\x20máy;\x20sự\x20kiện\x20được\x20chọn\x20nhắc\x20sẽ\x20gửi\x20tên\x20và\x20thời\x20điểm\x20nhắc\x20tới\x20Cloudflare.';const _0x2a681d=_0x541f7a=>{const _0x4f8df6=_0x2d88ae;_0x26d672[_0x4f8df6(0x187)]=_0x541f7a;},_0x5167cb=()=>document[_0x2d88ae(0x193)](_0x2d88ae(0x19f)),_0x3c9d1c=_0x5d825c=>{const _0x3840ad=_0x5167cb();if(_0x3840ad)_0x3840ad['textContent']=_0x5d825c;},_0xcf72a8=_0x2d88ae(0x170)in navigator&&_0x2d88ae(0x18b)in window&&_0x2d88ae(0x19a)in window,_0x564f47=matchMedia(_0x2d88ae(0x1ad))['matches']||navigator[_0x2d88ae(0x1b7)]===!![];let _0x4aca2c='',_0x1f0bcb='',_0x50bc95,_0x1137e4=0x0,_0x50664c=![],_0x41f2e6=![];const _0x2b3037=_0x2b97eb=>{const _0x41686d=_0x2d88ae,_0x4897db=_0x2b97eb[_0x41686d(0x168)](/-/g,'+')[_0x41686d(0x168)](/_/g,'/')+'='['repeat']((0x4-_0x2b97eb['length']%0x4)%0x4);return Uint8Array[_0x41686d(0x1b4)](atob(_0x4897db),_0x19e550=>_0x19e550[_0x41686d(0x1b9)](0x0));},_0x2bc134=async()=>{const _0x216d72=_0x2d88ae,_0x34ea3e=await _0x50bc95['pushManager'][_0x216d72(0x1a6)]();_0x3516ef[_0x216d72(0x171)]=Boolean(_0x34ea3e),_0xaec483[_0x216d72(0x171)]=!_0x34ea3e,_0x2a681d(_0x34ea3e?_0x216d72(0x192):'Chưa\x20bật\x20thông\x20báo\x20trên\x20thiết\x20bị\x20này.');if(!_0x34ea3e)_0x3c9d1c(_0x216d72(0x1a3));},_0x3fe44b=_0x48c246=>{const _0x55f0ec=_0x2d88ae;if(typeof _0x48c246!==_0x55f0ec(0x166)||!/^\d{4}-\d{2}-\d{2}$/[_0x55f0ec(0x169)](_0x48c246))return![];const [_0x54562b,_0x54b0c3,_0x4036bb]=_0x48c246[_0x55f0ec(0x1bd)]('-')[_0x55f0ec(0x19b)](Number),_0x53611c=new Date(_0x54562b,_0x54b0c3-0x1,_0x4036bb);return _0x53611c[_0x55f0ec(0x1c3)]()===_0x54562b&&_0x53611c[_0x55f0ec(0x1c1)]()===_0x54b0c3-0x1&&_0x53611c[_0x55f0ec(0x186)]()===_0x4036bb;},_0x519261=(_0x5c5294,_0x30fa24,_0x37402f)=>[_0x5c5294,_0x30fa24,_0x37402f][_0x2d88ae(0x19b)]((_0x11ece5,_0x786976)=>_0x786976?String(_0x11ece5)[_0x2d88ae(0x1b2)](0x2,'0'):String(_0x11ece5))[_0x2d88ae(0x172)]('-'),_0x568840=()=>{const _0x591685=_0x2d88ae;let _0x34bc38;try{_0x34bc38=JSON[_0x591685(0x1bf)](localStorage['getItem'](_0x591685(0x1ab))||_0x591685(0x16b));}catch{return[];}const _0x767022=Array['isArray'](_0x34bc38?.[_0x591685(0x178)])?_0x34bc38[_0x591685(0x178)]:[],_0x5344f4=Date[_0x591685(0x1a8)](),_0x2f2976=new Date(_0x5344f4)['getFullYear'](),_0x5465e2=[];for(const _0x33ed35 of _0x767022){const _0x42b37e=Array[_0x591685(0x1c2)](_0x33ed35?.['data']?.[_0x591685(0x17a)])?_0x33ed35['data'][_0x591685(0x17a)]:[];for(const _0x318f42 of _0x42b37e){const _0x551c14=_0x318f42?.[_0x591685(0x1c0)]==null||_0x318f42[_0x591685(0x1c0)]===''?-0x1:Number(_0x318f42[_0x591685(0x1c0)]),_0x347369=typeof _0x318f42?.[_0x591685(0x18f)]==='string'?_0x318f42[_0x591685(0x18f)][_0x591685(0x1a5)]()[_0x591685(0x194)](0x0,0x64):'';if(!_0x347369||![0x0,0x3c,0x5a0,0x10e0,0x2760][_0x591685(0x19d)](_0x551c14)||!_0x3fe44b(_0x318f42?.[_0x591685(0x1bc)]))continue;const _0x38ce09=JSON[_0x591685(0x17e)]([_0x33ed35['id'],_0x318f42['id']]);if(_0x38ce09[_0x591685(0x195)]>0xc8||!_0x33ed35['id']||!_0x318f42['id'])continue;const _0x31ad43=typeof _0x318f42['time']===_0x591685(0x166)&&/^([01]\d|2[0-3]):[0-5]\d$/[_0x591685(0x169)](_0x318f42['time'])?_0x318f42['time']:'',[_0x186f8e,_0x168989,_0x1201ca]=_0x318f42['date']['split']('-')[_0x591685(0x19b)](Number),_0x12b3f5=_0x318f42[_0x591685(0x1ac)]?[_0x2f2976,_0x2f2976+0x1,_0x2f2976+0x2,_0x2f2976+0x3]:[_0x186f8e];for(const _0x15b9f6 of _0x12b3f5){if(_0x15b9f6<_0x186f8e)continue;const _0x2be0f0=_0x168989===0x2&&_0x1201ca===0x1d&&!_0x3fe44b(_0x519261(_0x15b9f6,0x2,0x1d))?_0x519261(_0x15b9f6,0x2,0x1c):_0x519261(_0x15b9f6,_0x168989,_0x1201ca),[_0x539593,_0x6d9f44]=(_0x31ad43||_0x591685(0x1b6))['split'](':')[_0x591685(0x19b)](Number),_0x5a7398=new Date(_0x15b9f6,Number(_0x2be0f0[_0x591685(0x194)](0x5,0x7))-0x1,Number(_0x2be0f0[_0x591685(0x194)](0x8,0xa)),_0x539593,_0x6d9f44)[_0x591685(0x185)](),_0x354323=_0x5a7398-_0x551c14*0xea60;if(_0x5a7398<_0x5344f4||_0x354323<_0x5344f4-0x36ee80)continue;_0x5465e2['push']({'eventId':_0x38ce09,'occurrenceDate':_0x2be0f0,'eventTime':_0x31ad43,'title':_0x347369,'fireAt':_0x354323});}}}return _0x5465e2[_0x591685(0x1a0)]((_0x510a79,_0xd2b248)=>_0x510a79[_0x591685(0x190)]-_0xd2b248[_0x591685(0x190)])[_0x591685(0x194)](0x0,0x64);},_0x5c3337=async()=>{const _0x29f1f3=_0x2d88ae;if(!_0x4aca2c||!_0x50bc95)return;const _0x8e042e=await _0x50bc95[_0x29f1f3(0x180)][_0x29f1f3(0x1a6)]();if(!_0x8e042e)return;const _0x48f426=_0x568840(),_0x366ae0=await fetch(_0x4aca2c+_0x29f1f3(0x1b8),{'method':_0x29f1f3(0x1b3),'headers':{'Content-Type':_0x29f1f3(0x197)},'body':JSON[_0x29f1f3(0x17e)]({'subscription':_0x8e042e[_0x29f1f3(0x199)](),'reminders':_0x48f426})});if(!_0x366ae0['ok'])throw new Error(_0x29f1f3(0x174));_0x3c9d1c(_0x48f426[_0x29f1f3(0x195)]?'Đã\x20đồng\x20bộ\x20lịch\x20nhắc\x20trên\x20thiết\x20bị\x20này.':_0x29f1f3(0x16d));},_0x5d8dc2=async()=>{if(_0x50664c)return;_0x50664c=!![];try{while(_0x41f2e6){_0x41f2e6=![];try{await _0x5c3337();}catch{_0x3c9d1c('Chưa\x20đồng\x20bộ\x20được\x20lịch\x20nhắc.\x20Kết\x20nối\x20mạng\x20rồi\x20mở\x20lại\x20ứng\x20dụng.');}}}finally{_0x50664c=![];}},_0x5719d5=()=>{_0x41f2e6=!![],clearTimeout(_0x1137e4),_0x1137e4=setTimeout(_0x5d8dc2,0x190);};async function _0x59f7a2(){const _0xdb3d13=_0x2d88ae;if(!_0xcf72a8){_0x3516ef[_0xdb3d13(0x16e)]=!![],_0x2a681d('Thiết\x20bị\x20hoặc\x20trình\x20duyệt\x20này\x20chưa\x20hỗ\x20trợ\x20thông\x20báo\x20Web\x20Push.');return;}if(!_0x564f47&&/iPhone|iPad|iPod/i['test'](navigator[_0xdb3d13(0x17f)])){_0x3516ef[_0xdb3d13(0x16e)]=!![],_0x2a681d(_0xdb3d13(0x1c4));return;}try{const _0x23ab07=await fetch(_0xdb3d13(0x191)+Date[_0xdb3d13(0x1a8)](),{'cache':'no-store'});if(!_0x23ab07['ok'])throw new Error(_0xdb3d13(0x1a2));const _0x5b0166=await _0x23ab07['json'](),_0x5192ff=new URL(_0x5b0166[_0xdb3d13(0x19c)]);if(_0x5192ff[_0xdb3d13(0x18e)]!==_0xdb3d13(0x1af))throw new Error(_0xdb3d13(0x1a2));_0x4aca2c=_0x5192ff['origin'];const _0x5aa959=await fetch(_0x4aca2c+'/config',{'cache':_0xdb3d13(0x18d)});if(!_0x5aa959['ok'])throw new Error(_0xdb3d13(0x189));const _0x5c9e1b=await _0x5aa959[_0xdb3d13(0x196)]();if(!_0x5c9e1b[_0xdb3d13(0x184)])throw new Error(_0xdb3d13(0x1b5));_0x1f0bcb=_0x5c9e1b[_0xdb3d13(0x184)],_0x50bc95=await navigator['serviceWorker'][_0xdb3d13(0x1a4)],_0x3516ef[_0xdb3d13(0x16e)]=![],await _0x2bc134(),_0x5719d5();}catch{_0x3516ef[_0xdb3d13(0x16e)]=!![],_0x2a681d(_0xdb3d13(0x173));}}_0x3516ef['addEventListener'](_0x2d88ae(0x179),async()=>{const _0x2d0199=_0x2d88ae;if(!_0x50bc95||!_0x1f0bcb||!_0x4aca2c)return;_0x3516ef[_0x2d0199(0x16e)]=!![];try{const _0x47b1c7=await Notification[_0x2d0199(0x1b0)]();if(_0x47b1c7!==_0x2d0199(0x1aa)){_0x2a681d(_0x2d0199(0x1c6));return;}let _0x8ffd41=await _0x50bc95[_0x2d0199(0x180)][_0x2d0199(0x1a6)]();const _0x242b41=!_0x8ffd41;if(!_0x8ffd41)_0x8ffd41=await _0x50bc95['pushManager'][_0x2d0199(0x167)]({'userVisibleOnly':!![],'applicationServerKey':_0x2b3037(_0x1f0bcb)});const _0x4254ad=await fetch(_0x4aca2c+_0x2d0199(0x19e),{'method':_0x2d0199(0x1b3),'headers':{'Content-Type':_0x2d0199(0x197)},'body':JSON['stringify'](_0x8ffd41[_0x2d0199(0x199)]())});if(!_0x4254ad['ok']){if(_0x242b41)await _0x8ffd41[_0x2d0199(0x1a7)]();throw new Error(_0x2d0199(0x188));}await _0x2bc134(),_0x5719d5();}catch{_0x2a681d(_0x2d0199(0x17b));}finally{_0x3516ef['disabled']=![];}}),_0xaec483[_0x2d88ae(0x182)](_0x2d88ae(0x179),async()=>{const _0x10a6d1=_0x2d88ae;_0xaec483['disabled']=!![];try{const _0x3cdcc5=await _0x50bc95[_0x10a6d1(0x180)][_0x10a6d1(0x1a6)]();_0x3cdcc5&&(await _0x3cdcc5[_0x10a6d1(0x1a7)](),await fetch(_0x4aca2c+_0x10a6d1(0x19e),{'method':_0x10a6d1(0x175),'headers':{'Content-Type':_0x10a6d1(0x197)},'body':JSON[_0x10a6d1(0x17e)]({'endpoint':_0x3cdcc5['endpoint']})})[_0x10a6d1(0x1be)](()=>{})),await _0x2bc134();}catch{_0x2a681d(_0x10a6d1(0x16a));}finally{_0xaec483[_0x10a6d1(0x16e)]=![];}}),window[_0x2d88ae(0x182)](_0x2d88ae(0x177),_0x5719d5),window[_0x2d88ae(0x182)](_0x2d88ae(0x1ba),_0x5719d5),document[_0x2d88ae(0x182)](_0x2d88ae(0x18c),()=>{const _0x5c4125=_0x2d88ae;if(!document[_0x5c4125(0x171)])_0x5719d5();}),_0x59f7a2();})()));
+(() => {
+  const enable = document.getElementById('pushEnable');
+  const disable = document.getElementById('pushDisable');
+  const status = document.getElementById('pushStatus');
+  if (!enable || !disable || !status) return;
+  const description = enable.closest('.card')?.querySelector('p');
+  if (description) description.textContent = 'Nhận thông báo khi ứng dụng không mở. Dữ liệu thu chi vẫn ở trên máy; sự kiện được chọn nhắc sẽ gửi tên và thời điểm nhắc tới Cloudflare.';
+
+  const setStatus = message => { status.textContent = message; };
+  const reminderStatus = () => document.getElementById('reminderSyncStatus');
+  const setReminderStatus = message => { const target = reminderStatus(); if (target) target.textContent = message; };
+  const supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let api = '', publicKey = '', registration;
+  let syncTimer = 0, syncRunning = false, syncQueued = false;
+  const bytes = value => {
+    const padded = value.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - value.length % 4) % 4);
+    return Uint8Array.from(atob(padded), char => char.charCodeAt(0));
+  };
+  const refresh = async () => {
+    const subscription = await registration.pushManager.getSubscription();
+    enable.hidden = Boolean(subscription);
+    disable.hidden = !subscription;
+    setStatus(subscription ? 'Đã bật thông báo trên thiết bị này.' : 'Chưa bật thông báo trên thiết bị này.');
+    if (!subscription) setReminderStatus('Bật thông báo màn hình khóa để nhận nhắc sự kiện.');
+  };
+
+  const validDate = value => {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const [year, month, day] = value.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+  };
+  const isoDate = (year, month, day) => [year, month, day].map((part, index) => index ? String(part).padStart(2, '0') : String(part)).join('-');
+  const plannedReminders = () => {
+    let store;
+    try { store = JSON.parse(localStorage.getItem('tro_ly_vi_portable_v1') || 'null'); } catch { return []; }
+    const profiles = Array.isArray(store?.profiles) ? store.profiles : [];
+    const now = Date.now(), currentYear = new Date(now).getFullYear(), reminders = [];
+    for (const profile of profiles) {
+      const events = Array.isArray(profile?.data?.reminderEvents) ? profile.data.reminderEvents : [];
+      for (const event of events) {
+        const before = event?.notifyBefore == null || event.notifyBefore === '' ? -1 : Number(event.notifyBefore);
+        const title = typeof event?.title === 'string' ? event.title.trim().slice(0, 100) : '';
+        if (!title || ![0, 60, 1440, 4320, 10080].includes(before) || !validDate(event?.date)) continue;
+        const eventId = JSON.stringify([profile.id, event.id]);
+        if (eventId.length > 200 || !profile.id || !event.id) continue;
+        const time = typeof event.time === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(event.time) ? event.time : '';
+        const [originalYear, month, day] = event.date.split('-').map(Number);
+        const years = event.repeatYearly ? [currentYear, currentYear + 1, currentYear + 2, currentYear + 3] : [originalYear];
+        for (const year of years) {
+          if (year < originalYear) continue;
+          const occurrenceDate = month === 2 && day === 29 && !validDate(isoDate(year, 2, 29)) ? isoDate(year, 2, 28) : isoDate(year, month, day);
+          const [hour, minute] = (time || '09:00').split(':').map(Number);
+          const eventAt = new Date(year, Number(occurrenceDate.slice(5, 7)) - 1, Number(occurrenceDate.slice(8, 10)), hour, minute).getTime();
+          const fireAt = eventAt - before * 60000;
+          if (eventAt < now || fireAt < now - 3600000) continue;
+          reminders.push({ eventId, occurrenceDate, eventTime: time, title, fireAt });
+        }
+      }
+    }
+    return reminders.sort((a, b) => a.fireAt - b.fireAt).slice(0, 100);
+  };
+
+  const syncReminders = async () => {
+    if (!api || !registration) return;
+    const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) return;
+    const reminders = plannedReminders();
+    const response = await fetch(api + '/reminders', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ subscription: subscription.toJSON(), reminders }),
+    });
+    if (!response.ok) throw new Error('Không đồng bộ được lịch nhắc');
+    setReminderStatus(reminders.length ? 'Đã đồng bộ lịch nhắc trên thiết bị này.' : 'Chưa có sự kiện được chọn nhắc.');
+  };
+  const flushSync = async () => {
+    if (syncRunning) return;
+    syncRunning = true;
+    try {
+      while (syncQueued) {
+        syncQueued = false;
+        try { await syncReminders(); }
+        catch { setReminderStatus('Chưa đồng bộ được lịch nhắc. Kết nối mạng rồi mở lại ứng dụng.'); }
+      }
+    } finally { syncRunning = false; }
+  };
+  const queueSync = () => {
+    syncQueued = true;
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(flushSync, 400);
+  };
+
+  async function setup() {
+    if (!supported) { enable.disabled = true; setStatus('Thiết bị hoặc trình duyệt này chưa hỗ trợ thông báo Web Push.'); return; }
+    if (!standalone && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      enable.disabled = true;
+      setStatus('Hãy mở ứng dụng từ biểu tượng đã thêm vào Màn hình chính.');
+      return;
+    }
+    try {
+      const configResponse = await fetch('push-config.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!configResponse.ok) throw new Error('Chưa có cấu hình');
+      const config = await configResponse.json();
+      const url = new URL(config.apiBaseUrl);
+      if (url.protocol !== 'https:') throw new Error('Chưa có cấu hình');
+      api = url.origin;
+      const response = await fetch(api + '/config', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Máy chủ chưa sẵn sàng');
+      const info = await response.json();
+      if (!info.publicKey) throw new Error('Thiếu khóa công khai');
+      publicKey = info.publicKey;
+      registration = await navigator.serviceWorker.ready;
+      enable.disabled = false;
+      await refresh();
+      queueSync();
+    } catch {
+      enable.disabled = true;
+      setStatus('Thông báo màn hình khóa chưa được thiết lập.');
+    }
+  }
+
+  enable.addEventListener('click', async () => {
+    if (!registration || !publicKey || !api) return;
+    enable.disabled = true;
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        setStatus('Bạn chưa cho phép thông báo. Có thể bật lại trong Cài đặt của iPhone.');
+        return;
+      }
+      let subscription = await registration.pushManager.getSubscription();
+      const created = !subscription;
+      if (!subscription) subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: bytes(publicKey) });
+      const response = await fetch(api + '/subscriptions', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(subscription.toJSON()),
+      });
+      if (!response.ok) {
+        if (created) await subscription.unsubscribe();
+        throw new Error('Không lưu được thiết bị');
+      }
+      await refresh();
+      queueSync();
+    } catch { setStatus('Chưa bật được thông báo. Hãy kiểm tra mạng rồi thử lại.'); }
+    finally { enable.disabled = false; }
+  });
+
+  disable.addEventListener('click', async () => {
+    disable.disabled = true;
+    try {
+      const subscription = await registration.pushManager.getSubscription();
+      if (subscription) {
+        await subscription.unsubscribe();
+        await fetch(api + '/subscriptions', {
+          method: 'DELETE', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ endpoint: subscription.endpoint }),
+        }).catch(() => {});
+      }
+      await refresh();
+    } catch { setStatus('Chưa tắt được thông báo. Hãy thử lại.'); }
+    finally { disable.disabled = false; }
+  });
+
+  window.addEventListener('mimi-reminders-changed', queueSync);
+  window.addEventListener('online', queueSync);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) queueSync(); });
+  setup();
+})();

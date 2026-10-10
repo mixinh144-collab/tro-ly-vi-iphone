@@ -1,1 +1,40 @@
-const _0x56722b=_0x2660;(function(_0xf0bc44,_0x1711bf){const _0x5493df=_0x2660,_0x408d6a=_0xf0bc44();while(!![]){try{const _0x255597=parseInt(_0x5493df(0x226))/0x1+parseInt(_0x5493df(0x1f1))/0x2+-parseInt(_0x5493df(0x1fa))/0x3*(-parseInt(_0x5493df(0x223))/0x4)+parseInt(_0x5493df(0x222))/0x5+parseInt(_0x5493df(0x20e))/0x6+-parseInt(_0x5493df(0x1ff))/0x7*(-parseInt(_0x5493df(0x204))/0x8)+parseInt(_0x5493df(0x20a))/0x9*(-parseInt(_0x5493df(0x21a))/0xa);if(_0x255597===_0x1711bf)break;else _0x408d6a['push'](_0x408d6a['shift']());}catch(_0x1466a7){_0x408d6a['push'](_0x408d6a['shift']());}}}(_0x2b2f,0xd59dc));const CACHE=_0x56722b(0x202),FILES=['./','./index.html',_0x56722b(0x21e),_0x56722b(0x22b),'./logo.png',_0x56722b(0x20c)];function navigationResponse(_0x22ef3b){const _0x224eea=_0x56722b;if(!_0x22ef3b||!_0x22ef3b[_0x224eea(0x215)])return _0x22ef3b;return new Response(_0x22ef3b['body'],{'status':_0x22ef3b[_0x224eea(0x210)],'statusText':_0x22ef3b[_0x224eea(0x1fc)],'headers':_0x22ef3b[_0x224eea(0x216)]});}function _0x2b2f(){const _0x1ec0a3=['status','match','request','GET','slice','redirected','headers','./logo.png','mode','catch','10gjpwnV','method','fetch','json','./manifest.webmanifest','mimi-event-','no-store','string','1075745CPzReY','2004jzwHof','origin','addAll','866017ymIRRu','navigate','all','push','delete','./version.json','url','type','respondWith','3090240xjkYZo','startsWith','keys','data','registration','activate','close','map','open','9429YUMcsm','pathname','statusText','endsWith','tag','7uQTGLy','then','put','tro-ly-vi-iphone-48','showNotification','9904520twrFWJ','waitUntil','href','clone','addEventListener','skipWaiting','42328917OEAkTq','./index.html','./apple-touch-icon-white.png','filter','835146sYYdxN','location'];_0x2b2f=function(){return _0x1ec0a3;};return _0x2b2f();}function _0x2660(_0x40b3fd,_0x35e11b){_0x40b3fd=_0x40b3fd-0x1ee;const _0x2b2fc3=_0x2b2f();let _0x2660d7=_0x2b2fc3[_0x40b3fd];return _0x2660d7;}self['addEventListener']('install',_0x3d7db1=>_0x3d7db1['waitUntil'](caches[_0x56722b(0x1f9)](CACHE)[_0x56722b(0x200)](_0x49a834=>_0x49a834[_0x56722b(0x225)](FILES)))),self[_0x56722b(0x208)](_0x56722b(0x1f6),_0x39be26=>_0x39be26[_0x56722b(0x205)](caches[_0x56722b(0x1f3)]()['then'](_0x3cfcb0=>Promise[_0x56722b(0x228)](_0x3cfcb0[_0x56722b(0x20d)](_0xdccd65=>_0xdccd65!==CACHE)[_0x56722b(0x1f8)](_0x5c2706=>caches[_0x56722b(0x22a)](_0x5c2706)))))),self['addEventListener']('message',_0x2a5494=>{const _0x3ff4bb=_0x56722b;if(_0x2a5494[_0x3ff4bb(0x1f4)]&&_0x2a5494[_0x3ff4bb(0x1f4)][_0x3ff4bb(0x1ef)]==='SKIP_WAITING')self[_0x3ff4bb(0x209)]();}),self[_0x56722b(0x208)](_0x56722b(0x21c),_0x32befb=>{const _0x5e83ab=_0x56722b;if(_0x32befb[_0x5e83ab(0x212)][_0x5e83ab(0x21b)]!==_0x5e83ab(0x213))return;if(new URL(_0x32befb['request'][_0x5e83ab(0x1ee)])[_0x5e83ab(0x224)]!==self[_0x5e83ab(0x20f)]['origin'])return;if(new URL(_0x32befb[_0x5e83ab(0x212)]['url'])[_0x5e83ab(0x1fb)][_0x5e83ab(0x1fd)]('/push-config.json'))return;if(_0x32befb[_0x5e83ab(0x212)][_0x5e83ab(0x218)]===_0x5e83ab(0x227)){_0x32befb[_0x5e83ab(0x1f0)](caches[_0x5e83ab(0x211)](_0x5e83ab(0x20b))[_0x5e83ab(0x200)](_0x42c7ed=>_0x42c7ed||fetch(new Request(_0x32befb[_0x5e83ab(0x212)],{'cache':_0x5e83ab(0x220)}))[_0x5e83ab(0x200)](_0x4ea3ee=>{const _0x204591=_0x5e83ab,_0x4af3b=_0x4ea3ee[_0x204591(0x207)]();return caches[_0x204591(0x1f9)](CACHE)[_0x204591(0x200)](_0x297933=>_0x297933['put'](_0x204591(0x20b),_0x4af3b)),_0x4ea3ee;}))[_0x5e83ab(0x219)](()=>caches[_0x5e83ab(0x211)]('./'))['then'](navigationResponse));return;}_0x32befb[_0x5e83ab(0x1f0)](caches[_0x5e83ab(0x211)](_0x32befb[_0x5e83ab(0x212)])[_0x5e83ab(0x200)](_0x2f67ce=>_0x2f67ce||fetch(_0x32befb[_0x5e83ab(0x212)])[_0x5e83ab(0x200)](_0x4dffd0=>{const _0x57ed85=_0x5e83ab,_0x4477cf=_0x4dffd0[_0x57ed85(0x207)]();return caches[_0x57ed85(0x1f9)](CACHE)[_0x57ed85(0x200)](_0x5f6b8c=>_0x5f6b8c[_0x57ed85(0x201)](_0x32befb[_0x57ed85(0x212)],_0x4477cf)),_0x4dffd0;})[_0x5e83ab(0x219)](()=>caches[_0x5e83ab(0x211)]('./index.html'))));}),self[_0x56722b(0x208)](_0x56722b(0x229),_0x7d6f0d=>{const _0x355f5a=_0x56722b;let _0x144b74={};try{_0x144b74=_0x7d6f0d[_0x355f5a(0x1f4)]?.[_0x355f5a(0x21d)]()||{};}catch{}const _0x1cf2f7=String(_0x144b74['title']||'Thông\x20báo\x20từ\x20Mimi\x20Studio')[_0x355f5a(0x214)](0x0,0x64),_0x3b6944=String(_0x144b74['body']||'')[_0x355f5a(0x214)](0x0,0x3e8);_0x7d6f0d[_0x355f5a(0x205)](self[_0x355f5a(0x1f5)][_0x355f5a(0x203)](_0x1cf2f7,{'body':_0x3b6944,'icon':_0x355f5a(0x217),'badge':_0x355f5a(0x20c),'data':{'url':'./'},'tag':typeof _0x144b74[_0x355f5a(0x1fe)]===_0x355f5a(0x221)&&_0x144b74[_0x355f5a(0x1fe)]['startsWith'](_0x355f5a(0x21f))?_0x144b74['tag'][_0x355f5a(0x214)](0x0,0x78):'mimi-studio-notice'}));}),self[_0x56722b(0x208)]('notificationclick',_0x4d0fe5=>{const _0xc4fb4b=_0x56722b;_0x4d0fe5['notification'][_0xc4fb4b(0x1f7)](),_0x4d0fe5[_0xc4fb4b(0x205)](((async()=>{const _0x122f59=_0xc4fb4b,_0x490730=new URL('./',self['registration']['scope'])[_0x122f59(0x206)],_0x196699=await clients['matchAll']({'type':'window','includeUncontrolled':!![]}),_0x38c55c=_0x196699['find'](_0x2d120b=>_0x2d120b[_0x122f59(0x1ee)][_0x122f59(0x1f2)](_0x490730));if(_0x38c55c){await _0x38c55c['focus']();return;}await clients['openWindow'](_0x490730);})()));});
+const CACHE="tro-ly-vi-iphone-49";
+const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png"];
+// Safari rejects redirected cached responses for some navigation requests.
+function navigationResponse(response){
+  if(!response||!response.redirected)return response;
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers:response.headers});
+}
+self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES))));
+self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))))));
+self.addEventListener("message",event=>{if(event.data&&event.data.type==="SKIP_WAITING")self.skipWaiting()});
+self.addEventListener("fetch",event=>{
+  if(event.request.method!=="GET")return;
+  if(new URL(event.request.url).origin!==self.location.origin)return;
+  if(new URL(event.request.url).pathname.endsWith("/push-config.json"))return;
+  if(event.request.mode==="navigate"){
+    event.respondWith(caches.match("./index.html").then(cached=>cached||fetch(new Request(event.request,{cache:"no-store"})).then(response=>{const clone=response.clone();caches.open(CACHE).then(cache=>cache.put("./index.html",clone));return response})).catch(()=>caches.match("./")).then(navigationResponse));
+    return;
+  }
+  event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{const clone=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,clone));return response}).catch(()=>caches.match("./index.html"))));
+});
+self.addEventListener("push",event=>{
+  let message={};
+  try{message=event.data?.json()||{}}catch{}
+  const title=String(message.title||"Thông báo từ Mimi Studio").slice(0,100);
+  const body=String(message.body||"").slice(0,1000);
+  event.waitUntil(self.registration.showNotification(title,{
+    body,icon:"./logo.png",badge:"./apple-touch-icon-white.png",data:{url:"./"},tag:typeof message.tag==="string"&&message.tag.startsWith("mimi-event-")?message.tag.slice(0,120):"mimi-studio-notice"
+  }));
+});
+self.addEventListener("notificationclick",event=>{
+  event.notification.close();
+  event.waitUntil((async()=>{
+    const url=new URL("./",self.registration.scope).href;
+    const windows=await clients.matchAll({type:"window",includeUncontrolled:true});
+    const existing=windows.find(client=>client.url.startsWith(url));
+    if(existing){await existing.focus();return}
+    await clients.openWindow(url);
+  })());
+});
+

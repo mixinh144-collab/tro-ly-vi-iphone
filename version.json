@@ -1,11 +1,11 @@
 {
-  "version": "1.4.6",
-  "releasedAt": "2026-10-08",
+  "version": "1.4.7",
+  "releasedAt": "2026-10-11",
   "notice": {
-    "enabled": true,
-    "id": "notice-021",
-    "title": "Bản Cập Nhật Mới 1.4.6",
-        "message": "Thêm nhắc sự kiện trên màn hình khóa, tiếng bấm rõ hơn và icon Cài đặt đẹp hơn. Mở ứng dụng và cập nhật để trải nghiệm nhé!",
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

@@ -20,9 +20,9 @@ Logo mới của Trợ Lý Ví Mimi là hình chiếc ví hồng có chữ M; c�
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
 4. Mở biểu tượng **Ví Mimi** vừa thêm.
 
-Khi mở trang lần đầu từ QR trên iPhone hoặc iPad, ứng dụng tự hiện bảng hướng dẫn ba bước: mở bằng Safari, bấm Chia sẻ và chọn **Thêm vào Màn hình chính**. Bảng không tự hiện khi ứng dụng đã chạy ở chế độ Màn hình chính. Có thể mở lại bất cứ lúc nào tại **Khác → Hướng dẫn cài đặt**.
+Khi mở link trên iPhone hoặc iPad bằng trình duyệt, trang chỉ hiện hướng dẫn cài bốn bước. Cần thêm Ví Mimi vào Màn hình chính rồi mở từ biểu tượng đó để sử dụng; không có chế độ dùng trực tiếp trên web điện thoại. Trong ứng dụng đã cài, có thể xem lại tại **Khác → Đưa Ví Mimi ra màn hình chính**.
 
-Trên Android, bảng hướng dẫn tự đổi thành ba bước dành cho Chrome: mở bằng Google Chrome, bấm menu `⋮`, rồi chọn **Cài đặt ứng dụng** hoặc **Thêm vào màn hình chính**. Nút sao lưu bổ sung đổi thành **Lưu hoặc chia sẻ tệp** và có thể gửi tệp tới Google Drive hoặc ứng dụng lưu trữ khác.
+Trên Android, hướng dẫn tự đổi thành bốn bước dành cho Chrome: mở bằng Google Chrome, bấm menu `⋮`, rồi chọn **Cài đặt ứng dụng** hoặc **Thêm vào màn hình chính**; sau khi cài, mở từ biểu tượng. Nút sao lưu bổ sung đổi thành **Lưu hoặc chia sẻ tệp** và có thể gửi tệp tới Google Drive hoặc ứng dụng lưu trữ khác.
 
 Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp từ máy chủ, yêu cầu service worker tải bản mới rồi cho phép tải lại để áp dụng. Mỗi lần phát hành bản điện thoại cần cập nhật đồng thời `version.json`, tên cache trong `service-worker.js` và tải toàn bộ tệp thay đổi lên cùng địa chỉ GitHub Pages. Bản cập nhật EXE của Windows không tự chuyển chức năng sang bản điện thoại.
 
@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.6**. Số cache `tro-ly-vi-iphone-48` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.7**. Số cache `tro-ly-vi-iphone-49` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

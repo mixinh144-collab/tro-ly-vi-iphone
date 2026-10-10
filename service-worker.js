@@ -1,4 +1,4 @@
-const CACHE="tro-ly-vi-iphone-50";
+const CACHE="tro-ly-vi-iphone-51";
 const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png"];
 // Safari rejects redirected cached responses for some navigation requests.
 function navigationResponse(response){

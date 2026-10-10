@@ -20,7 +20,7 @@ Logo mới của Trợ Lý Ví Mimi là hình chiếc ví hồng có chữ M; c�
 3. Bấm Chia sẻ → **Thêm vào Màn hình chính**.
 4. Mở biểu tượng **Ví Mimi** vừa thêm.
 
-Khi mở link trên iPhone hoặc iPad bằng trình duyệt, trang chỉ hiện hướng dẫn cài bốn bước. Cần thêm Ví Mimi vào Màn hình chính rồi mở từ biểu tượng đó để sử dụng; không có chế độ dùng trực tiếp trên web điện thoại. Trong ứng dụng đã cài, có thể xem lại tại **Khác → Đưa Ví Mimi ra màn hình chính**.
+Khi mở link trên iPhone hoặc iPad bằng trình duyệt, trang chỉ hiện hướng dẫn cài bốn bước. Cần thêm Ví Mimi vào Màn hình chính rồi mở từ biểu tượng đó để sử dụng; không có chế độ dùng trực tiếp trên web điện thoại.
 
 Trên Android, hướng dẫn tự đổi thành bốn bước dành cho Chrome: mở bằng Google Chrome, bấm menu `⋮`, rồi chọn **Cài đặt ứng dụng** hoặc **Thêm vào màn hình chính**; sau khi cài, mở từ biểu tượng. Nút sao lưu bổ sung đổi thành **Lưu hoặc chia sẻ tệp** và có thể gửi tệp tới Google Drive hoặc ứng dụng lưu trữ khác.
 
@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.8**. Số cache `tro-ly-vi-iphone-50` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.4.9**. Số cache `tro-ly-vi-iphone-51` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 

@@ -1,4 +1,4 @@
-const CACHE="tro-ly-vi-iphone-49";
+const CACHE="tro-ly-vi-iphone-50";
 const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png"];
 // Safari rejects redirected cached responses for some navigation requests.
 function navigationResponse(response){
@@ -13,7 +13,11 @@ self.addEventListener("fetch",event=>{
   if(new URL(event.request.url).origin!==self.location.origin)return;
   if(new URL(event.request.url).pathname.endsWith("/push-config.json"))return;
   if(event.request.mode==="navigate"){
-    event.respondWith(caches.match("./index.html").then(cached=>cached||fetch(new Request(event.request,{cache:"no-store"})).then(response=>{const clone=response.clone();caches.open(CACHE).then(cache=>cache.put("./index.html",clone));return response})).catch(()=>caches.match("./")).then(navigationResponse));
+    event.respondWith(fetch(new Request(event.request,{cache:"no-store"})).then(response=>{
+      if(!response.ok)throw new Error("navigation failed");
+      const clone=response.clone();
+      return caches.open(CACHE).then(cache=>cache.put("./index.html",clone)).catch(()=>{}).then(()=>response);
+    }).catch(()=>caches.match("./index.html").then(cached=>cached||caches.match("./"))).then(navigationResponse));
     return;
   }
   event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{const clone=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,clone));return response}).catch(()=>caches.match("./index.html"))));

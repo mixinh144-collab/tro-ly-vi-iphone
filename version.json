@@ -1,11 +1,11 @@
 {
-  "version": "1.4.7",
+  "version": "1.4.8",
   "releasedAt": "2026-10-11",
   "notice": {
-    "enabled": true,
-    "id": "notice-026",
-    "title": "Bản Cập Nhật 1.4.7",
-    "message": "Bản mới có hướng dẫn cài đặt rõ ràng hơn cho iPhone và Android. Từ nay, người dùng mới cần thêm Ví Mimi vào màn hình chính rồi mở từ biểu tượng để sử dụng. Nếu bạn đã cài ứng dụng, hãy vào Khác → Kiểm tra cập nhật để nhận bản mới. Dữ liệu của bạn vẫn được giữ nguyên..",
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

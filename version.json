@@ -2,10 +2,10 @@
   "version": "1.5.1",
   "releasedAt": "2026-10-16",
   "notice": {
-    "enabled": false,
+    "enabled": true,
     "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "title": "Bản Cập Nhật Mới 1.5.1",
+    "message": "Bộ lọc giao dịch và chọn năm báo cáo nay có giao diện sáng, đồng bộ hơn với Ví Mimi. Lịch chọn ngày cũng dễ nhìn và dễ dùng hơn. Bản này có thêm 48 biểu tượng danh mục mới. Mở ứng dụng, vào Khác → Kiểm tra cập nhật để nhận bản mới..",
     "showUpdateButton": false
   },
   "shutdown": {

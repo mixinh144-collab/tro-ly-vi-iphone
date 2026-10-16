@@ -1,11 +1,11 @@
 {
-  "version": "1.4.9",
-  "releasedAt": "2026-10-11",
+  "version": "1.5.0",
+  "releasedAt": "2026-10-16",
   "notice": {
-    "enabled": true,
-    "id": "notice-027",
-    "title": "Update Bản Cập Nhật 1.4.9",
-    "message": "Sửa lỗi và bỏ 1 số chức năng không cần thiết.",
+    "enabled": false,
+    "id": "notice-001",
+    "title": "Thông báo từ Mimi Studio",
+    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
     "showUpdateButton": false
   },
   "shutdown": {

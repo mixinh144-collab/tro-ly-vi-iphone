@@ -2,10 +2,10 @@
   "version": "1.5.2",
   "releasedAt": "2026-10-17",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "enabled": true,
+    "id": "notice-030",
+    "title": "Ví Mimi đã có phiên bản 1.5.2",
+    "message": "Mimi vừa thêm 4 màu giao diện mới 🌸 Khi mở lại Cài đặt, bạn cũng sẽ luôn thấy danh sách chính để chọn mục dễ hơn. Vào Khác → Kiểm tra cập nhật để dùng bản mới nhé!.",
     "showUpdateButton": false
   },
   "shutdown": {

@@ -4,8 +4,8 @@
   "notice": {
     "enabled": true,
     "id": "notice-002",
-    "title": "Thông báo từ Mimi",
-    "message": "Mimi đã cập nhật phiên bản 1.5.4. Bạn đã nhận được thông báo này chưa?",
+    "title": "Ví Mimi",
+    "message": "Ví Mimi đã cập nhật phiên bản 1.5.4. Bản mới bổ sung lịch sử thông báo và tự ẩn nút “Đánh dấu tất cả đã đọc” khi bạn đã đọc hết. Mở ứng dụng, vào Khác → Kiểm tra cập nhật để cập nhật nhé!",
     "showUpdateButton": false
   },
   "shutdown": {

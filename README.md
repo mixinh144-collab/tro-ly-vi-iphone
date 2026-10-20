@@ -32,7 +32,7 @@ Mục **Khác → Kiểm tra cập nhật** đọc `version.json` trực tiếp 
 
 Khi `notice.showUpdateButton` là `true`, thông báo tự hiện sẽ có nút **Cập nhật ngay**. Nút này tự kiểm tra bản mới, chờ service worker chuẩn bị xong và tải lại ứng dụng; nếu mạng lỗi, người dùng có thể thử lại hoặc dùng mục **Khác → Kiểm tra cập nhật**.
 
-Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.5.5**. Trang chuông thông báo nay có danh sách và chi tiết toàn màn hình, không còn bộ lọc; khi mở tin sẽ không giữ viền focus trên hàng thông báo. Số cache `tro-ly-vi-iphone-57` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
+Phiên bản phát hành hiện tại của bản iPhone/iPad là **1.5.6**. Trang chuông thông báo cho phép chọn từng tin để xóa rồi xác nhận; nút **Đánh dấu tất cả đã đọc** vẫn là thao tác riêng. Số cache `tro-ly-vi-iphone-58` chỉ dùng nội bộ để làm mới tệp, không phải số phiên bản hiển thị cho người dùng.
 
 Cuối mục **Khác** có thẻ **Phiên bản ứng dụng**, tự hiển thị số phiên bản iPhone hiện tại bên cạnh tên **Trợ Lý Ví** và chữ **Mimi Studio**.
 
@@ -41,7 +41,7 @@ Bấm trực tiếp vào ảnh hoặc icon này để mở bảng **Ảnh hồ s
 
 Trên điện thoại, giao diện hiện tại được giữ nguyên. Từ 700 px, khung ứng dụng và thanh điều hướng mở rộng linh hoạt gần hết màn hình; từ 960 px, các khu vực đủ chỗ như Tổng quan, Lịch, Nhắc việc, Cài đặt và Sao lưu mới chuyển sang hai cột.
 
-Khi người dùng chọn **Cập nhật ngay** hoặc **Tải lại để cập nhật**, ứng dụng yêu cầu service worker đang chờ kích hoạt trước, sau đó chỉ xóa các cache chương trình có tiền tố `tro-ly-vi-iphone-`, giữ nguyên dữ liệu giao dịch trong `localStorage`, rồi mở lại bằng URL chống cache. Bản cũ giữ nguyên HTML đã cache cho đến khi người dùng xác nhận cập nhật; vì vậy mở app không tự nhảy sang giao diện mới.
+Khi người dùng chọn **Cập nhật ngay** hoặc **Tải lại để cập nhật**, ứng dụng yêu cầu service worker đang chờ kích hoạt rồi chuyển sang cache của bản mới, giữ nguyên dữ liệu giao dịch trong `localStorage`. Khi chỉ mở lại ứng dụng, app tiếp tục dùng bản đã chọn; vì vậy sẽ không tự nhảy sang giao diện mới.
 Trình kiểm tra cập nhật so sánh số phiên bản theo từng phần; chỉ báo bản mới khi phiên bản trên máy chủ cao hơn. Nếu máy chủ đang thấp hơn do GitHub Pages chưa cập nhật xong, ứng dụng không báo nhầm là có bản mới.
 
 ## Thông báo màn hình khóa

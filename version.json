@@ -1,11 +1,11 @@
 {
-  "version": "1.5.5",
-  "releasedAt": "2026-10-20",
+  "version": "1.5.6",
+  "releasedAt": "2026-10-21",
   "notice": {
-    "enabled": true,
-    "id": "notice-004",
+    "enabled": false,
+    "id": "notice-005",
     "title": "Trợ Lý Ví",
-    "message": "Trợ Lý Ví đã có phiên bản 1.5.5. Lịch sử thông báo có trang riêng, hiển thị nội dung gọn hơn và bỏ viền chọn sau khi mở tin. Vào Khác → Kiểm tra cập nhật để tải bản mới nhé!",
+    "message": "Trợ Lý Ví đã có phiên bản 1.5.6. Bạn có thể chọn từng thông báo để xóa và chỉ cập nhật ứng dụng khi tự bấm xác nhận.",
     "showUpdateButton": false
   },
   "shutdown": {

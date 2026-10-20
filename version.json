@@ -3,9 +3,9 @@
   "releasedAt": "2026-10-20",
   "notice": {
     "enabled": true,
-    "id": "notice-002",
+    "id": "notice-003",
     "title": "Thông báo từ Mimi",
-    "message": "Mimi đã cập nhật phiên bản 1.5.3. Bạn đã nhận được thông báo này chưa?",
+    "message": "Ví Mimi đã có phiên bản 1.5.3! Cập nhật cách hiển thị thông báo gọn gàng, dễ đọc hơn. Bạn mở ứng dụng để cập nhật nhé!",
     "showUpdateButton": false
   },
   "shutdown": {

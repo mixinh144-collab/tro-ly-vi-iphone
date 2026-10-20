@@ -1,4 +1,4 @@
-const CACHE="tro-ly-vi-iphone-54";
+const CACHE="tro-ly-vi-iphone-55";
 const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png"];
 // Safari rejects redirected cached responses for some navigation requests.
 function navigationResponse(response){
@@ -25,7 +25,7 @@ self.addEventListener("fetch",event=>{
 self.addEventListener("push",event=>{
   let message={};
   try{message=event.data?.json()||{}}catch{}
-  const title=String(message.title||"Thông báo từ Mimi Studio").slice(0,100);
+  const title=String(message.title??"Thông báo từ Mimi Studio").slice(0,100);
   const body=String(message.body||"").slice(0,1000);
   event.waitUntil(self.registration.showNotification(title,{
     body,icon:"./logo.png",badge:"./apple-touch-icon-white.png",data:{url:"./"},tag:typeof message.tag==="string"&&message.tag.startsWith("mimi-event-")?message.tag.slice(0,120):"mimi-studio-notice"

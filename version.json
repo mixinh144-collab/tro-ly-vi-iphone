@@ -2,10 +2,10 @@
   "version": "1.5.3",
   "releasedAt": "2026-10-20",
   "notice": {
-    "enabled": false,
-    "id": "notice-001",
-    "title": "Thông báo từ Mimi Studio",
-    "message": "Nhập nội dung bạn muốn gửi tới người dùng tại đây.",
+    "enabled": true,
+    "id": "notice-002",
+    "title": "Thông báo từ Mimi",
+    "message": "Mimi đã cập nhật phiên bản 1.5.3. Bạn đã nhận được thông báo này chưa?",
     "showUpdateButton": false
   },
   "shutdown": {

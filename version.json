@@ -1,11 +1,11 @@
 {
-  "version": "1.5.3",
+  "version": "1.5.4",
   "releasedAt": "2026-10-20",
   "notice": {
     "enabled": true,
-    "id": "notice-004",
-    "title": "Ví Mimi",
-    "message": "Chúc bạn một ngày vui vẻ! Đừng quên ghi lại thu chi hôm nay nhé.",
+    "id": "notice-002",
+    "title": "Thông báo từ Mimi",
+    "message": "Mimi đã cập nhật phiên bản 1.5.4. Bạn đã nhận được thông báo này chưa?",
     "showUpdateButton": false
   },
   "shutdown": {

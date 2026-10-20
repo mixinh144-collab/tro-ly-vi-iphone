@@ -2915,22 +2915,23 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   .top .tools{flex-wrap:nowrap;flex-shrink:0;gap:9px}.top-heading{min-width:0}
   #mimiNoticeBell{position:relative;display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--ink)}
   #mimiNoticeBell svg{width:22px;height:22px}#mimiNoticeBell .notice-dot{position:absolute;right:7px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--pd);border:2px solid var(--paper)}
-  #mimiNoticeInbox{padding:0;width:min(430px,calc(100% - 24px));max-height:80vh;max-height:80dvh;border:1px solid var(--line);border-radius:20px;background:var(--paper);color:var(--ink);box-shadow:0 18px 55px #21182030}
-  #mimiNoticeInbox[open]{display:flex;flex-direction:column}#mimiNoticeInbox::backdrop{background:#21182055}
+  #mimiNoticeInbox{position:fixed;inset:0;z-index:130;display:none;flex-direction:column;width:100%;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;overflow:hidden;background:var(--paper);color:var(--ink)}
+  #mimiNoticeInbox.open{display:flex}#mimiNoticeInbox[hidden]{display:none!important}
   #mimiNoticeInbox [hidden],#mimiNoticeBell [hidden]{display:none!important}
-  #mimiNoticeInbox .notice-head{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid var(--line);flex-shrink:0}
-  #mimiNoticeInbox .notice-head h2{flex:1;margin:0;font-size:calc(20px * var(--font-scale,1))}
-  #mimiNoticeInbox .notice-icon{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;padding:0;border:0;border-radius:50%;background:var(--ps);color:var(--ink)}
-  #mimiNoticeInbox svg{width:20px;height:20px}#mimiNoticeInbox .notice-body{overflow-y:auto;overscroll-behavior:contain;min-height:0}
-  #mimiNoticeInbox .notice-row{display:flex;align-items:flex-start;gap:12px;width:100%;padding:18px 16px;border:0;border-bottom:1px solid var(--line);background:var(--paper);color:var(--ink);text-align:left;font:inherit}
-  #mimiNoticeInbox .notice-row.unread{background:var(--ps)}#mimiNoticeInbox .notice-row img{width:40px;height:40px;border-radius:10px;flex-shrink:0}
-  #mimiNoticeInbox .notice-copy{flex:1;min-width:0;overflow-wrap:anywhere}#mimiNoticeInbox .notice-copy b{font-size:calc(15px * var(--font-scale,1));display:block}
-  #mimiNoticeInbox .notice-copy p{margin:5px 0;color:var(--muted);font-size:calc(13px * var(--font-scale,1));display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  #mimiNoticeInbox small{color:var(--muted);font-size:calc(11px * var(--font-scale,1))}
-  #mimiNoticeInbox .notice-new{width:7px;height:7px;border-radius:50%;background:var(--pd);flex-shrink:0;margin-top:8px}
-  #mimiNoticeInbox .notice-footer{padding:12px 16px;text-align:center;border-top:1px solid var(--line);flex-shrink:0}#mimiNoticeInbox .notice-read-all{min-height:44px;padding:8px 12px;border:0;background:none;color:var(--ink);font:inherit;font-size:13px;font-weight:650}#mimiNoticeInbox .notice-read-all:disabled{color:var(--muted);cursor:default}
-  #mimiNoticeInbox .notice-detail{padding:22px;overflow-wrap:anywhere}#mimiNoticeInbox .notice-detail h3{font-size:calc(18px * var(--font-scale,1));margin:12px 0}
-  #mimiNoticeInbox .notice-detail p{white-space:pre-wrap;line-height:1.7}#mimiNoticeInbox .notice-detail .button{width:100%;margin-top:12px}
+  #mimiNoticeInbox .notice-head{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;border-bottom:1px solid var(--line);flex-shrink:0}
+  #mimiNoticeInbox .notice-head h2{margin:0;text-align:center;font-size:calc(20px * var(--font-scale,1))}
+  #mimiNoticeInbox .notice-icon{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;padding:0;border:0;border-radius:8px;background:transparent;color:var(--ink)}
+  #mimiNoticeInbox .notice-delete{width:44px;min-height:44px;padding:8px 0;border:0;background:transparent;color:var(--pd);text-align:right;font:inherit;font-weight:650}
+  #mimiNoticeInbox svg{width:20px;height:20px}#mimiNoticeInbox .notice-body{flex:1;overflow-y:auto;overscroll-behavior:contain;min-height:0;padding-bottom:16px}
+  #mimiNoticeInbox .notice-row{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;border:0;border-bottom:1px solid var(--line);background:var(--paper);color:var(--ink);text-align:left;font:inherit}
+  #mimiNoticeInbox .notice-row img{width:40px;height:40px;border-radius:10px;flex:0 0 40px;object-fit:cover}
+  #mimiNoticeInbox .notice-copy{flex:1;min-width:0;overflow-wrap:anywhere}#mimiNoticeInbox .notice-copy p{margin:0;color:var(--muted);font-size:calc(14px * var(--font-scale,1));line-height:1.5;white-space:pre-wrap}
+  #mimiNoticeInbox .notice-row.unread .notice-copy p{color:var(--ink);font-weight:650}
+  #mimiNoticeInbox small{display:block;margin-top:7px;color:var(--muted);font-size:calc(12px * var(--font-scale,1));font-variant-numeric:tabular-nums}
+  #mimiNoticeInbox .notice-chevron{width:20px;height:20px;flex:0 0 20px;color:var(--muted)}
+  #mimiNoticeInbox .notice-footer{padding:12px 16px calc(12px + env(safe-area-inset-bottom));text-align:center;border-top:1px solid var(--line);flex-shrink:0}#mimiNoticeInbox .notice-read-all{min-height:44px;padding:8px 12px;border:0;background:none;color:var(--ink);font:inherit;font-size:13px;font-weight:650}#mimiNoticeInbox .notice-read-all:disabled{color:var(--muted);cursor:default}
+  #mimiNoticeInbox .notice-detail{max-width:700px;width:100%;margin:0 auto;padding:22px 18px;overflow-wrap:anywhere}
+  #mimiNoticeInbox .notice-detail p{margin-top:0;white-space:pre-wrap;line-height:1.7}#mimiNoticeInbox .notice-detail .button{width:100%;margin-top:12px}
   #mimiNoticeInbox .notice-empty{padding:36px 20px;text-align:center;color:var(--muted)}
   #mimiNoticeInbox button:focus-visible,#mimiNoticeBell:focus-visible{outline:2px solid var(--pd);outline-offset:-3px}
   #mimiNoticeBanner{position:fixed;z-index:110;right:max(12px,env(safe-area-inset-right));width:min(370px,calc(100% - 24px));display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--paper);color:var(--ink);border:1px solid var(--pd);border-radius:12px;box-shadow:0 6px 20px #21182020;font-size:calc(14px * var(--font-scale,1))}
@@ -2940,13 +2941,14 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   `;document.head.append(style);
   // Inline Lucide paths keep notification controls available offline.
   const svg=paths=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths+'</svg>';
-  const bell=document.createElement("button");bell.id="mimiNoticeBell";bell.type="button";bell.title="Thông báo";bell.setAttribute("aria-haspopup","dialog");bell.setAttribute("aria-controls","mimiNoticeInbox");
+  const bell=document.createElement("button");bell.id="mimiNoticeBell";bell.type="button";bell.title="Thông báo";bell.setAttribute("aria-controls","mimiNoticeInbox");
   bell.innerHTML=svg('<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>')+'<span class="notice-dot" aria-hidden="true"></span>';avatar.before(bell);
-  const dialog=document.createElement("dialog");dialog.id="mimiNoticeInbox";dialog.setAttribute("aria-labelledby","mimiNoticeInboxTitle");
-  dialog.innerHTML='<div class="notice-head"><button type="button" class="notice-icon" data-inbox-back aria-label="Quay lại" title="Quay lại" hidden>'+svg('<path d="m12 19-7-7 7-7"/><path d="M5 12h14"/>')+'</button><h2 id="mimiNoticeInboxTitle">Thông báo</h2><button type="button" class="notice-icon" data-inbox-close aria-label="Đóng thông báo" title="Đóng">'+svg('<path d="m18 6-12 12M6 6l12 12"/>')+'</button></div><div class="notice-body"></div><div class="notice-footer"><button type="button" class="notice-read-all">Đánh dấu tất cả đã đọc</button></div>';
-  document.body.append(dialog);
-  const body=dialog.querySelector(".notice-body"),back=dialog.querySelector("[data-inbox-back]"),footer=dialog.querySelector(".notice-footer");
-  let detailId="";
+  const inboxPage=document.createElement("section");inboxPage.id="mimiNoticeInbox";inboxPage.hidden=true;inboxPage.setAttribute("role","region");inboxPage.setAttribute("aria-labelledby","mimiNoticeInboxTitle");
+  inboxPage.innerHTML='<div class="notice-head"><button type="button" class="notice-icon" data-inbox-back aria-label="Quay lại" title="Quay lại">'+svg('<path d="m12 19-7-7 7-7"/><path d="M5 12h14"/>')+'</button><h2 id="mimiNoticeInboxTitle" tabindex="-1">Thông báo</h2><button type="button" class="notice-delete" data-inbox-delete>Xóa</button></div><div class="notice-body"></div><div class="notice-footer"><button type="button" class="notice-read-all">Đánh dấu tất cả đã đọc</button></div>';
+  document.body.append(inboxPage);
+  const body=inboxPage.querySelector(".notice-body"),back=inboxPage.querySelector("[data-inbox-back]"),footer=inboxPage.querySelector(".notice-footer"),inboxTitle=inboxPage.querySelector("#mimiNoticeInboxTitle"),deleteAll=inboxPage.querySelector("[data-inbox-delete]");
+  let detailId="",previousBodyOverflow="",previousAppInert=false;
+  const appRoot=document.querySelector(".app");
   const sync=()=>{const count=inbox.filter(n=>!n.read).length;bell.querySelector(".notice-dot").hidden=!count;bell.setAttribute("aria-label",count?`Thông báo, ${count} chưa đọc`:"Thông báo")};
   const save=()=>{try{localStorage.setItem(INBOX_KEY,JSON.stringify(inbox))}catch{}sync()};
   const banner=document.createElement("div");banner.id="mimiNoticeBanner";banner.hidden=true;
@@ -2957,40 +2959,40 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   window.addEventListener("resize",positionBanner);
   if(window.ResizeObserver){const top=document.querySelector(".top");if(top)new ResizeObserver(positionBanner).observe(top)}
   const announce=()=>{
-    if(document.hidden||dialog.open||document.querySelector(".iphone-install-guide.open")||!inbox.some(n=>!n.read&&!n.announced))return;
+    if(document.hidden||!inboxPage.hidden||document.querySelector(".iphone-install-guide.open")||!inbox.some(n=>!n.read&&!n.announced))return;
     inbox.filter(n=>!n.read&&!n.announced).forEach(n=>n.announced=true);save();
     positionBanner();banner.hidden=false;banner.querySelector("span").textContent="Bạn có thông báo mới";
     clearTimeout(bannerTimer);bannerTimer=setTimeout(hideBanner,5000);
   };
   const date=n=>{const value=new Date(n.receivedAt);return value.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",hour12:false})+" "+value.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit",year:"numeric"})};
   const renderList=()=>{
-    detailId="";back.hidden=true;footer.hidden=!inbox.some(n=>!n.read);body.replaceChildren();body.scrollTop=0;
+    detailId="";back.hidden=false;footer.hidden=!inbox.some(n=>!n.read);body.replaceChildren();body.scrollTop=0;
     if(!inbox.length){const empty=document.createElement("p");empty.className="notice-empty";empty.textContent="Bạn chưa có thông báo nào.";body.append(empty)}
     inbox.forEach(n=>{const row=document.createElement("button");row.type="button";row.className="notice-row"+(n.read?"":" unread");
-      row.innerHTML='<img src="./logo.png" alt=""><span class="notice-copy"><b></b><p></p><small></small></span>'+(n.read?"":'<span class="notice-new" aria-label="Chưa đọc"></span>');
-      row.querySelector("b").textContent=n.title;row.querySelector("p").textContent=n.message;row.querySelector("small").textContent=date(n);row.addEventListener("click",()=>showDetail(n));body.append(row)});
+      row.innerHTML='<img src="./logo.png" alt=""><span class="notice-copy"><p></p><small></small></span><span class="notice-chevron">'+svg('<path d="m9 18 6-6-6-6"/>')+'</span>';
+      row.querySelector("p").textContent=n.message;row.querySelector("small").textContent=date(n);row.addEventListener("click",()=>{row.blur();showDetail(n)});body.append(row)});
   };
   const showDetail=n=>{
     detailId=n.id;n.read=true;save();back.hidden=false;footer.hidden=true;body.replaceChildren();body.scrollTop=0;
-    const content=document.createElement("div");content.className="notice-detail";content.innerHTML="<small></small><h3></h3><p></p>";
-    content.querySelector("small").textContent=date(n);content.querySelector("h3").textContent=n.title;content.querySelector("p").textContent=n.message;
+    const content=document.createElement("div");content.className="notice-detail";content.innerHTML="<small></small><p></p>";
+    content.querySelector("small").textContent=date(n);content.querySelector("p").textContent=n.message;
     if(n.showUpdateButton){const update=document.createElement("button");update.type="button";update.className="button primary";update.textContent="Cập nhật ngay";
-      update.addEventListener("click",()=>{dialog.close();document.querySelector("[data-check-update]")?.click()});content.append(update)}
-    body.append(content);back.focus();
+      update.addEventListener("click",()=>{closeInbox();document.querySelector("[data-check-update]")?.click()});content.append(update)}
+    body.append(content);inboxTitle.focus({preventScroll:true});
   };
-  const openInbox=()=>{hideBanner();renderList();dialog.showModal()};
+  const openInbox=()=>{hideBanner();previousBodyOverflow=document.body.style.overflow;document.body.style.overflow="hidden";if(appRoot){previousAppInert=appRoot.inert;appRoot.inert=true}renderList();inboxPage.hidden=false;inboxPage.classList.add("open");inboxTitle.focus({preventScroll:true})};
+  const closeInbox=()=>{inboxPage.classList.remove("open");inboxPage.hidden=true;document.body.style.overflow=previousBodyOverflow;if(appRoot)appRoot.inert=previousAppInert;detailId="";bell.focus({preventScroll:true})};
   bell.addEventListener("click",openInbox);banner.querySelector("button").addEventListener("click",openInbox);
-  back.addEventListener("click",()=>{renderList();dialog.querySelector(".notice-row")?.focus()});
-  dialog.querySelector("[data-inbox-close]").addEventListener("click",()=>dialog.close());
-  dialog.querySelector(".notice-read-all").addEventListener("click",()=>{inbox.forEach(n=>n.read=true);save();renderList();dialog.querySelector("[data-inbox-close]").focus()});
-  dialog.addEventListener("close",()=>{detailId="";bell.focus()});
-  dialog.addEventListener("click",event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()});
+  back.addEventListener("click",()=>{if(detailId){renderList();inboxTitle.focus({preventScroll:true})}else closeInbox()});
+  document.addEventListener("keydown",event=>{if(event.key!=="Escape"||inboxPage.hidden)return;event.preventDefault();if(detailId){renderList();inboxTitle.focus({preventScroll:true})}else closeInbox()});
+  deleteAll.addEventListener("click",()=>{if(!inbox.length||!window.confirm("Xóa toàn bộ lịch sử thông báo?"))return;inbox=[];save();renderList();inboxTitle.focus({preventScroll:true})});
+  inboxPage.querySelector(".notice-read-all").addEventListener("click",()=>{inbox.forEach(n=>n.read=true);save();renderList();inboxTitle.focus({preventScroll:true})});
   const receiveNotice=notice=>{
     const id=cleanText(notice.id,80),message=cleanText(notice.message,1000);
     if(notice.enabled!==true||!id||!message||inbox.some(n=>n.id===id))return;
     let read=false;try{read=localStorage.getItem(SEEN_KEY)===id}catch{}
     inbox.unshift({id,title:cleanText(notice.title,100)||"Trợ Lý Ví",message,showUpdateButton:notice.showUpdateButton===true,read,receivedAt:Date.now()});
-    inbox=inbox.slice(0,50);save();if(dialog.open&&!detailId)renderList();announce();
+    inbox=inbox.slice(0,50);save();if(!inboxPage.hidden&&!detailId)renderList();announce();
   };
   sync();
   let checkingNotice=false;
@@ -3035,7 +3037,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.5.4'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.5.5'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -3049,7 +3051,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.5.4",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.5.5",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(!tile)return;
   const dialog=document.createElement("div");
@@ -3106,7 +3108,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.5.4');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.5.5');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

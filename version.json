@@ -1,11 +1,11 @@
 {
-  "version": "1.5.8",
+  "version": "1.5.9",
   "releasedAt": "2026-10-21",
   "notice": {
     "enabled": false,
     "id": "notice-006",
     "title": "Trợ Lý Ví",
-    "message": "Trợ Lý Ví đã có phiên bản 1.5.8 với biểu tượng danh mục bằng ảnh và giao diện thông báo gọn hơn. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
+    "message": "Trợ Lý Ví đã có phiên bản 1.5.9 với ba màu pastel mới và thao tác danh mục tiện hơn. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
     "showUpdateButton": false
   },
   "shutdown": {

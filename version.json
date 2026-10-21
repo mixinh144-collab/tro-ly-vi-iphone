@@ -1,11 +1,11 @@
 {
-  "version": "1.6.4",
+  "version": "1.6.5",
   "releasedAt": "2026-10-21",
   "notice": {
     "enabled": false,
-    "id": "notice-008",
+    "id": "notice-009",
     "title": "Trợ Lý Ví",
-    "message": "Trợ Lý Ví đã có phiên bản 1.6.4. Cải thiện menu Sửa/Xóa khi nhấn giữ danh mục. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
+    "message": "Trợ Lý Ví đã có phiên bản 1.6.5. Bỏ vệt xám nhấp nháy khi nhấn giữ danh mục trên iPhone. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
     "showUpdateButton": false
   },
   "shutdown": {

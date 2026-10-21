@@ -1,4 +1,4 @@
-const CACHE="tro-ly-vi-iphone-65";
+const CACHE="tro-ly-vi-iphone-66";
 const CACHE_PREFIX="tro-ly-vi-iphone-";
 const ACTIVE_CACHE="tro-ly-vi-active";
 const ACTIVE_KEY=new URL("./__mimi_active_release__",self.registration.scope).href;

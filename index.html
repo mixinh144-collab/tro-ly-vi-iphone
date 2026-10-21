@@ -1367,7 +1367,7 @@ function createBackupPayload(value=profileStore){return {app:"Trợ Lý Ví",ver
 
   const style = document.createElement("style");
   style.textContent = `
-    .category-native-select{display:none!important}.category-picker{position:relative;width:100%}.category-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;cursor:pointer;padding-right:38px}.category-trigger::after{content:"";position:absolute;right:13px;top:50%;width:9px;height:9px;border-right:1.75px solid var(--muted);border-bottom:1.75px solid var(--muted);border-radius:1px;transform:translateY(-65%) rotate(45deg);pointer-events:none}.category-trigger.open::after{transform:translateY(-22%) rotate(225deg)}.category-dropdown{position:fixed;z-index:90;overflow:auto;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 45px #26121d35}.category-create,.category-option{display:flex;width:100%;align-items:center;gap:8px;border:0;background:transparent;color:var(--ink);border-radius:8px;padding:9px 10px;text-align:left}.category-option{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}.category-create{color:var(--p);font-weight:850;border-bottom:1px solid var(--line);border-radius:8px 8px 3px 3px;margin-bottom:4px}.category-create:hover,.category-option:hover,.category-option.selected{background:var(--ps);color:var(--ink)}.category-context{position:fixed;z-index:110;min-width:160px;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:11px;box-shadow:0 14px 38px #24121b40}.category-context button{width:100%;border:0;background:transparent;color:var(--danger);border-radius:7px;padding:9px 10px;text-align:left;font-weight:750}.category-context button:hover:not(:disabled){background:#fff0f0}.category-context button:disabled{color:var(--muted);cursor:not-allowed}
+    .category-native-select{display:none!important}.category-picker{position:relative;width:100%}.category-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;cursor:pointer;padding-right:38px}.category-trigger::after{content:"";position:absolute;right:13px;top:50%;width:9px;height:9px;border-right:1.75px solid var(--muted);border-bottom:1.75px solid var(--muted);border-radius:1px;transform:translateY(-65%) rotate(45deg);pointer-events:none}.category-trigger.open::after{transform:translateY(-22%) rotate(225deg)}.category-dropdown{position:fixed;z-index:90;overflow:auto;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 45px #26121d35}.category-create,.category-option{display:flex;width:100%;align-items:center;gap:8px;border:0;background:transparent;color:var(--ink);border-radius:8px;padding:9px 10px;text-align:left}.category-option{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}.category-create{color:var(--p);font-weight:850;border-bottom:1px solid var(--line);border-radius:8px 8px 3px 3px;margin-bottom:4px}.category-option.selected{background:var(--ps);color:var(--ink)}@media (hover:hover) and (pointer:fine){.category-create:hover,.category-option:hover{background:var(--ps);color:var(--ink)}}.category-context{position:fixed;z-index:110;min-width:160px;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:11px;box-shadow:0 14px 38px #24121b40}.category-context button{width:100%;border:0;background:transparent;color:var(--danger);border-radius:7px;padding:9px 10px;text-align:left;font-weight:750}.category-context button:hover:not(:disabled){background:#fff0f0}.category-context button:disabled{color:var(--muted);cursor:not-allowed}
   `;
   document.head.appendChild(style);
   categorySelect.classList.add("category-native-select");
@@ -3188,7 +3188,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.6.2'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.6.3'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -3202,7 +3202,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.6.2",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.6.3",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(badge&&badge.textContent==="Tự động")badge.textContent="Thủ công";
   if(!tile)return;
@@ -3258,7 +3258,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.6.2');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.6.3');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

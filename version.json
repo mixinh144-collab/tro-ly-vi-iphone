@@ -1,11 +1,11 @@
 {
-  "version": "1.6.0",
+  "version": "1.6.1",
   "releasedAt": "2026-10-21",
   "notice": {
-    "enabled": true,
+    "enabled": false,
     "id": "notice-006",
     "title": "Trợ Lý Ví",
-    "message": "Trợ Lý Ví đã có phiên bản 1.6.0. Tạo danh mục nay bắt đầu chưa chọn biểu tượng, có thể chạm lại để bỏ chọn; menu nhấn giữ cũng dễ bấm hơn. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
+    "message": "Trợ Lý Ví đã có phiên bản 1.6.1. Vuốt danh sách danh mục hoặc lưới biểu tượng giờ chỉ cuộn, không chọn nhầm. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
     "showUpdateButton": false
   },
   "shutdown": {

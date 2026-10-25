@@ -1,8 +1,8 @@
-const CACHE="tro-ly-vi-iphone-70";
+const CACHE="tro-ly-vi-iphone-71";
 const CACHE_PREFIX="tro-ly-vi-iphone-";
 const ACTIVE_CACHE="tro-ly-vi-active";
 const ACTIVE_KEY=new URL("./__mimi_active_release__",self.registration.scope).href;
-const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png","./push-client.js"];
+const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png","./push-client.js","./notice-sound.wav"];
 // Safari rejects redirected cached responses for some navigation requests.
 function navigationResponse(response){
   if(!response||!response.redirected)return response;

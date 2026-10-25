@@ -2,7 +2,7 @@
   "version": "1.6.8",
   "releasedAt": "2026-10-25",
   "notice": {
-    "enabled": false,
+    "enabled": true,
     "id": "notice-011",
     "title": "Trợ Lý Ví",
     "message": "Trợ Lý Ví đã có phiên bản 1.6.8. Cải thiện chọn người nhận tiền và thêm âm báo tin mới trong ứng dụng. Vào Khác → Kiểm tra cập nhật để cài bản mới.",

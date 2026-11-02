@@ -3113,7 +3113,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const selectedIds=new Set();
   const appRoot=document.querySelector(".app");
   const sync=()=>{const count=inbox.filter(n=>!n.read).length;bell.querySelector(".notice-dot").hidden=!count;bell.setAttribute("aria-label",count?`Thông báo, ${count} chưa đọc`:"Thông báo")};
-  const save=()=>{try{localStorage.setItem(INBOX_KEY,JSON.stringify(inbox))}catch{}sync()};
+  const save=()=>{let saved=true;try{localStorage.setItem(INBOX_KEY,JSON.stringify(inbox))}catch{saved=false}sync();return saved};
   const banner=document.createElement("div");banner.id="mimiNoticeBanner";banner.hidden=true;
   banner.innerHTML='<span role="status" aria-live="polite"></span><button type="button">Xem</button>';document.body.append(banner);
   const chime=new Audio("./notice-sound.wav");chime.preload="auto";
@@ -3182,12 +3182,31 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   readAll.addEventListener("click",()=>{inbox.forEach(n=>n.read=true);save();renderList();inboxTitle.focus({preventScroll:true})});
   const receiveNotice=notice=>{
     const id=cleanText(notice.id,80),message=cleanText(notice.message,1000);
-    if(notice.enabled!==true||!id||!message||inbox.some(n=>n.id===id))return;
+    if(notice.enabled!==true||!id||!message)return false;
+    if(inbox.some(n=>n.id===id))return true;
     let read=false;try{read=localStorage.getItem(SEEN_KEY)===id}catch{}
-    inbox.unshift({id,title:cleanText(notice.title,100)||"Trợ Lý Ví",message,showUpdateButton:notice.showUpdateButton===true,read,receivedAt:Date.now()});
-    inbox=inbox.slice(0,50);save();if(!inboxPage.hidden&&!detailId)renderList();announce();
+    inbox.unshift({id,title:cleanText(notice.title,100)||"Trợ Lý Ví",message,showUpdateButton:notice.showUpdateButton===true,read,receivedAt:Number.isFinite(notice.receivedAt)?notice.receivedAt:Date.now()});
+    inbox=inbox.slice(0,50);const saved=save();if(!inboxPage.hidden&&!detailId)renderList();announce();return saved;
   };
+  let importingPush=false,importPushAgain=false;
+  const importPushNotices=async()=>{
+    if(importingPush){importPushAgain=true;return}
+    if(!window.caches)return;
+    importingPush=true;
+    try{
+      const cache=await caches.open("tro-ly-vi-push-inbox-v1");
+      const keys=(await cache.keys()).filter(key=>key.url.includes("/__mimi_push_notice__/"));
+      for(const key of keys.sort((a,b)=>a.url.localeCompare(b.url))){
+        try{const response=await cache.match(key);if(!response)continue;
+          const notice=await response.json();
+          if(receiveNotice({...notice,enabled:true}))await cache.delete(key);
+        }catch{}
+      }
+    }catch{}finally{importingPush=false;if(importPushAgain){importPushAgain=false;importPushNotices()}}
+  };
+  navigator.serviceWorker?.addEventListener("message",event=>{if(event.data?.type==="MIMI_PUSH_NOTICE")importPushNotices()});
   sync();updateHomeNotice();
+  importPushNotices();
   let checkingNotice=false;
   const checkNotice=()=>{
     if(document.hidden||checkingNotice)return;
@@ -3199,8 +3218,8 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   };
   checkNotice();
   setInterval(checkNotice,15000);
-  document.addEventListener("visibilitychange",()=>{if(!document.hidden)checkNotice()});
-  window.addEventListener("focus",checkNotice);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden){checkNotice();importPushNotices()}});
+  window.addEventListener("focus",()=>{checkNotice();importPushNotices()});
 })();
 </script>
 <script id="iphone-report-issue-runtime">
@@ -3230,7 +3249,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
     if(!navigator.onLine){status.textContent='Bạn đang mất mạng. Nội dung vẫn được giữ, hãy gửi lại khi có mạng.';return}
     pending=true;send.disabled=true;send.textContent='Đang gửi…';status.textContent='';
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
-    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.7.0'};
+    const payload={_subject:'Góp ý / Báo lỗi — Ví Mimi',_template:'table',message,rating:fields.get('rating')?fields.get('rating')+'/5':'Không đánh giá',app_version:'1.7.1'};
     const email=String(fields.get('email')||'').trim();if(email)payload.email=email;
     try{
       const response=await fetch('https://formsubmit.co/ajax/mixinh144@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
@@ -3244,7 +3263,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
 
 <script id="iphone-update-runtime">
 (()=>{
-  const APP_VERSION="1.7.0",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
+  const APP_VERSION="1.7.1",tile=document.querySelector("[data-check-update]"),badge=document.getElementById("iphoneUpdateBadge"),versionLabel=document.getElementById("iphoneVersionLabel");
   if(versionLabel)versionLabel.textContent="Trợ Lý Ví "+APP_VERSION;
   if(badge&&badge.textContent==="Tự động")badge.textContent="Thủ công";
   if(!tile)return;
@@ -3300,7 +3319,7 @@ function renderReminders(){if(!document.getElementById("reminders"))return;const
   const brand=document.querySelector('.brand b');
   if(brand)brand.textContent='Trợ Lý Ví Mimi';
   const versionLabel=document.getElementById('iphoneVersionLabel');
-  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.7.0');
+  if(versionLabel)versionLabel.textContent='Trợ Lý Ví Mimi '+(window.walletNativeVersion||'1.7.1');
   document.querySelectorAll('img[alt="Logo Trợ Lý Ví"]').forEach(image=>image.alt='Logo Trợ Lý Ví Mimi');
 })();
 </script>

@@ -1,6 +1,7 @@
-const CACHE="tro-ly-vi-iphone-74";
+const CACHE="tro-ly-vi-iphone-75";
 const CACHE_PREFIX="tro-ly-vi-iphone-";
 const ACTIVE_CACHE="tro-ly-vi-active";
+const PUSH_INBOX_CACHE="tro-ly-vi-push-inbox-v1";
 const ACTIVE_KEY=new URL("./__mimi_active_release__",self.registration.scope).href;
 const FILES=["./","./index.html","./manifest.webmanifest","./version.json","./logo.png","./apple-touch-icon-white.png","./push-client.js","./notice-sound.wav"];
 // Safari rejects redirected cached responses for some navigation requests.
@@ -48,14 +49,27 @@ self.addEventListener("fetch",event=>{
     catch{return cache.match("./index.html")}
   })());
 });
+async function savePushNotice(notice){
+  const cache=await caches.open(PUSH_INBOX_CACHE);
+  const key=new URL("./__mimi_push_notice__/"+encodeURIComponent(notice.id),self.registration.scope).href;
+  await cache.put(key,new Response(JSON.stringify(notice),{headers:{"Content-Type":"application/json"}}));
+  const keys=await cache.keys();
+  for(const old of keys.sort((a,b)=>a.url.localeCompare(b.url)).slice(0,Math.max(0,keys.length-50)))await cache.delete(old);
+}
 self.addEventListener("push",event=>{
   let message={};
   try{message=event.data?.json()||{}}catch{}
   const title=String(message.title??"Thông báo từ Mimi Studio").slice(0,100);
   const body=String(message.body||"").slice(0,1000);
-  event.waitUntil(self.registration.showNotification(title,{
+  const notice={id:"push-"+Date.now()+"-"+Math.random().toString(36).slice(2,8),title,message:body||title,receivedAt:Date.now()};
+  const display=self.registration.showNotification(title,{
     body,icon:"./logo.png",badge:"./apple-touch-icon-white.png",data:{url:"./"},tag:typeof message.tag==="string"&&message.tag.startsWith("mimi-event-")?message.tag.slice(0,120):"mimi-studio-notice"
-  }));
+  });
+  event.waitUntil((async()=>{
+    await Promise.allSettled([display,savePushNotice(notice)]);
+    const windows=await clients.matchAll({type:"window",includeUncontrolled:true});
+    for(const client of windows)client.postMessage({type:"MIMI_PUSH_NOTICE"});
+  })());
 });
 self.addEventListener("notificationclick",event=>{
   event.notification.close();

@@ -1,11 +1,11 @@
 {
-  "version": "1.6.9",
-  "releasedAt": "2026-10-25",
+  "version": "1.7.0",
+  "releasedAt": "2026-11-02",
   "notice": {
-    "enabled": true,
-    "id": "notice-013",
+    "enabled": false,
+    "id": "notice-011",
     "title": "Trợ Lý Ví",
-    "message": "🌷 Chúc bạn một ngày tốt lành! Đừng quên ghi lại thu chi hôm nay nhé 💰.",
+    "message": "Trợ Lý Ví đã có phiên bản 1.7.0. Đã sửa âm báo khi chạm Xem trên thanh thông báo mới. Vào Khác → Kiểm tra cập nhật để cài bản mới.",
     "showUpdateButton": false
   },
   "shutdown": {
